@@ -1,9 +1,800 @@
-<p>navbar works!</p>
+<header  id="navbar" color-on-scroll="500" style="border: 2px solid rgba(255,255,255,0.1);">
+  <div class="container">
 
-<li>
-    <a style="color: #72147E; font-weight: bold; font-size: 17px" [routerLink]="['/cartPage']">Cart</a>
-</li>
+      <input type="checkbox" name="" id="check">
+       <div class="hamburger-menu-container">
+          <div class="hamburger-menu">
+              <div ></div>
+          </div>
+      </div>
+      <div class="ccontainer container" style="justify-content: start;flex: 0.17; padding-left: 10px;padding-right: 10px;">
+        <p style="align-items: center;">
+          <ng-template #content let-offcanvas  >
+          <div class="offcanvas-header text-bg-dark container " style="justify-content: space-between;" >
 
-<li>
-    <a style="color: #72147E; font-weight: bold; font-size: 17px" [routerLink]="['/commonPage']">Common</a>
-</li>
+            <h4 class="offcanvas-title text-bg-dark ">Tài Khoản Khách Hàng </h4>
+            <div class="text-end text-bg-dark  ">
+              <button type="button" class="btn btn-outline-light" (click)="offcanvas.close('Close click')"><i class="bi bi-x-lg"></i></button>
+            </div>
+          </div>
+          <div class="offcanvas-body text-bg-dark">
+
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs  ">
+              <li [ngbNavItem]="1">
+                <ng-template ngbNavContent >
+                  <h3>Tôi Đã Có Tài Khoản </h3>
+                  <form class="register-form" [formGroup]="admin" class="contact-form" (ngSubmit)="onSubmit()"  [action]="url" method="get">
+                    <div style="padding-top:25px;">
+                      <label>Đăng Nhập*</label>
+                      <div class="input-group form-group-no-border"  [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend">
+
+                          <input id="email" style="border: none;width:350px;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                        </div>
+
+                      </div>
+                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
+                        <div *ngIf="form1.email.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div style="padding-top:25px;">
+                      <label>Mật Khẩu*</label>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend">
+
+                          <input id="password" style="border: none;width: 350px;" type="password" class="form-control" placeholder="Admin password" formControlName="password">
+                        </div>
+                      </div>
+                      <a href="">Bạn quên mật khẩu</a>
+                      <div *ngIf="form1.password.invalid && (form1.password.dirty||form1.password.touched)">
+                        <div *ngIf="form1.password.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Password</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" style="padding-top: 25px; ">
+                      <div class="col" style="padding-left: 0;padding-right: 0;" >
+                        <button  style="border-color: #ffffff;list-style: none; font-weight: bold ;width: 100%;margin: 0;  " type="submit;" class="btn btn-outline-light" [disabled]="!admin.valid">Đăng Nhập</button>
+                      </div>
+                    </div>
+                      <h3 style="padding-top: 30px;">Tôi Chưa Có Tài Khoản </h3>
+                      <h5 style="padding-top: 30px;">Tận hưởng nhiều lợi ích và trải nghiệm phong phú hơn bằng cách tạo tài khoản cá nhân</h5>
+
+                    <div [ngbNavItem]="2" class="text-end text-bg-dark  " style="padding-top: 30px;">
+                      <button ngbNavLink class="btn btn-outline-light" style="width: 100%;margin: 0;">Tạo Tài Khoản</button>
+                    </div>
+                  </form>
+                </ng-template>
+
+              </li>
+              <li [ngbNavItem]="2">
+                <ng-template ngbNavContent>
+                  <h4>Đến Với Lizard Để Có Những Khoảnh Khắc Mua Sắm Tuyệt Vời Nhất</h4>
+                  <form class="register-form" [formGroup]="admin" class="contact-form" (ngSubmit)="onSubmit()"  [action]="url" method="get">
+                    <div>
+                      <label>Email*</label>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend" style="width: 100%;">
+
+                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                        </div>
+
+                      </div>
+                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
+                        <div *ngIf="form1.email.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label>Mật khẩu*</label>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend" style="width: 100%;">
+
+                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                        </div>
+
+                      </div>
+                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
+                        <div *ngIf="form1.email.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label>Giới Tính*</label>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend" style="width: 100%;">
+
+                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                        </div>
+
+                      </div>
+                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
+                        <div *ngIf="form1.email.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <label>Quốc Gia*</label>
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend"style="width: 100%;">
+
+                          <input id="password" style="border: none;" type="password" class="form-control" placeholder="Admin password" formControlName="password">
+                        </div>
+                      </div>
+
+                      <div *ngIf="form1.password.invalid && (form1.password.dirty||form1.password.touched)">
+                        <div *ngIf="form1.password.errors">
+
+                          <small style="color:red !important;" class="form-text text-muted">Errors Password</small>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pt-2 pb-0" style="text-align: center;">
+                      <div class="col ps-0 pe-0 pt-2 pb-4" style="position: relative;">
+                        <button  style="border-color: #ffffff;list-style: none; justify-content: center; font-weight: bold" type="submit;" class="btn btn-outline-light w-100" [disabled]="!admin.valid">Đăng Ký</button>
+                      </div>
+                    </div>
+                    <div [ngbNavItem]="1" class="text-end text-bg-dark  pt-0 pb-0">
+                      <button ngbNavLink class="btn btn-outline-light w-100">Tôi Đã Có Tài Khoản</button>
+                    </div>
+                  </form>
+                </ng-template>
+              </li>
+            </ul>
+
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+          </div>
+        </ng-template>
+
+        <a (click)="openTop(contentt)">. <i class="bi bi-search"></i></a>
+        </p>
+    </div>
+      <div class="logo-container" >
+          <h3 class="logo"><img src="https://i.pinimg.com/564x/1b/0a/f0/1b0af08699c7c139655af122d2438693.jpg" width="30px " height="19px" style="padding-bottom: 3px;" alt=""><span>LIZARD</span></h3>
+      </div>
+      <div class="ccontainer"style="justify-content: end;  ">
+        <p ><a style="color: aliceblue;" href="cart"><i class="bi bi-bag-heart"></i></a></p>
+    </div>
+      <div class="ccontainer"style="justify-content: end;flex: 0.13;">
+        <p >
+          <ng-template #contentt let-offcanvas class=" h-auto" >
+            <div class="row justify-content-end text-bg-dark">
+
+            </div>
+
+            <div class="offcanvas-header text-bg-dark ">
+              <div class="search-container row text-light text-bg-dark justify-content-center" style="display: flex; padding-top: 1rem;">
+                <form action="/action_page.php" style="width:600px; height: 30px;">
+                  <button class="bg-dark text-light" style="height: 35px; width: 35px;" type="submit"><i class="fa fa-search"></i></button>
+                  <input style="width: 500px;height: 35px; background-color: black;color: aliceblue; border: none;" type="text" placeholder="Search.." name="search">
+
+                </form>
+              </div>
+
+            </div>
+            <div class="offcanvas-body text-bg-dark  h-100%  " style="overflow-y: initial;">
+              <div class="row">
+                <div class="col-3">
+                  <h3 style="padding-left: 2rem; margin-bottom: 1rem;">Đồ nữ</h3>
+                  <ul class="lv-predictive-categories__links">
+                    <li>
+                      <a href="#" class="lv-smart-link list-label-l">Túi</a>
+                    </li>
+                    <li>
+                      <a href="#">Tất cả Túi ví đa năng và Phụ kiện bằng da</a>
+                    </li>
+                    <li>
+                      <a href="#">Trang phục</a>
+                    </li>
+                    <li>
+                      <a href="#" class="lv-smart-link list-label-l">Những mẫu Giày biểu tượng</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-3">
+                  <h3 style="padding-left: 2rem; margin-bottom: 1rem;">Đồ nam</h3>
+                  <ul class="lv-predictive-categories__links">
+                    <li>
+                      <a href="#">Tất cả Túi</a>
+                    </li>
+                    <li>
+                      <a href="#" class="lv-smart-link list-label-l">Giày thể thao</a>
+                    </li>
+                    <li>
+                      <a href="#" class="lv-smart-link list-label-l">Tất cả Túi ví đa năng và Phụ kiện bằng da</a>
+                    </li>
+                    <li>
+                      <a href="#" class="lv-smart-link list-label-l">Tất cả Giày</a>
+                    </li>
+                  </ul>
+                </div>
+
+
+
+                <div class="col">
+                  <div class="row">
+                    <h3 style="padding-left: 2rem; margin-bottom: 1rem; display: inline;">Sản phẩm</h3>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <ul>
+                    <li>
+                      <a href="#">
+                        <div class="row align-items-center">
+                          <div class="col-4 ps-0" >
+                            <img src="https://i.pinimg.com/564x/cc/b8/57/ccb85742f142ad9175a7081d0accc685.jpg" alt="">
+                          </div>
+                          <div class="col align-items-center">
+                            <p style="align-items: center;">Túi tiliss</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <div class="row align-items-center">
+                          <div class="col-4 ps-0" >
+                            <img src="https://i.pinimg.com/736x/04/f4/3e/04f43e2a41e8380c979973c8ad159aab.jpg" alt="">
+                          </div>
+                          <div class="col">
+                            <p>Túi tiliss</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+
+
+                  </ul>
+                    </div>
+                    <div class="col">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <div class="row align-items-center">
+                          <div class="col-4 ps-0" >
+                            <img src="https://i.pinimg.com/564x/69/b5/ca/69b5ca9c97274ccacf465aeb69f7aa02.jpg" alt="">
+                          </div>
+                          <div class="col">
+                            <p>Túi tiliss</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <div class="row align-items-center">
+                          <div class="col-4 ps-0" >
+                            <img src="https://i.pinimg.com/564x/a2/b2/e1/a2b2e1f350ceb972172c0f2542af1d3f.jpg" alt="">
+                          </div>
+                          <div class="col">
+                            <p>Túi tiliss</p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+
+
+                  </ul>
+                  </div>
+                </div>
+
+
+                </div>
+              </div>
+
+              <div class="ccontainer" class="text-end">
+                <button type="button" class="btn btn-outline-dark text-light" (click)="offcanvas.close('Close click')">x</button>
+              </div>
+            </div>
+          </ng-template>
+          <a  class="btn btn-lg btn-outline-primary text-bg-dark " (click)="openEnd(content)"class="btn btn-outline-secondary me-2" placement="bottom" ngbTooltip="Tooltip on bottom"><i class="bi bi-person"></i></a>
+        </p>
+    </div>
+
+      <div class="nav-btn" >
+              <ul class="menu">
+                <li class="dropd" >
+                  <a class="one" href="#">BỘ SƯU TẬP MỚI NHẤT  <i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" style="--i:0;">
+                          <a href="#">Khám Phá</a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\1.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd" style="--i:1;">
+                          <a  href="#">Xem Thêm<i class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+
+                            <ul class="menu22" >
+                              <li ><a href="#">Đồ Nam</a></li>
+                              <li><a href="#">Đồ Nữ</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\2.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Cho Nam Và Nữ <i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Đồ Nam <i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Quần</a></li>
+                                  <li><a href="#">Áo</a></li>
+                                  <li><a href="#">Giày</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\3.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Đồ Nữ <i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Quần</a></li>
+                              <li><a href="#">Áo</a></li>
+                              <li><a href="#">Giày</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\4.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Phụ Kiện<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Mũ <i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Nam</a></li>
+                                  <li><a href="#">Nữ</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\hat .jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li class="dropdd" >
+                          <a href="#">Kính <i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Nam</a></li>
+                                  <li><a href="#">Nữ</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\glass.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Trang Sức<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Vòng</a></li>
+                              <li><a href="#">Khuyên Tai</a></li>
+                              <li><a href="#">Nhẫn</a></li>
+                              <li><a>
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\13.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Giày<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Giày Nam<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Giày Da</a></li>
+                                  <li><a href="#">Giày Thể Thao</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\7.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Giày Nữ<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+
+                            <ul>
+                              <li><a href="#">Giày Da</a></li>
+                              <li><a href="#">Giày Cao Gót</a></li>
+                              <li><a href="#">Giày Thể Thao</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\8.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Cho Nam<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Khám Phá</a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\boy.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Xem Thêm<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+
+                            <ul>
+                              <li><a href="#">Phụ Kiện</a></li>
+                              <li><a href="#">Quần</a></li>
+                              <li><a href="#">Áo</a></li>
+                              <li><a href="#">Giày</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\6.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Cho Nữ<i class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Khám Phá</a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a>
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\girl.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Xem Thêm<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+
+                            <ul>
+                              <li><a href="#">Phụ Kiện</a></li>
+                              <li><a href="#">Quần</a></li>
+                              <li><a href="#">Áo</a></li>
+                              <li><a href="#">Giày</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\5.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="#">Bộ Sưu Tập Bốn Mùa<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a href="#">Xuân<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Khám Phá</a></li>
+                                  <li><a href="#">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\9.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li class="dropdd" >
+                          <a href="#">Hạ<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Khám Phá</a></li>
+                                  <li><a href="#">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\10.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li class="dropdd" >
+                          <a href="#">Thu<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Khám Phá</a></li>
+                                  <li><a href="#">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\11.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li class="dropdd" >
+                          <a href="#">Đông<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Khám Phá</a></li>
+                                  <li><a href="#">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\12.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a href="#">Gợi Ý Ngày Lễ<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li  class="dropdd"><a href="#">Tết<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+
+                            <ul>
+                              <li><a href="#">Khám Phá</a></li>
+                              <li><a href="#">Xem Thêm</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\tet.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li class="dropdd" >
+                          <a href="#">Valentine<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="#">Khám Phá</a></li>
+                                  <li><a href="#">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\valentine.jpg" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">8/3<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Khám Phá</a></li>
+                              <li><a href="#">Xem Thêm</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\0803.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Mother's Day<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Khám Phá</a></li>
+                              <li><a href="#">Xem Thêm</a></li>
+                              <li><a>
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\motherday.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Man Day<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Khám Phá</a></li>
+                              <li><a href="#">Xem Thêm</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\manday.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">20/11<i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Khám Phá</a></li>
+                              <li><a href="#">Xem Thêm</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\2011.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+                <li class="dropd" >
+                  <a class="one"  href="mentor">LIZARD<i  class="bi bi-chevron-right"></i></a>
+                    <div class="col megadrop ">
+                      <ul class="menu22">
+                        <li class="dropdd" >
+                          <a >Hành Trình Và Sự Phát Triển<i  class="bi bi-chevron-right"></i></a>
+                              <div class="col megadropp secon ">
+                                <ul>
+                                  <li><a href="fandd">Xem Thêm</a></li>
+                                  <li><a >
+                                    <div class="row">
+                                        <img width="100%" height="100%" src="assets\img\logo1.png" alt="">
+                                    </div>
+                                  </a>
+                                  </li>
+                                </ul>
+                              </div>
+                        </li>
+                        <li  class="dropdd"><a href="check7">Người Sáng Lập <i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a href="#">Designer : Hùng Nguyễn</a></li>
+                              <li><a href="#">GITHUB Mentor : Dũng Phạm</a></li>
+                              <li><a href="#">DataBaser : Vanh Đỗ</a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\logohung@2x.png" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                        <li  class="dropdd"><a href="#">Liên Hệ Chúng Tôi <i  class="bi bi-chevron-right"></i></a>
+                          <div class="col megadropp secon ">
+                            <ul>
+                              <li><a >Hotline : 0333452030</a></li>
+                              <li><a >Gmail : Lizard@Gmai.fashion.vn</a></li>
+                              <li><a class="footer-social-icon">Theo Dõi Chúng Tôi :
+
+                                <a href="https://www.facebook.com"><i class="bi bi-facebook"></i></a>
+                                <a href="https://twitter.com/"><i class="bi bi-twitter"></i></a>
+                                <a href="https://www.youtube.com"><i class="bi bi-instagram"></i></a></a></li>
+                              <li><a >
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\Artboard1@2x.png" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="dropd" >
+                    <a class="one"  href="bandf">Dịch Vụ Của LIZARD<i  class="bi bi-chevron-right"></i></a>
+                      <div class="col megadrop ">
+                        <ul class="menu22">
+                          <li  class="dropdd"><a href="#">Cá Nhân Hóa</a>
+                            <div class="col megadropp secon ">
+                              <li><a href="#">
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\14.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </div>
+                          </li>
+                          <li  class="dropdd"><a href="#">Dịch Vụ Tặng Quà</a>
+                            <div class="col megadropp secon ">
+                              <li><a href="#">
+                                <div class="row">
+                                    <img width="100%" height="100%" src="assets\img\15.jpg" alt="">
+                                </div>
+                              </a>
+                              </li>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                  </li>
+              </ul>
+          <div class="log-sign" style="--i: 1.8s">
+          </div>
+      </div>
+
+  </div>
+
+</header>

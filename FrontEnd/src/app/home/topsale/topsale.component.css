@@ -1,0 +1,62 @@
+.ss1{
+    position: absolute;
+    bottom: -85%;
+    height: 100%;
+    width: 100%;
+    z-index: 111;
+ }
+.svg-wrapper> svg {
+    height: 2rem;
+    width: 2rem;
+}
+svg {
+    fill: currentColor;
+}
+.svg-wrapper > span {
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.7142857142857142;
+    letter-spacing: .4px;
+}
+.wp-contact-modes .contact-status {
+    left: calc(50% - -1rem);
+}
+svg {
+    vertical-align: middle;
+}
+ .contact-status {
+    position: absolute;
+
+    width: 1rem;
+}
+.wp-contact-modes .contact-status-no {
+    color: #c53929;
+}
+button{
+    border: none;
+    background-color: black;
+    color: aliceblue;
+    width: 80%;
+    height: 45px;
+}
+.nav{
+  justify-content: end;
+}
+
+a {
+  text-decoration: none;
+  color: aliceblue;
+  line-height: 1.7rem;
+  display: flex;
+
+}
+h4{
+
+  margin-bottom: 2rem;
+}
+.nav-link{
+  color: aliceblue;
+}
+.nav-tabs {
+  margin-left: 12px;
+}

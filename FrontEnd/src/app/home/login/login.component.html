@@ -1,0 +1,57 @@
+<div class="wrapper"  >
+  <div class="page-header section-dark" style="background-image: url(https://i.pinimg.com/564x/92/0e/c3/920ec30105459456b1cd808a34ac3175.jpg)">
+      <div class="filter"></div>
+      <div class="backk container" style="background-color:#60606061; backdrop-filter: blur(5px); border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(8,7,16,0.6);  z-index: 995; max-width: 100%; margin-top: 10rem; margin-bottom: 5rem;">
+          <div class="cartt container" style="z-index: 999; margin-top: 8rem;" >
+              <h3 style="padding-top: 1rem;padding-bottom: 2rem; color: rgba(255, 255, 255, 0.8); display: block;">Compare</h3>
+              <table class="table table-bordered table-hover" style="z-index: 999; background-color:#66615B;color:white; text-align: center;">
+
+                  <tr >
+                      <th>Number</th>
+                      <td *ngFor="let com of compare; let i = index">{{i+1}}</td>
+                  </tr>
+                  <tr >
+                      <th>Image</th>
+                      <td *ngFor="let com of compare; let i = index"><img src="{{com.image}}" width="80px" height="80px" alt=""></td>
+                  </tr>
+                  <tr >
+                      <th>Name</th>
+                      <td *ngFor="let com of compare; let i = index">{{com.productName}}</td>
+                  </tr>
+                  <tr >
+                      <th>Content</th>
+                      <td *ngFor="let com of compare; let i = index">{{com.content}}</td>
+                  </tr>
+                  <tr >
+                      <th>Price </th>
+                      <td *ngFor="let com of compare; let i = index">{{com.price}}</td>
+                  </tr>
+                  <tr >
+                      <th>Remove</th>
+                      <td *ngFor="let com of compare; let i = index"> <button class="btn btn-sm btn-outline-neutral" (click)="removecom(i)"><i class="bi bi-x-lg"></i></button></td>
+                  </tr>
+
+
+
+
+
+              </table>
+
+              <div class="text-center" style="z-index: 999;">
+                  <button href="" class="btn btn-sm btn-outline-neutral" (click)="onclearcom()">clear</button>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+      <p class=" category-absolute ml-auto mr-auto">Designed and Manufacture by
+        <!-- <h6 class="category category-absolute">Designed and coded by -->
+
+            <a href="https://www.facebook.com/profile.php?id=100022473285450" target="_blank">
+                <img src="https://i.pinimg.com/564x/dd/30/4d/dd304d50ce16d952faa6f2507f4ee1ec.jpg"width="30" height="30"  class="creative-tim-logo">
+            </a>
+        </p>
+  </div>
+</div>
