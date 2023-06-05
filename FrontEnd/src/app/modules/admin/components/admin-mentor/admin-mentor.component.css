@@ -1,0 +1,22 @@
+.nav{
+  justify-content: end;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(218, 218, 218);
+  line-height: 1.5;
+
+
+
+}
+h4{
+
+  margin-bottom: 2rem;
+}
+.nav-link{
+  color: rgb(0, 0, 0);
+}
+.nav-tabs {
+  margin-left: 12px;
+}

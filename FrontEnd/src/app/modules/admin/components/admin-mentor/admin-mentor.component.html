@@ -1,0 +1,203 @@
+<div class="check6" style="background-color: #ffffff;height: 500px;">
+  <div class="container" style="padding-top: 50px;" >
+    <div class="row">
+       <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="position: relative;">
+        <li class="nav-item" style="justify-content: start; position: absolute; left: 0;align-items: center; bottom: 10%;color: rgb(0, 0, 0);font-weight: bold;" >
+          ADMIN
+        </li>
+        <li [ngbNavItem]="1">
+          <button ngbNavLink >Danh sách Sản Phẩm Trên Sàn </button>
+          <ng-template ngbNavContent>
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+
+                      <th>Số Thứ Tự</th>
+                      <th>Tên Sản Phẩm</th>
+                      <th>Ảnh Sản Phẩm</th>
+                      <th>Giá</th>
+                      <th>Sửa</th>
+                      <th>Xóa</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let product of products">
+                      <tr style="vertical-align: middle;">
+                          <td >{{product.id}}</td>
+                          <td>{{product.productName}}</td>
+                          <td style="background-image: url({{product.image}}); background-size: cover;height: 150px;width: 150px;"></td>
+                          <td>{{product.price}}</td>
+                          <td><a class="btn btn-sm btn-success bi bi-gear"routerLink="/admin/fix/{{product.id}}"></a>
+                          </td>
+                          <td> <button (click)="onDelete(product.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <button ngbNavLink>Thêm Sản Phẩm </button>
+          <ng-template ngbNavContent>
+            <div class="row">
+              <div class="col">
+                <form action="" >
+                  <div class="card" style="overflow-y: scroll;height: 500px;">
+                      <div class="card-body" >
+                      <div class="form-group">
+                          <label for="ID">ID</label>
+                          <input type="text" [(ngModel)]="product.id" class="form-control" name="ID" id="ID" aria-describedby="ID" placeholder="ID">
+                          <small id="IDHid" class="form-text text-muted">Category ID is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">ProductName</label>
+                          <input type="text" [(ngModel)]="product.productName" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">BrandID</label>
+                          <input type="text" [(ngModel)]="product.brandID" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Gender</label>
+                          <input type="text" [(ngModel)]="product.Gender" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Image</label>
+                          <input type="text" [(ngModel)]="product.image" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Content</label>
+                          <input type="text" [(ngModel)]="product.content" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Rating</label>
+                          <input type="text" [(ngModel)]="product.rating" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Origin</label>
+                          <input type="text" [(ngModel)]="product. origin" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Price</label>
+                          <input type="text" [(ngModel)]="product. price" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                        <div class="form-group">
+                          <label for="name">OlaPrice</label>
+                          <input type="text" [(ngModel)]="product.status" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      <div class="form-group">
+                          <label for="name">Status</label>
+                          <input type="text" [(ngModel)]="product.vote" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+                          <small id="nameHid" class="form-text text-muted">Name is required</small>
+                      </div>
+                      </div>
+                      <div class="card-footer text-muted">
+                        <button class="btn btn-outline-primary" (click)="save1()" type="button">Save</button>
+                     </div>
+                  </div>
+              </form>
+              </div>
+          </div>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+          <button ngbNavLink routerLink="/admin/fix/:id">Sửa Sản Phẩm</button>
+          <ng-template ngbNavContent>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="4">
+          <button ngbNavLink >Quản Lý Đơn Hàng </button>
+          <ng-template ngbNavContent>
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+
+                      <th>Số Thứ Tự</th>
+                      <th>Thông Tin Khách</th>
+                      <th>Thành Tiền</th>
+                      <th>Hủy Đơn</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr style="vertical-align: middle;">
+                          <td ></td>
+                          <td></td>
+                          <td></td>
+                          <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="5">
+          <button ngbNavLink >Quản Lý Tài Khoản</button>
+          <ng-template ngbNavContent>
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+
+                      <th>Số Thứ Tự</th>
+                      <th>Thông Tin Khách</th>
+                      <th>Xóa Tài Khoản</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr style="vertical-align: middle;">
+                          <td ></td>
+                          <td></td>
+                          <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="6">
+          <button ngbNavLink >Quản Lý Tin Nhắn</button>
+          <ng-template ngbNavContent>
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+
+                      <th>Tài Khoản</th>
+                      <th>Nội Dung</th>
+                      <th>Xóa Tin Nhắn</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr style="vertical-align: middle;">
+                          <td ></td>
+                          <td></td>
+                          <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+
+  </div>
+  </div>
+  <div style="padding-top:  50px;text-align: center; padding-bottom: 50px;">
+    <button style="width: 200px;border: none;background-color: black;color: aliceblue;width: 40%;height: 45px;" (click)="logout()">Đăng Xuất</button>
+  </div>

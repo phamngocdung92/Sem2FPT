@@ -47,8 +47,9 @@ User.create = async function(data, result){
         db.query("INSERT INTO users SET ?", user1, (err, user)=>{
             if(err){
                 result(null);
+                console.log('loi o day')
             }else{
-                result({id: user.insertId, ...User});
+                result(user.insertId);
             }
         })
     }catch(err){
