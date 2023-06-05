@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ExamplesModule } from './examples/examples.module'
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';;
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +30,12 @@ import { Check8Component } from './home/check8/check8.component';
 import { ToastrModule } from 'ngx-toastr';
 import {  BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChatComponent } from './shared/chat/chat.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { MeoComponent } from './meo/meo.component';
+import { RegisterComponent } from './register/register.component';
+
+
+
 
 
 
@@ -55,6 +61,9 @@ import { ChatComponent } from './shared/chat/chat.component';
     Check7Component,
     Check8Component,
     ChatComponent,
+    PageNotFoundComponent,
+    MeoComponent,
+    RegisterComponent,
 
 
 
@@ -69,13 +78,13 @@ import { ChatComponent } from './shared/chat/chat.component';
     NgbModule,
     FormsModule,
     RouterModule,
-    ExamplesModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     CommonModule,
     HttpClientModule,
     HomeModule,
+
 
 
   ],

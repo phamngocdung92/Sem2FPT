@@ -5,127 +5,152 @@ import { Router } from '@angular/router';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import { async } from '@angular/core/testing';
-
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/sevice/auth.service';
+import { ProductService } from 'src/app/sevice/products.sevice';
+// import { AuthService } from 'src/app/sevice/auth.service';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    private toggleButton: any;
-    private sidebarVisible: boolean;
-    viewer:any;
+    loginForm!: FormGroup;
     active = 1;
-    form = new FormGroup({
-        searchKey: new FormControl()
-    })
-
-    constructor(public location: Location, private element : ElementRef, private router : Router, private offcanvasService: NgbOffcanvas,private fb: FormBuilder,) {
-        this.sidebarVisible = false;
+    searchQuery!: string;
+    searchResults: any[] = [];
+    isShow: boolean = true;
+    formLogin!: FormGroup;
+    // username: string = ''; // Initialize the property with an empty string
+    // email: string = '';
+    // password: string = '';
+    constructor(public location: Location, private http: HttpClient, private auth : AuthService, private element : ElementRef, private router : Router, private offcanvasService: NgbOffcanvas,private fb: FormBuilder, private account: ProductService) {
+      const token = localStorage.getItem('token');
+      if(token){
+        this.isShow = false;
+      }
+      window.onbeforeunload = function() {
+        localStorage.clear();
+      }
     }
+    ngOnInit(): void {
+      this.formLogin = this.fb.group({
+        username:["",Validators.required],
+        email: ["", Validators.required],
+        password: ["", Validators.required],
+        isAdmin:0
+      });
+      this.loginForm = this.fb.group({
+        email: ['', Validators.required],
+        password: ['', Validators.required]
+    });
 
-    ngOnInit() {
-        let viewer  = Number(localStorage.getItem('viewer'));
+  }
 
-        if(viewer){
-          viewer ++;
-          localStorage.setItem('viewer', viewer .toString())
-        }else {
-          localStorage.setItem('viewer', '1')
-        }
-        console.log('viewer', viewer )
-      this.viewer = localStorage.getItem('viewer');
-
-        const navbar: HTMLElement = this.element.nativeElement;
-        this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
-    }
-    sidebarOpen() {
-        const toggleButton = this.toggleButton;
-        const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        // console.log(toggleButton, 'toggle');
-
-        setTimeout(function(){
-            toggleButton.classList.add('toggled');
-        }, 500);
-        html.classList.add('nav-open');
-
-        this.sidebarVisible = true;
-    };
-    sidebarClose() {
-        const html = document.getElementsByTagName('html')[0];
-        // console.log(html);
-        this.toggleButton.classList.remove('toggled');
-        this.sidebarVisible = false;
-        html.classList.remove('nav-open');
-    };
-    sidebarToggle() {
-        // const toggleButton = this.toggleButton;
-        // const body = document.getElementsByTagName('body')[0];
-        if (this.sidebarVisible === false) {
-            this.sidebarOpen();
+onSubmit() {
+  if (this.loginForm.valid) {
+    this.auth.login(this.loginForm.value).subscribe(
+      (result) => {
+        console.log(result);
+        localStorage.setItem('isAdmin', result.isAdmin);
+        const isAdmin = localStorage.getItem('isAdmin');
+        if (isAdmin === '1') {
+          this.router.navigateByUrl('/admin/mentor');
         } else {
-            this.sidebarClose();
+          alert('Truy cập bị từ chối... Email hoặc mật khẩu không chính xác');
         }
-    };
-    isHome() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
+      },
+      (err: Error) => {
+        alert(err.message);
       }
-        if( titlee === '/home' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    isDocumentation() {
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      if(titlee.charAt(0) === '#'){
-          titlee = titlee.slice( 1 );
-      }
-        if( titlee === '/documentation' ) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+    );
+  }
+  // if (this.loginForm.invalid) {
+  //   return false;
+  // }
 
-    handleSearch() {
-        this.router.navigateByUrl('/search?q=' + this.form.value.searchKey);
-    }
+  // this.auth.login(this.loginForm.value).subscribe(
+  //   (res: any) => {
+  //     if (res !== null) {
+  //       alert('Thành công');
+  //       console.log(res);
+  //       localStorage.setItem('token2', res.accessToken);
+  //       localStorage.setItem('email', res.email);
+  //       localStorage.setItem('username', res.username);
+  //       localStorage.setItem('isAdmin', res.isAdmin);
+  //       localStorage.setItem('id_user', res.id);
+
+  //       const isAdmin = localStorage.getItem('isAdmin');
+  //       if (isAdmin === '1') {
+  //         setTimeout(() => {
+  //           this.router.navigate(['/admin']);
+  //         }, 2000); // Chuyển hướng sau 2 giây
+  //       }
+  //     } else {
+  //       alert('Truy cập bị từ chối... Email hoặc mật khẩu không chính xác');
+  //     }
+  //   },
+  //   (error) => {
+  //     console.error('Lỗi khi đăng nhập:', error);
+  //   }
+  // );
+
+  // return true;
+}
+
     openEnd(content: TemplateRef<any>) {
       this.offcanvasService.open(content, { position: 'end' });
     }
     openTop(contentt: TemplateRef<any>) {
       this.offcanvasService.open(contentt, { position: 'top' });
     }
-    url = 'http://localhost:4200';
-  admin = this.fb.group({
-    "email": ["", [Validators.email,Validators.pattern("olawithbae217@gmail.com"), Validators.required]],
+    onLogin(){
+      if(this.formLogin.invalid){
+        return false;
+      }
+    //console.log(this.formLogin.value);  ctrl shift i để xem console.log
+    // Bay h doan nay se la xu ly:
+    //1. goi API -> lay token -> luu vao localstorage (viet service lay API)
+    this.account.login(this.formLogin.value).subscribe(res=>{
+      if(res.result != null){
+        // luu ma token vao localstorage:
+         localStorage.setItem("token", res.result);
+         alert("tao tai khoan thanh cong")
 
-    "password": ["",[Validators.required, Validators.pattern("1234567")]]
-  })
+        //localStorage.setItem("account", res.name);  day la object ve account's person
+         this.router.navigate(['/home']);
+      }else{
+        console.log(this.formLogin.value);
+        alert("Tai khoan nay da ton tai")
+
+      }
+    })
+    return true;
+  }
+
   // @ts-ignore
   focus: boolean;
   // @ts-ignore
   focus1: boolean;
-
-  get form1() {
-    return this.admin.controls
-  }
-  onSubmit() {
-
-    // tslint:disable-next-line:triple-equals
-    if ( true) {
-      alert('Welcome Admin Come Back');
-
-      this.router.navigate([''])
-    }
-
-  }
+  url = 'http://localhost:4200';
+get form1() {
+  return this.loginForm.controls
+}
+searchData(): void {
+  // Gửi yêu cầu tìm kiếm dữ liệu
+  this.http.get(`http://localhost:3000/Product?q=${this.searchQuery}`)
+    .subscribe(
+      (response: any) => {
+        // Xử lý dữ liệu tìm kiếm thành công
+        this.searchResults = response as any[]; // Chuyển đổi kiểu dữ liệu thành mảng any[]
+        this.router.navigateByUrl('/search?q=' + this.searchQuery);
+      },
+      (error) => {
+        // Xử lý lỗi khi tìm kiếm dữ liệu
+        console.error('Lỗi tìm kiếm dữ liệu:', error);
+      }
+    );
+}
 }
 
 

@@ -7,6 +7,7 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { HomeComponent } from './home.component';
 import { SaleComponent } from './sale/sale.component';
 import { CategoryComponent } from './category/category.component';
@@ -28,7 +29,7 @@ import { CollectionWomanComponent } from './collection-woman/collection-woman.co
 import { HomeRoutingModule } from './home-routing';
 import { QuestionComponent } from './question/question.component';
 import { BAndFComponent } from './b-and-f/b-and-f.component';
-
+import { Check1Component } from './check1/check1.component';
 
 
 
@@ -42,7 +43,7 @@ import { BAndFComponent } from './b-and-f/b-and-f.component';
       JwBootstrapSwitchNg2Module,
       BrowserModule,
       AppRoutingModule,
-      HomeRoutingModule
+      HomeRoutingModule,
 
   ],
   declarations: [
@@ -66,6 +67,7 @@ import { BAndFComponent } from './b-and-f/b-and-f.component';
      CollectionShoeComponent,
      CollectionWomanComponent,
      BAndFComponent,
+     
    ],
   exports:[ HomeComponent ]
 })

@@ -23,44 +23,31 @@
               <li [ngbNavItem]="1">
                 <ng-template ngbNavContent >
                   <h3>Tôi Đã Có Tài Khoản </h3>
-                  <form class="register-form" [formGroup]="admin" class="contact-form" (ngSubmit)="onSubmit()"  [action]="url" method="get">
+                  <form class="register-form" form action="" method="post" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
                     <div style="padding-top:25px;">
                       <label>Đăng Nhập*</label>
-                      <div class="input-group form-group-no-border"  [ngClass]="{'input-group-focus':focus1===true}">
-                        <div class="input-group-prepend">
+                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
+                        <div class="input-group-prepend" style="width: 100%;">
 
-                          <input id="email" style="border: none;width:350px;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                          <input type="text" style="border: none;width: 100%;" formControlName="email" name="email">
                         </div>
 
-                      </div>
-                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
-                        <div *ngIf="form1.email.errors">
-
-                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
-
-                        </div>
                       </div>
                     </div>
                     <div style="padding-top:25px;">
                       <label>Mật Khẩu*</label>
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                        <div class="input-group-prepend">
+                        <div class="input-group-prepend" style="width: 100%;">
 
-                          <input id="password" style="border: none;width: 350px;" type="password" class="form-control" placeholder="Admin password" formControlName="password">
+                          <input type="password" style="border: none;width: 100%;" formControlName="password" name="password">
                         </div>
+
                       </div>
                       <a href="">Bạn quên mật khẩu</a>
-                      <div *ngIf="form1.password.invalid && (form1.password.dirty||form1.password.touched)">
-                        <div *ngIf="form1.password.errors">
-
-                          <small style="color:red !important;" class="form-text text-muted">Errors Password</small>
-
-                        </div>
-                      </div>
                     </div>
                     <div class="row" style="padding-top: 25px; ">
                       <div class="col" style="padding-left: 0;padding-right: 0;" >
-                        <button  style="border-color: #ffffff;list-style: none; font-weight: bold ;width: 100%;margin: 0;  " type="submit;" class="btn btn-outline-light" [disabled]="!admin.valid">Đăng Nhập</button>
+                        <button  style="border-color: #ffffff;list-style: none; justify-content: center; font-weight: bold" type="submit;" class="btn btn-outline-light w-100" >Đăng Nhập</button>
                       </div>
                     </div>
                       <h3 style="padding-top: 30px;">Tôi Chưa Có Tài Khoản </h3>
@@ -76,22 +63,15 @@
               <li [ngbNavItem]="2">
                 <ng-template ngbNavContent>
                   <h4>Đến Với Lizard Để Có Những Khoảnh Khắc Mua Sắm Tuyệt Vời Nhất</h4>
-                  <form class="register-form" [formGroup]="admin" class="contact-form" (ngSubmit)="onSubmit()"  [action]="url" method="get">
+                  <form class="register-form" form action="" method="post" [formGroup]="formLogin" (ngSubmit)="onLogin()" >
                     <div>
                       <label>Email*</label>
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend" style="width: 100%;">
 
-                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                          <input type="text" style="border: none;width: 100%;" formControlName="email" name="email">
                         </div>
 
-                      </div>
-                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
-                        <div *ngIf="form1.email.errors">
-
-                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
-
-                        </div>
                       </div>
                     </div>
                     <div>
@@ -99,55 +79,27 @@
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend" style="width: 100%;">
 
-                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                          <input type="password" style="border: none;width: 100%;" formControlName="password" name="password">
                         </div>
 
-                      </div>
-                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
-                        <div *ngIf="form1.email.errors">
-
-                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
-
-                        </div>
                       </div>
                     </div>
                     <div>
-                      <label>Giới Tính*</label>
+                      <label>Tên</label>
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend" style="width: 100%;">
 
-                          <input id="email" style="border: none;width: 100%;" type="email" class="form-control" placeholder="Email Of Admin" formControlName="email">
+                          <input style="border: none;width: 100%;" type="text" formControlName="username" name="name">
                         </div>
 
                       </div>
-                      <div *ngIf="form1.email.invalid && (form1.email.dirty||form1.email.touched)">
-                        <div *ngIf="form1.email.errors">
 
-                          <small style="color:red !important;" class="form-text text-muted">Errors Email</small>
-
-                        </div>
-                      </div>
                     </div>
                     <div>
-                      <label>Quốc Gia*</label>
-                      <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
-                        <div class="input-group-prepend"style="width: 100%;">
-
-                          <input id="password" style="border: none;" type="password" class="form-control" placeholder="Admin password" formControlName="password">
-                        </div>
-                      </div>
-
-                      <div *ngIf="form1.password.invalid && (form1.password.dirty||form1.password.touched)">
-                        <div *ngIf="form1.password.errors">
-
-                          <small style="color:red !important;" class="form-text text-muted">Errors Password</small>
-
-                        </div>
-                      </div>
                     </div>
                     <div class="row pt-2 pb-0" style="text-align: center;">
                       <div class="col ps-0 pe-0 pt-2 pb-4" style="position: relative;">
-                        <button  style="border-color: #ffffff;list-style: none; justify-content: center; font-weight: bold" type="submit;" class="btn btn-outline-light w-100" [disabled]="!admin.valid">Đăng Ký</button>
+                        <button  style="border-color: #ffffff;list-style: none; justify-content: center; font-weight: bold" type="submit;" class="btn btn-outline-light w-100" >Đăng Ký</button>
                       </div>
                     </div>
                     <div [ngbNavItem]="1" class="text-end text-bg-dark  pt-0 pb-0">
@@ -165,8 +117,8 @@
         <a (click)="openTop(contentt)">. <i class="bi bi-search"></i></a>
         </p>
     </div>
-      <div class="logo-container" >
-          <h3 class="logo"><img src="https://i.pinimg.com/564x/1b/0a/f0/1b0af08699c7c139655af122d2438693.jpg" width="30px " height="19px" style="padding-bottom: 3px;" alt=""><span>LIZARD</span></h3>
+      <div class="logo-container" style="text-align: center;">
+          <h3 class="logo" ><img src="https://i.pinimg.com/564x/1b/0a/f0/1b0af08699c7c139655af122d2438693.jpg" width="30px " height="19px" style="padding-bottom: 3px;" alt=""><span>LIZARD</span></h3>
       </div>
       <div class="ccontainer"style="justify-content: end;  ">
         <p ><a style="color: aliceblue;" href="cart"><i class="bi bi-bag-heart"></i></a></p>
@@ -180,9 +132,9 @@
 
             <div class="offcanvas-header text-bg-dark ">
               <div class="search-container row text-light text-bg-dark justify-content-center" style="display: flex; padding-top: 1rem;">
-                <form action="/action_page.php" style="width:600px; height: 30px;">
+                <form action="/action_page.php" (ngSubmit)="searchData()" style="width:600px; height: 30px;">
                   <button class="bg-dark text-light" style="height: 35px; width: 35px;" type="submit"><i class="fa fa-search"></i></button>
-                  <input style="width: 500px;height: 35px; background-color: black;color: aliceblue; border: none;" type="text" placeholder="Search.." name="search">
+                  <input style="width: 500px;height: 35px; background-color: black;color: aliceblue; border: none;"  [(ngModel)]="searchQuery" name="searchQuery" placeholder="Nhập từ khóa tìm kiếm">
 
                 </form>
               </div>

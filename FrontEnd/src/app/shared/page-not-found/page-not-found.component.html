@@ -1,0 +1,16 @@
+<div id="main" style="height: 650px; display: flex;">
+  <div class="fof" style="margin: auto;">
+    <h1 style="text-align: center;">Error 404</h1>
+    <strong>Bạn Có Muốn<a routerLink="../home">Trang Chủ</a> </strong>
+  </div>
+</div>
+<li class="nav-item" >
+  <a class="nav-box search nav-link navbar-brand" style="list-style: none; font-size: 18px; font-weight: 600; background: none;">
+      <form [formGroup]="form" action="" id="search-box" (ngSubmit)="handleSearch()">
+        <input formControlName="searchKey" ngModel type="text" id="search-text"placeholder="Search..."required>
+        <button id="search-btn" class="navbar-brand" style="padding: 0px; margin: 0px;" >
+            <i class="bi bi-search" style="top: 2px; left: 0px; font-size: 18px;font-weight: 600;"></i>
+        </button>
+      </form>
+  </a>
+</li>

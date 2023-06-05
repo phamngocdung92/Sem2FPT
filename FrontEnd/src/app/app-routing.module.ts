@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import {AuthGuard} from "./guards/auth.guard";
 
 
 import { CartComponent } from './cart/cart.component';
 import { DetailComponent } from './detail/detail.component';
-import { BalenciagaComponent } from './examples/balenciaga/balenciaga.component';
+
+
 
 
 import { HomeComponent } from './home/home.component';
@@ -19,7 +21,7 @@ import { CategoryComponent } from './home/category/category.component';
 import { DiscountComponent } from './home/discount/discount.component';
 import { FAndDComponent } from './home/f-and-d/f-and-d.component';
 import { HeaderComponent } from './home/header/header.component';
-import { LoginComponent } from './home/login/login.component';
+
 import { MentorComponent } from './home/mentor/mentor.component';
 import { ServicesComponent } from './home/services/services.component';
 import { Check1Component } from './home/check1/check1.component';
@@ -31,6 +33,10 @@ import { Check6Component } from './home/check6/check6.component';
 import { Check7Component } from './home/check7/check7.component';
 import { Check8Component } from './home/check8/check8.component';
 import { QuestionComponent } from './home/question/question.component';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { MeoComponent } from './meo/meo.component';
+import { SearchComponent } from './search/search.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -45,7 +51,6 @@ const routes: Routes = [
   { path: 'discount', component: DiscountComponent},
   { path: 'fandd', component: FAndDComponent},
   { path: 'header', component: HeaderComponent},
-  { path: 'login', component: LoginComponent},
   { path: 'mentor', component: MentorComponent},
   { path: 'motification', component: Notification},
   { path: 'question', component: QuestionComponent},
@@ -54,7 +59,6 @@ const routes: Routes = [
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
   { path: 'detail', component: DetailComponent},
-  { path: 'balenciaga', component: BalenciagaComponent},
   { path: 'check1' , component: Check1Component},
   { path: 'check2' , component: Check2Component },
   { path: 'check3' , component: Check3Component},
@@ -63,6 +67,14 @@ const routes: Routes = [
   { path: 'phap+li+va+bao+mat' , component: Check6Component},
   { path: 'check7' , component: Check7Component},
   { path: 'check8' , component: Check8Component},
+  { path: 'search' , component: SearchComponent},
+  { path: 'register' , component: RegisterComponent},
+  {path:'meo', component: MeoComponent},
+  {path:'admin',
+  canActivate:[AuthGuard],
+  loadChildren: ()=>
+  import('./modules/admin/admin.module').then((m)=>m.AdminModule)},
+  {path:'**', component:PageNotFoundComponent}
 
 ];
 
