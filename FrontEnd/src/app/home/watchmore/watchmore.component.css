@@ -1,0 +1,310 @@
+.body{
+  background-color: #ffffff;
+}
+#background-vide{
+
+  height: 100vh;
+    width: 100%;
+    object-fit: cover;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+
+}
+#background-videoo{
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+
+}
+.container-fuild{
+  height: 100vh;
+  perspective: 20px;
+}
+.banner{
+  height: 100vh;
+  display: flex;
+
+  justify-content: center;
+  align-items:flex-start
+  ;
+  position: relative;
+  transform-style: preserve-3d;
+}
+.bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+}
+
+.content{
+  z-index: 100;
+  transform: translateZ(10px);
+  padding-top: 200px;
+  width: 20%;
+
+}
+.nut button {
+  background: none;
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 15px;
+  padding: 5px 20px;
+  width: 100%;
+  transition: .1s;
+  font-size: x-small;
+
+
+
+}
+.nut {
+  height: 100px;
+}
+.nut button:hover {
+  border: 1.7px solid #ffffff;
+  border-spacing: 2px;
+  transition: .1s;
+}
+.detaill .row>* {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.btn {
+  border-radius: 20px;
+  padding: 3px 15px;
+}
+.btn-outline-secondary {
+  --bs-btn-border-color: #ffffff;
+  --bs-btn-color: #ffffff;
+
+}
+.headercheck{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+}
+.watchmore{
+  display: flex;
+
+}
+.containe {
+  width: 100%;
+  height: 450px;
+  position: relative;
+  background-color: #000000;
+  z-index: 999;
+
+
+  top:0; right: 0; left: 0; bottom: 0;
+
+
+
+
+
+
+  }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+
+
+
+
+  opacity: 0;
+  transition: all 1s;
+
+}
+
+
+.items {
+  padding-left: 20px;
+  letter-spacing: 3px;
+}
+
+.head {
+  font-size: 30px;
+  line-height: 40px;
+
+  transform: translateY(40px);
+  transition: all 0.7s;
+
+}
+.head hr {
+  display: block;
+  width: 0;
+
+  border: none;
+  border-bottom: solid 2px #FEF5DF;
+
+  position: absolute;
+  bottom: 0; left:20px;
+
+  transition: all .5s;
+}
+
+.price {
+  font-size: 22px;
+  line-height: 10px;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s;
+
+}
+.price .old {
+  text-decoration: line-through;
+  color: lighten(rgb(77, 77, 77),40%);
+}
+
+.cart {
+  font-size: 12px;
+  opacity: 0;
+  letter-spacing: 1px;
+  font-family: 'Lato', sans-serif;
+  transform: translateY(40px);
+  transition: all 0.7s;
+
+
+}
+.cart i {
+  font-size: 16px;
+}
+.cart span {
+  margin-left: 10px;
+}
+
+.containe:hover .overlay {
+  opacity: 1;
+}
+.containe:hover .overlay .head {
+  transform: translateY(0px);
+}
+.containe:hover .overlay hr {
+  width: 75px;
+  transition-delay: 0.4s;
+}
+.containe:hover .overlay .price {
+  transform: translateY(0px);
+  transition-delay: 0.3s;
+  opacity: 1;
+}
+.containe:hover .overlay .cart {
+  transform: translateY(0px);
+  transition-delay: 0.6s;
+  opacity: 1;
+}
+.picsum-img-wrapper img{
+  width: 100%;
+  height: 450px;
+
+
+  object-fit: cover;
+}
+.check{
+  display: flex;
+}
+.row > * {
+  padding: 0px;
+}
+.carousel-inner{
+  height: 100%;
+}
+.carousel-item{
+  height: 100%;
+}
+.carousel{
+  height: 100%;
+}
+.row{
+  --bs-gutter-x: 0px;
+}
+
+.check{
+  display: flex;
+}
+.bgg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+  background-image: url(src\assets\img\travel.jpg);
+}
+.h4{
+  justify-content:left;
+}
+.bgg1{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+  background-image: url(src\assets\img\travel.jpg);
+}
+.bgg2{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+  background-image: url(src\assets\img\travel.jpg);
+}
+.bgg3{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+  background-image: url(src\assets\img\travel.jpg);
+}
+.bgg4{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+  background-image: url(src\assets\img\travel.jpg);
+}
+.offcanvas {
+  position: fixed;
+  bottom: 0;
+  z-index: var(--bs-offcanvas-zindex);
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  color: var(--bs-offcanvas-color);
+  visibility: hidden;
+  background-color: #000000;
+  background-clip: padding-box;
+  outline: 0;
+  transition: transform .3s ease-in-out;
+}
+.offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl {
+  --bs-offcanvas-zindex: 1045;
+  --bs-offcanvas-width: 400px;
+  --bs-offcanvas-height: 30vh;
+  --bs-offcanvas-padding-x: 1rem;
+  --bs-offcanvas-padding-y: 1rem;
+  --bs-offcanvas-color: ;
+  --bs-offcanvas-bg: #000000;
+  --bs-offcanvas-border-width: 1px;
+  --bs-offcanvas-border-color: var(--bs-border-color-translucent);
+  --bs-offcanvas-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
