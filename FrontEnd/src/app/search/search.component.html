@@ -5,7 +5,7 @@
 <div class="check" >
   <div class="row" style="width: 100%;"  >
       <div class="col-3" *ngFor="let result of searchResults" >
-          <div class="containe a img-rounded img-responsive" style="background: url({{result.image}} ) no-repeat center ;" >
+          <div class="containe a img-rounded img-responsive" style="background: url({{result.image_product}} ) no-repeat center ;" >
               <div class="overlay" >
                 <ngb-carousel *ngIf="images">
                   <ng-template ngbSlide>
@@ -13,8 +13,8 @@
                       <img [src]="images[0]" alt="Random first slide" />
                     </div>
                     <div class="carousel-caption">
-                      <h3>{{result.productName}}</h3>
-                      <p>{{result.content}}</p>
+                      <h3>{{result.name_product}}</h3>
+                      <p>{{result.description_product}}</p>
                     </div>
                   </ng-template>
                   <ng-template ngbSlide>

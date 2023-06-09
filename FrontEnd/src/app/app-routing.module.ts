@@ -37,6 +37,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { MeoComponent } from './meo/meo.component';
 import { SearchComponent } from './search/search.component';
 import { RegisterComponent } from './register/register.component';
+import { watchmoreComponent } from './home/watchmore/watchmore.component';
 
 
 
@@ -58,8 +59,9 @@ const routes: Routes = [
   {path: 'slide', component: SlideComponent},
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
-  { path: 'detail', component: DetailComponent},
+  { path: 'detail/:id', component: DetailComponent},
   { path: 'check1' , component: Check1Component},
+  { path: 'watchmore', component: watchmoreComponent},
   { path: 'check2' , component: Check2Component },
   { path: 'check3' , component: Check3Component},
   { path: 'a+d+m+i+n' , component: Check4Component},
