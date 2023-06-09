@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, Validators} from '@angular/forms';
 import { async } from '@angular/core/testing';
+
+// import { AuthService } from 'src/app/sevice/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/sevice/auth.service';
 import { ProductService } from 'src/app/sevice/products.sevice';
@@ -121,30 +123,5 @@ export class NavbarComponent implements OnInit {
     return true;
   }
 
-  // @ts-ignore
-  focus: boolean;
-  // @ts-ignore
-  focus1: boolean;
-  url = 'http://localhost:4200';
-get form1() {
-  return this.loginForm.controls
-}
-searchData(): void {
-  // Gửi yêu cầu tìm kiếm dữ liệu
-  this.http.get(`http://localhost:3000/Product?q=${this.searchQuery}`)
-    .subscribe(
-      (response: any) => {
-        // Xử lý dữ liệu tìm kiếm thành công
-        this.searchResults = response as any[]; // Chuyển đổi kiểu dữ liệu thành mảng any[]
-        this.router.navigateByUrl('/search?q=' + this.searchQuery);
-      },
-      (error) => {
-        // Xử lý lỗi khi tìm kiếm dữ liệu
-        console.error('Lỗi tìm kiếm dữ liệu:', error);
       }
-    );
-}
-}
-
-
-
+    

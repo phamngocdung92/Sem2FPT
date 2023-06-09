@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { HomeComponent } from './home.component';
 import { SaleComponent } from './sale/sale.component';
 import { CategoryComponent } from './category/category.component';
@@ -45,6 +46,7 @@ import { Check1Component } from './check1/check1.component';
       BrowserModule,
       AppRoutingModule,
       HomeRoutingModule,
+      HomeRoutingModule,
 
   ],
   declarations: [
@@ -68,6 +70,7 @@ import { Check1Component } from './check1/check1.component';
      CollectionShoeComponent,
      CollectionWomanComponent,
      BAndFComponent,
+     
      
    ],
   exports:[ HomeComponent ]

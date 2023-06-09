@@ -5,7 +5,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';;
+import { RouterModule, Routes } from '@angular/router';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -86,6 +88,7 @@ import { LoginAdminComponent } from './home/login-admin/login-admin.component';
     CommonModule,
     HttpClientModule,
     HomeModule,
+
 
 
 

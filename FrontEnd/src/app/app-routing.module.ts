@@ -6,8 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from "./guards/auth.guard";
 
 
+
 import { CartComponent } from './cart/cart.component';
 import { DetailComponent } from './detail/detail.component';
+
+
 
 
 
@@ -21,6 +24,7 @@ import { CategoryComponent } from './home/category/category.component';
 import { DiscountComponent } from './home/discount/discount.component';
 import { FAndDComponent } from './home/f-and-d/f-and-d.component';
 import { HeaderComponent } from './home/header/header.component';
+
 
 import { MentorComponent } from './home/mentor/mentor.component';
 import { ServicesComponent } from './home/services/services.component';
