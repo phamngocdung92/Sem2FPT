@@ -32,7 +32,10 @@ export class ProductService {
     return this.httpClient.get<any[]>(this.Url, { headers });
   }
   
- 
+  getProductById(productId: string): Observable<any> {
+    const url = 'http://localhost:3006/product/list/' + productId;
+    return this.httpClient.get(url);
+  }
   DeleteAcc(id: number): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({

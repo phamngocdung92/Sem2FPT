@@ -94,7 +94,7 @@
   justify-content: space-between;
   padding-top: 30px;
 }
-.watchmore{
+.check1{
   display: flex;
 
 }
@@ -307,4 +307,7 @@
   --bs-offcanvas-border-width: 1px;
   --bs-offcanvas-border-color: var(--bs-border-color-translucent);
   --bs-offcanvas-box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.hide-product {
+  display: none;
 }

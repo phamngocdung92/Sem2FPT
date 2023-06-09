@@ -10,4 +10,5 @@ export class Product{
   price? : number;
   status? : number;
   vote? : string;
+  id_product: any;
 }

@@ -13,7 +13,7 @@ import { DetailComponent } from './detail/detail.component';
 
 
 
-
+import { watchmoreComponent } from './home/watchmore/watchmore.component';
 
 import { HomeComponent } from './home/home.component';
 import { SlideComponent } from './home/slide/slide.component';
@@ -24,7 +24,6 @@ import { CategoryComponent } from './home/category/category.component';
 import { DiscountComponent } from './home/discount/discount.component';
 import { FAndDComponent } from './home/f-and-d/f-and-d.component';
 import { HeaderComponent } from './home/header/header.component';
-
 
 import { MentorComponent } from './home/mentor/mentor.component';
 import { ServicesComponent } from './home/services/services.component';
@@ -78,7 +77,9 @@ const routes: Routes = [
   { path: 'check8' , component: Check8Component},
   { path: 'search' , component: SearchComponent},
   { path: 'register' , component: RegisterComponent},
-  { path: 'login-admin' , component: LoginAdminComponent},
+  { path: 'watchmore' , component: watchmoreComponent},
+     { path: 'login-admin' , component: LoginAdminComponent},
+  
 
   {path:'meo', component: MeoComponent},
   {path:'admin',

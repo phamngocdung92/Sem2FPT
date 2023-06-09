@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
     constructor(
         public httpClient: HttpClient,
       ) { }
-      get1Product(params: string): Observable<any> {
-        const url = 'http://localhost:3006/product/list/' + params;        
+      getProductById(productId: string): Observable<any> {
+        const url = 'http://localhost:3006/product/list/' + productId;
         return this.httpClient.get(url);
       }
 
