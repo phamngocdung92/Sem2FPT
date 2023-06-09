@@ -255,7 +255,9 @@
               </div>
             </div>
           </ng-template>
-          <a  class="btn btn-lg btn-outline-primary text-bg-dark " (click)="openEnd(content)"class="btn btn-outline-secondary me-2" placement="bottom" ngbTooltip="Tooltip on bottom"><i class="bi bi-person"></i></a>
+          <a  class="btn btn-lg btn-outline-primary text-bg-dark " *ngIf="showAdminButton"  placement="bottom"><i class="bi bi-person-rolodex"></i></a>
+          <a  class="btn btn-lg btn-outline-primary text-bg-dark "  *ngIf="!showAdminButton && !showUserButton"  (click)="openEnd(content)"class="btn btn-outline-secondary me-2" placement="bottom" ngbTooltip="Tooltip on bottom"><i class="bi bi-person"></i></a>
+          <a  class="btn btn-lg btn-outline-primary text-bg-dark "  *ngIf="showUserButton"   placement="bottom"><i class="bi bi-person-check"></i></a>
         </p>
     </div>
 
@@ -746,7 +748,7 @@
           <div class="log-sign" style="--i: 1.8s">
           </div>
       </div>
-
+<!-- Trong file HTML -->
   </div>
 
 </header>

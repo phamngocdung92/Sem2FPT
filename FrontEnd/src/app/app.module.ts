@@ -4,10 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';;
 import { RouterModule, Routes } from '@angular/router';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,7 +35,8 @@ import { ChatComponent } from './shared/chat/chat.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { MeoComponent } from './meo/meo.component';
 import { RegisterComponent } from './register/register.component';
-import { watchmoreComponent } from './home/watchmore/watchmore.component';
+import { LoginAdminComponent } from './home/login-admin/login-admin.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -66,7 +68,7 @@ import { watchmoreComponent } from './home/watchmore/watchmore.component';
     PageNotFoundComponent,
     MeoComponent,
     RegisterComponent,
-    watchmoreComponent
+    LoginAdminComponent,
 
 
 
@@ -87,7 +89,9 @@ import { watchmoreComponent } from './home/watchmore/watchmore.component';
     CommonModule,
     HttpClientModule,
     HomeModule,
-    CarouselModule.forRoot()
+    NgbCarouselModule
+
+
 
 
   ],

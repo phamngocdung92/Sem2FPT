@@ -6,12 +6,14 @@ import { WatchMoreService } from './watchmore.service';
 import { Product } from 'src/app/model/products';
 import { ProductService } from 'src/app/detail/detail.service';
 import { Observable } from 'rxjs';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-watchmore',
   templateUrl: './watchmore.component.html',
   styleUrls: ['./watchmore.component.css'],
+  standalone: true,
+  imports: [NgbCarouselModule, NgIf,CommonModule],
 
   providers: [NgbOffcanvasConfig, NgbOffcanvas,NgbCarouselConfig],
 })

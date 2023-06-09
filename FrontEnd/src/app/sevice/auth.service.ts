@@ -7,9 +7,12 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class AuthService {
+ 
 
-  constructor(private router: Router, private http: HttpClient) {}
-
+  constructor(private router: Router, private http: HttpClient ) {}
+  private isLoggedin = false; // Biến lưu trạng thái đăng nhập
+  private isAdmin = false; // Biến lưu trạng thái quyền admin
+  
   setToken(token: string): void {
     localStorage.setItem('token', token);
   }
@@ -23,8 +26,9 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['home']);
+    window.location.reload();
+    localStorage.clear();
+    this.router.navigate(['/home']);
   }
   login(data: any): Observable<any> {
     const url = 'http://localhost:3006/account/login';

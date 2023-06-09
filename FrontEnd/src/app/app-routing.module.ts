@@ -6,11 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from "./guards/auth.guard";
 
 
+
 import { CartComponent } from './cart/cart.component';
 import { DetailComponent } from './detail/detail.component';
 
 
 
+
+import { watchmoreComponent } from './home/watchmore/watchmore.component';
 
 import { HomeComponent } from './home/home.component';
 import { SlideComponent } from './home/slide/slide.component';
@@ -36,8 +39,12 @@ import { QuestionComponent } from './home/question/question.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { MeoComponent } from './meo/meo.component';
 import { SearchComponent } from './search/search.component';
+import { LoginAdminComponent } from './home/login-admin/login-admin.component';
 import { RegisterComponent } from './register/register.component';
-import { watchmoreComponent } from './home/watchmore/watchmore.component';
+import { AdminMentorComponent } from './modules/admin/components/admin-mentor/admin-mentor.component';
+import { UserGuardsComponent } from './user/userr/components/user-guards/user-guards.component';
+import { AdminGuard } from './modules/admin.guard';
+import { UserGuard } from './user/user.guard';
 
 
 
@@ -59,9 +66,8 @@ const routes: Routes = [
   {path: 'slide', component: SlideComponent},
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
-  { path: 'detail/:id', component: DetailComponent},
+  { path: 'detail', component: DetailComponent},
   { path: 'check1' , component: Check1Component},
-  { path: 'watchmore', component: watchmoreComponent},
   { path: 'check2' , component: Check2Component },
   { path: 'check3' , component: Check3Component},
   { path: 'a+d+m+i+n' , component: Check4Component},
@@ -71,11 +77,21 @@ const routes: Routes = [
   { path: 'check8' , component: Check8Component},
   { path: 'search' , component: SearchComponent},
   { path: 'register' , component: RegisterComponent},
+  { path: 'watchmore' , component: watchmoreComponent},
+     { path: 'login-admin' , component: LoginAdminComponent},
+  
+
   {path:'meo', component: MeoComponent},
   {path:'admin',
-  canActivate:[AuthGuard],
+  canActivate:[AdminGuard,AuthGuard],
   loadChildren: ()=>
   import('./modules/admin/admin.module').then((m)=>m.AdminModule)},
+  {path:'user',
+  canActivate:[UserGuard,AuthGuard],
+  loadChildren: ()=>
+  import('./user/userr/userr.module').then((m)=>m.UserrModule)},
+
+  
   {path:'**', component:PageNotFoundComponent}
 
 ];

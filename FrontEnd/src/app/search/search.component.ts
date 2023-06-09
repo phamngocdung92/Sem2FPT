@@ -3,6 +3,7 @@ import { Component, Input,ElementRef, OnInit, TemplateRef } from '@angular/core'
 import { ProductService } from '../sevice/products.sevice';
 import { Product } from '../model/products';
 import { ActivatedRoute } from '@angular/router';
+import { Check1Component } from '../home/check1/check1.component';
 import { query } from 'express';
 import { Query } from 'mongoose';
 import { NgbCarouselConfig, NgbCarouselModule,NgbOffcanvasConfig, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';

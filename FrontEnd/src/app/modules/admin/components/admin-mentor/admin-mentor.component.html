@@ -1,4 +1,4 @@
-<div class="check6" style="background-color: #ffffff;height: 500px;">
+<div class="check6" style="background-color: #ffffff;height: 670px;">
   <div class="container" style="padding-top: 50px;" >
     <div class="row">
        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="position: relative;">
@@ -8,7 +8,7 @@
         <li [ngbNavItem]="1">
           <button ngbNavLink >Danh sách Sản Phẩm Trên Sàn </button>
           <ng-template ngbNavContent>
-            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 550px; " >
               <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
                   <thead >
                   <tr>
@@ -102,7 +102,7 @@
                       </div>
                       </div>
                       <div class="card-footer text-muted">
-                        <button class="btn btn-outline-primary" (click)="save1()" type="button">Save</button>
+                        <button  class="btn btn-outline-primary" (click)="save1()" type="button">Save</button>
                      </div>
                   </div>
               </form>
@@ -110,12 +110,8 @@
           </div>
           </ng-template>
         </li>
+        
         <li [ngbNavItem]="3">
-          <button ngbNavLink routerLink="/admin/fix/:id">Sửa Sản Phẩm</button>
-          <ng-template ngbNavContent>
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="4">
           <button ngbNavLink >Quản Lý Đơn Hàng </button>
           <ng-template ngbNavContent>
             <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
@@ -142,6 +138,35 @@
 
           </ng-template>
         </li>
+        <li [ngbNavItem]="4">
+          <button ngbNavLink >Quản Trị Viên</button>
+          <ng-template ngbNavContent>
+            <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+
+                      <th>Số Thứ Tự</th>
+                      <th>Tên Khách Hàng</th>
+                      <th>Email</th>
+                      <th>Email</th>
+                      <th>Xóa Tài Khoản</th>
+                  </tr>
+                  </thead>
+                  <tbody  *ngFor="let user of users " >
+                      <tr  style="vertical-align: middle;">
+                          <td >{{user.id}}</td>
+                          <td>{{user.username}}</td>
+                          <td>{{user.email}}</td>
+                          <td>{{user.isAdmin}}</td>
+                          
+                          <button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          </ng-template>
+        </li>
         <li [ngbNavItem]="5">
           <button ngbNavLink >Quản Lý Tài Khoản</button>
           <ng-template ngbNavContent>
@@ -151,15 +176,17 @@
                   <tr>
 
                       <th>Số Thứ Tự</th>
-                      <th>Thông Tin Khách</th>
+                      <th>Tên Khách Hàng</th>
+                      <th>Email</th>
                       <th>Xóa Tài Khoản</th>
                   </tr>
                   </thead>
-                  <tbody>
-                      <tr style="vertical-align: middle;">
-                          <td ></td>
-                          <td></td>
-                          <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                  <tbody  *ngFor="let user of users ">
+                      <tr *ngIf="user.isAdmin === 0" style="vertical-align: middle;">
+                          <td >{{user.id}}</td>
+                          <td>{{user.username}}</td>
+                          <td>{{user.email}}</td>
+                          <button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button>
                       </tr>
                   </tbody>
               </table>
@@ -198,6 +225,6 @@
 
   </div>
   </div>
-  <div style="padding-top:  50px;text-align: center; padding-bottom: 50px;">
+  <div style="text-align: center; padding-bottom: 50px;">
     <button style="width: 200px;border: none;background-color: black;color: aliceblue;width: 40%;height: 45px;" (click)="logout()">Đăng Xuất</button>
   </div>
