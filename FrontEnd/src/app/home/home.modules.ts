@@ -7,7 +7,7 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomeComponent } from './home.component';
 import { SaleComponent } from './sale/sale.component';
@@ -35,6 +35,7 @@ import { Check1Component } from './check1/check1.component';
 
 
 
+
 @NgModule({
   imports: [
       CommonModule,
@@ -47,6 +48,7 @@ import { Check1Component } from './check1/check1.component';
       AppRoutingModule,
       HomeRoutingModule,
       HomeRoutingModule,
+      NgbCarouselModule
 
   ],
   declarations: [

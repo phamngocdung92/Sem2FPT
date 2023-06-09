@@ -36,6 +36,7 @@ import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.co
 import { MeoComponent } from './meo/meo.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginAdminComponent } from './home/login-admin/login-admin.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -88,6 +89,7 @@ import { LoginAdminComponent } from './home/login-admin/login-admin.component';
     CommonModule,
     HttpClientModule,
     HomeModule,
+    NgbCarouselModule
 
 
 
