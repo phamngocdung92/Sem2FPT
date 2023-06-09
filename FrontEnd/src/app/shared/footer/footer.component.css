@@ -175,3 +175,6 @@ color:white;
 .btn:hover{
   border-color: white;
 }
+a{
+  text-decoration: none;
+}

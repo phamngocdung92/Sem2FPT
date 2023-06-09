@@ -36,7 +36,12 @@ import { QuestionComponent } from './home/question/question.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { MeoComponent } from './meo/meo.component';
 import { SearchComponent } from './search/search.component';
+import { LoginAdminComponent } from './home/login-admin/login-admin.component';
 import { RegisterComponent } from './register/register.component';
+import { AdminMentorComponent } from './modules/admin/components/admin-mentor/admin-mentor.component';
+import { UserGuardsComponent } from './user/userr/components/user-guards/user-guards.component';
+import { AdminGuard } from './modules/admin.guard';
+import { UserGuard } from './user/user.guard';
 
 
 
@@ -69,11 +74,19 @@ const routes: Routes = [
   { path: 'check8' , component: Check8Component},
   { path: 'search' , component: SearchComponent},
   { path: 'register' , component: RegisterComponent},
+  { path: 'login-admin' , component: LoginAdminComponent},
+
   {path:'meo', component: MeoComponent},
   {path:'admin',
-  canActivate:[AuthGuard],
+  canActivate:[AdminGuard,AuthGuard],
   loadChildren: ()=>
   import('./modules/admin/admin.module').then((m)=>m.AdminModule)},
+  {path:'user',
+  canActivate:[UserGuard,AuthGuard],
+  loadChildren: ()=>
+  import('./user/userr/userr.module').then((m)=>m.UserrModule)},
+
+  
   {path:'**', component:PageNotFoundComponent}
 
 ];

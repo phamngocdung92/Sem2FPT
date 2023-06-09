@@ -1,35 +1,56 @@
-<div class="container">
-  <div class="row" style="padding: 50px; justify-content: space-between;">
-    <div class="col order-first" style="right: 1000px;">
-      My Acc
-    </div>
-    <div class="col " style="text-decoration: underline;">
-     Tài Khoản Của Tôi
-    </div>
-    <div class="col">
-      Đơn đặt Hàng Của Tôi
-    </div>
-    <div class="col order-last">
-     Giỏ Hàng Của Tôi
-    </div>
-  </div>
-  <div>
-    <h1>Hồ Sơ Của Tôi</h1>
-    <div style="display: flex;justify-content: space-between;">
-        <div style="background-color: cadetblue;">
-          <p class="text-start">Left aligned text on all viewport sizes.</p>
-          <p class="text-center">Center aligned text on all viewport sizes.</p>
-          <p class="text-end">Right aligned text on all viewport sizes.</p>
-          <p class="text-sm-start">Left aligned text on viewports sized SM (small) or wider.</p>
-          <p class="text-md-start">Left aligned text on viewports sized MD (medium) or wider.</p>
-          <p class="text-lg-start">Left aligned text on viewports sized LG (large) or wider.</p>
-          <p class="text-xl-start">Left aligned text on viewports sized XL (extra-large) or wider.</p>
+<div class="wrapper"  >
+  <div class="page-header section-dark" >
+      <div class="filter"></div>
+     <div class="backk container">
+      <div class="cartt container " style="z-index: 999; "  >
+          <h2 style="padding-top: 1rem;padding-bottom: 2rem; color: rgba(0, 0, 0, 0.8); display: block;">Shopping Cart</h2>
+          <div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+              <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+                  <thead >
+                  <tr>
+                      <th>Number</th>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price </th>
+                      <th>Quantity </th>
+                      <th>Total</th>
+                  
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let cart of carts; let i = index" style="vertical-align: middle;">
+                          <td >{{i+1}}</td>
+                          <td ><img src="{{cart.image}}" width="80px" height="80px" alt=""></td>
+                          <td>{{cart.productName}}</td>
+                          <td>{{cart.price}}</td>
+                          <td>
+                              <button (click)="giamSL(i, cart.quantity)">-</button>
+                              <input (change)="updateQuantity(i, $event)" type="number" [value]="cart.quantity " style="width: 50px; text-align: center;">
+                              <button (click)="tangSL(i, cart.quantity)">+</button>
+                          </td>
+                          <td>{{subtotal(cart)}}</td>
+                          <td> <button class="btn btn-sm btn-danger" (click)="removecart(i)"><i class="bi bi-trash-fill"></i></button></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+          
+          <hr>
+          <div class="text-center" style="z-index: 999; padding-bottom: 1.5rem;">
+              <a routerLink="/" class="btn btn-sm btn-outline-neutral">Back to shopping</a>
+              <button href="" class="btn btn-sm btn-outline-neutral" (click)="onclearcart()">Clear all</button>
+          </div>
       </div>
-      <div>
-        <h2>Địa Chỉ Chính Của Tôi </h2>
-        <div style="background-color: cadetblue;">
-          <h6>Nhập Địa Chỉ Cụ Thể</h6>
-        </div>
-      </div>
+
+     </div>
+      
+      
+      <p class=" category-absolute ml-auto mr-auto">Designed and Manufacture by
+        <!-- <h6 class="category category-absolute">Designed and coded by -->
+    
+            <a href="https://www.facebook.com/profile.php?id=100022473285450" target="_blank">
+                <img src="https://i.pinimg.com/564x/dd/30/4d/dd304d50ce16d952faa6f2507f4ee1ec.jpg"width="30" height="30"  class="creative-tim-logo">
+            </a>
+        </p>
   </div>
 </div>

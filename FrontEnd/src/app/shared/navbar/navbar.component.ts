@@ -16,88 +16,81 @@ import { ProductService } from 'src/app/sevice/products.sevice';
 })
 export class NavbarComponent implements OnInit {
     loginForm!: FormGroup;
+    result:any;
     active = 1;
     searchQuery!: string;
     searchResults: any[] = [];
     isShow: boolean = true;
     formLogin!: FormGroup;
+    isAdmin!: string | null;
+    showAdminButton: boolean = false;
+    showUserButton: boolean = false;
+
     // username: string = ''; // Initialize the property with an empty string
     // email: string = '';
     // password: string = '';
     constructor(public location: Location, private http: HttpClient, private auth : AuthService, private element : ElementRef, private router : Router, private offcanvasService: NgbOffcanvas,private fb: FormBuilder, private account: ProductService) {
       const token = localStorage.getItem('token');
+
+
       if(token){
         this.isShow = false;
-      }
-      window.onbeforeunload = function() {
-        localStorage.clear();
       }
     }
     ngOnInit(): void {
       this.formLogin = this.fb.group({
-        username:["",Validators.required],
-        email: ["", Validators.required],
-        password: ["", Validators.required],
-        isAdmin:0
-      });
-      this.loginForm = this.fb.group({
+        username:['',Validators.required],
         email: ['', Validators.required],
-        password: ['', Validators.required]
-    });
-
+        password: ['', Validators.required],
+        isAdmin:'0'
+      });
+      this.loginForm = new FormGroup({
+        email: new FormControl('', Validators.required),
+        password: new FormControl('', Validators.required)
+      }); 
+     
   }
+  clearLocalStorage() {
+    localStorage.clear();
+    this.isAdmin = null;
+    this.showAdminButton = false;
+    this.showUserButton = false;
+  }
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.auth.login(this.loginForm.value).subscribe(
+        (result) => {
+          localStorage.setItem('username', result.username);
+          localStorage.setItem('id_user', result.id);
+          localStorage.setItem('email', result.email);
+          localStorage.setItem("token", result.accesstoken1);
+          localStorage.setItem('element', result.isAdmin);
+          const isAdmin: string = localStorage.getItem('element') ?? ''; // Sử dụng nullish coalescing operator (??) để gán giá trị mặc định là chuỗi rỗng nếu giá trị là nullish
+          if (isAdmin === '1' ) {
+           
+            this.showAdminButton = true;
+            this.router.navigate(['/admin/mentor']);
+            
+          } else if (isAdmin === '0') {
+            this.showUserButton = true;
+            this.router.navigate(['/user/guards']);
+          }
+           else {
+            // Xử lý khi không xác định được isAdmin
+            // Ví dụ: Chuyển hướng đến một trang khác hoặc hiển thị thông báo lỗi
 
-onSubmit() {
-  if (this.loginForm.valid) {
-    this.auth.login(this.loginForm.value).subscribe(
-      (result) => {
-        console.log(result);
-        localStorage.setItem('isAdmin', result.isAdmin);
-        const isAdmin = localStorage.getItem('isAdmin');
-        if (isAdmin === '1') {
-          this.router.navigateByUrl('/admin/mentor');
-        } else {
-          alert('Truy cập bị từ chối... Email hoặc mật khẩu không chính xác');
+            this.router.navigate(['/default']);
+          }     
+        } ,
+        
+        (error: any) => {
+          alert('Đã xảy ra lỗi khi đăng nhập.');
+          console.error('Lỗi:', error);
         }
-      },
-      (err: Error) => {
-        alert(err.message);
-      }
-    );
-  }
-  // if (this.loginForm.invalid) {
-  //   return false;
-  // }
+      );
+    }
 
-  // this.auth.login(this.loginForm.value).subscribe(
-  //   (res: any) => {
-  //     if (res !== null) {
-  //       alert('Thành công');
-  //       console.log(res);
-  //       localStorage.setItem('token2', res.accessToken);
-  //       localStorage.setItem('email', res.email);
-  //       localStorage.setItem('username', res.username);
-  //       localStorage.setItem('isAdmin', res.isAdmin);
-  //       localStorage.setItem('id_user', res.id);
-
-  //       const isAdmin = localStorage.getItem('isAdmin');
-  //       if (isAdmin === '1') {
-  //         setTimeout(() => {
-  //           this.router.navigate(['/admin']);
-  //         }, 2000); // Chuyển hướng sau 2 giây
-  //       }
-  //     } else {
-  //       alert('Truy cập bị từ chối... Email hoặc mật khẩu không chính xác');
-  //     }
-  //   },
-  //   (error) => {
-  //     console.error('Lỗi khi đăng nhập:', error);
-  //   }
-  // );
-
-  // return true;
 }
-
     openEnd(content: TemplateRef<any>) {
       this.offcanvasService.open(content, { position: 'end' });
     }
@@ -115,7 +108,7 @@ onSubmit() {
       if(res.result != null){
         // luu ma token vao localstorage:
          localStorage.setItem("token", res.result);
-         alert("tao tai khoan thanh cong")
+         alert("tao tai khoan thanh cong");
 
         //localStorage.setItem("account", res.name);  day la object ve account's person
          this.router.navigate(['/home']);

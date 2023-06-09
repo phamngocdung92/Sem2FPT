@@ -33,6 +33,7 @@ import { ChatComponent } from './shared/chat/chat.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
 import { MeoComponent } from './meo/meo.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginAdminComponent } from './home/login-admin/login-admin.component';
 
 
 
@@ -64,6 +65,7 @@ import { RegisterComponent } from './register/register.component';
     PageNotFoundComponent,
     MeoComponent,
     RegisterComponent,
+    LoginAdminComponent,
 
 
 

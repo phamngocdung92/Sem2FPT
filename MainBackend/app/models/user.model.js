@@ -44,7 +44,7 @@ User.create = async function(data, result){
             isAdmin: data.isAdmin,
         };
 
-        db.query("INSERT INTO users SET ?", user1, (err, user)=>{
+        db.query("INSERT INTO users SET ?",user1, (err, user)=>{
             if(err){
                 result(null);
                 console.log('loi o day')
@@ -106,6 +106,8 @@ User.check_login = function(data, result) {
                 result(null);
                 console.log("not found");
             }else{
+                console.log(data.password);
+                console.log(user[0].password);
                 const isMatch = await bcrypt.compare(data.password, user[0].password)
                 if(isMatch){
                     result(user);

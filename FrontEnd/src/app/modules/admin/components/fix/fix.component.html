@@ -1,90 +1,60 @@
 
-<div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
-  <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
-      <thead >
-      <tr>
+<div class="scroll container" style="z-index: 999; height: 720px;" >
 
-          <th>Tên Sản Phẩm </th>
-          <th>Brand</th>
-          <th>Ảnh</th>
-          <th>Nội Dung</th>
-          <th>Giá</th>
-          <th>Update</th>
-      </tr>
-      </thead>
-      <tbody>
-          <tr style="vertical-align: middle;">
-              <td ><input type="text" name="Name" value="{{product.productName}}" [(ngModel)]="product.productName"></td>
-              <td><input type="number" name="Name" value="{{product.brandID}}" [(ngModel)]="product.brandID"></td>
-              <td><input type="file" name="Name" value="{{product.image}}" [(ngModel)]="product.image"></td>
-              <td><input type="text" name="Name" value="{{product.content}}" [(ngModel)]="product.content"></td>
-              <td><input type="text" name="Name" value="{{product.price}}" [(ngModel)]="product.price"></td>
-              <td> <button (click)="editproduct()"><i class="bi bi-gear"></i></button></td>
-          </tr>
-      </tbody>
-  </table>
 
     <div class="row">
       <div class="col">
-        <form action="" >
-          <div class="card" style="overflow-y: scroll;height: 500px;">
-              <div class="card-body" >
+        <div class="pt-5 text-center">
+           <h2 >SỬA THÔNG TIN SẢN PHẨM</h2>
+        </div>
 
-              <div class="form-group">
+        <form action="" >
+          <div class="card mt-3" style="overflow-y: scroll;height: 510px;">
+              <div class="card-body pt-3" >
+
+              <div class="form-group pt-2">
                   <label for="name">ProductName</label>
-                  <input type="text" value="{{product.productName}}" [(ngModel)]="product.productName" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="text" class="form-control" value="{{product.productName}}" [(ngModel)]="product.productName" placeholder="name">
+
               </div>
-              <div class="form-group">
+              <div class="form-group pt-2">
                   <label for="name">BrandID</label>
-                  <input type="text" [(ngModel)]="product.brandID" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="number" class="form-control" value="{{product.brandID}}" [(ngModel)]="product.brandID" placeholder="name">
+
               </div>
-              <div class="form-group">
+              <div class="form-group pt-2">
                   <label for="name">Gender</label>
-                  <input type="text" [(ngModel)]="product.Gender" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="text" value="{{product.Gender}}" [(ngModel)]="product.Gender" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
               </div>
-              <div class="form-group">
+              <div class="form-group pt-2">
                   <label for="name">Image</label>
-                  <input type="text" [(ngModel)]="product.image" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="file"  value="{{product.image}}" [(ngModel)]="product.image" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
               </div>
-              <div class="form-group">
+              <div class="form-group pt-2">
                   <label for="name">Content</label>
-                  <input type="text" [(ngModel)]="product.content" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="text"  value="{{product.Content}}" [(ngModel)]="product.Content" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
               </div>
-              <div class="form-group">
-                  <label for="name">Rating</label>
-                  <input type="text" [(ngModel)]="product.rating" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
-              </div>
-              <div class="form-group">
-                  <label for="name">Origin</label>
-                  <input type="text" [(ngModel)]="product. origin" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
-              </div>
-              <div class="form-group">
+
+              <div class="form-group pt-2">
                   <label for="name">Price</label>
-                  <input type="text" [(ngModel)]="product. price" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="text"  value="{{product.price}}" [(ngModel)]="product.price"class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
               </div>
-                <div class="form-group">
+                <div class="form-group pt-2">
                   <label for="name">OlaPrice</label>
-                  <input type="text" [(ngModel)]="product.status" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+                  <input type="text"  value="{{product.status}}" [(ngModel)]="product.status" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
               </div>
-              <div class="form-group">
-                  <label for="name">Status</label>
-                  <input type="text" [(ngModel)]="product.vote" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-                  <small id="nameHid" class="form-text text-muted">Name is required</small>
+
               </div>
-              </div>
-              <div class="card-footer text-muted">
-                <button class="btn btn-outline-primary" (click)="editproduct()" type="button">Save</button>
-             </div>
+
           </div>
+          <div class=" d-grid gap-2 col-6 card-footer text-muted mt-4 mx-auto text-center pb-5" >
+            <button class="btn btn-outline-dark " (click)="editproduct()" type="button">Save</button>
+         </div>
       </form>
       </div>
   </div>

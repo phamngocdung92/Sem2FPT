@@ -27,6 +27,7 @@ Product.getAll = function(result){
 }
 
 Product.getById = function(id, result){
+    
     db.query("SELECT * FROM product WHERE id_product = ?", id, (err, product)=>{
         if(err || product.length == 0){
             result(null);
@@ -37,9 +38,11 @@ Product.getById = function(id, result){
 }
 
 Product.create = function(data, result){
+
     db.query("INSERT INTO product SET ?", data, (err, product)=>{
         if(err){
             result(null);
+            console.log('loi o day')
         }else{
             result({
                 id: product.insertId,
