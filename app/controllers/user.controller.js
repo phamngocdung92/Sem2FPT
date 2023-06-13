@@ -2,7 +2,9 @@ var User = require("../models/user.model");
 var jwt = require("../commons/JWT");
 const { response } = require("express");
 const jwt2 = require("jsonwebtoken");
-const _App = require("../commons/_App");
+
+require('dotenv').config();
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN
 
 
 var refreshTokenArr = []; // dung de luu token -> check xem co dung la user do dang su dung ko?
@@ -95,7 +97,7 @@ exports.refreshToken = async function(req, res){
         return res.send({result: null});
     }
 
-    jwt2.verify(refreshTokenClient, _App.REFRESH_TOKEN, (err, user)=>{
+    jwt2.verify(refreshTokenClient, REFRESH_TOKEN, (err, user)=>{
         if(err){
             console.log(err);
             return res.send({result: null});

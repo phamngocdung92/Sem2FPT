@@ -58,39 +58,10 @@ exports.listProductSearch = function(req, res){
 }
 
 exports.price_5k = function(req, res){
-    Product.p_5( (data)=>{
-        res.send({
-            result: data
-        })
-    } )
-}
 
-exports.price_4k = function(req, res){
-    Product.p_4( (data)=>{
-        res.send({
-            result: data
-        })
-    } )
-}
+    const {price, gender} = req.query
 
-exports.price_3k = function(req, res){
-    Product.p_3( (data)=>{
-        res.send({
-            result: data
-        })
-    } )
-}
-
-exports.price_2k = function(req, res){
-    Product.p_2( (data)=>{
-        res.send({
-            result: data
-        })
-    } )
-}
-
-exports.price_1k = function(req, res){
-    Product.p_1( (data)=>{
+    Product.p_5({price, gender}, (data)=>{
         res.send({
             result: data
         })
