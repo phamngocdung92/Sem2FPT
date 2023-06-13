@@ -103,6 +103,4 @@ Product.p_5 = function({price, gender}, result){
     })
 }
 
-
-
 module.exports = Product

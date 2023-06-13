@@ -3,6 +3,5 @@ module.exports = function(app){
     // lam o search
     app.get("/product/search", productController.listProductSearch);
 
-    // filter price
-    app.get("/product/filter", productController.price_5k); // filter price & gender
+    app.get("/product/filter", productController.price_5k);
 }

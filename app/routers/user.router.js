@@ -3,7 +3,7 @@ module.exports = function(app){
     var middleware = require("../commons/Author_middleware");
 
     app.get("/users/list", middleware.verifyTokenIsAdmin, userController.list_user); //middleware.verifyTokenIsAdmin, 
-    app.get("/users/detail/:id",  middleware.verifyTokenIsAdmin, userController.detail_user);
+    app.get("/users/detail/:id",  middleware.verifyTokenIsAdminOrIsUser, userController.detail_user);
     app.delete("/users/delete/:id", middleware.verifyTokenIsAdmin, userController.delete_user);
-    app.put("/users/update", middleware.verifyTokenIsAdmin, userController.change_password);
+    app.put("/users/update", middleware.verifyTokenIsAdminOrIsUser, userController.change_password);
 }

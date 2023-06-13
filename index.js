@@ -22,7 +22,9 @@ require("./app/routers/menu2.router")(app);
 require("./app/routers/gender.router")(app);
 require("./app/routers/category.router")(app);
 require("./app/routers/season.router")(app);
-//app.use(_Authentication.isAuthor);
+require("./app/routers/cart_order.router")(app);
+require("./app/routers/payment.router")(app);
+//app.use(_Authentication.isAuthor); middleware cho những router ở dưới nó!
 
 app.listen(3006, ()=>{
     console.log("server listening on http://localhost:3006");
