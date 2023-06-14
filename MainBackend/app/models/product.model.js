@@ -27,7 +27,6 @@ Product.getAll = function(result){
 }
 
 Product.getById = function(id, result){
-    
     db.query("SELECT * FROM product WHERE id_product = ?", id, (err, product)=>{
         if(err || product.length == 0){
             result(null);
@@ -38,11 +37,9 @@ Product.getById = function(id, result){
 }
 
 Product.create = function(data, result){
-
     db.query("INSERT INTO product SET ?", data, (err, product)=>{
         if(err){
             result(null);
-            console.log('loi o day')
         }else{
             result({
                 id: product.insertId,
@@ -87,8 +84,17 @@ Product.search = function(query1, limit, offset, data){
     })
 }
 
-Product.p_5 = function(result){
-    db.query("SELECT * FROM product WHERE price > 5000", (err, product)=>{
+Product.p_5 = function({price, gender}, result){
+    let sql = `SELECT *, product.price AS pp FROM product, gender WHERE product.id_gender = gender.id_gender `;
+    if(price && Array.isArray(price)){
+        let priceFilter = price.join(",");
+        sql += `AND product.price IN (${priceFilter}) `;
+    }
+    if(gender && Array.isArray(gender)){
+        let genderFilter = gender.join("','");
+        sql += `AND gender.gender IN ('${genderFilter}') `;
+    }
+    db.query(sql, (err, product)=>{
         if(err || product.length == 0){
             result(null);
         }else{
@@ -96,45 +102,5 @@ Product.p_5 = function(result){
         }
     })
 }
-
-Product.p_4 = function(result){
-    db.query("SELECT * FROM product WHERE price BETWEEN 4000 AND 5000", (err, product)=>{
-        if(err || product.length == 0){
-            result(null);
-        }else{
-            result(product);
-        }
-    })
-}
-Product.p_3 = function(result){
-    db.query("SELECT * FROM Product WHERE price BETWEEN 3000 AND 4000", (err, product)=>{
-        if(err || product.length == 0){
-            result(null);
-        }else{
-            result(product);
-        }
-    })
-}
-Product.p_2 = function(result){
-    db.query("SELECT * FROM Product WHERE price BETWEEN 2000 AND 3000", (err, product)=>{
-        if(err || product.length == 0){
-            result(null);
-        }else{
-            result(product);
-        }
-    })
-}
-
-Product.p_1 = function(result){
-    db.query("SELECT * FROM Product WHERE price <= 2000", (err, product)=>{
-        if(err || product.length == 0){
-            result(null);
-        }else{
-            result(product);
-        }
-    })
-}
-
-
 
 module.exports = Product

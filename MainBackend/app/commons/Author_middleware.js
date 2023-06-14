@@ -1,6 +1,9 @@
 var jwt = require("./JWT");
 const jwt1 = require("jsonwebtoken");
-const _app = require("./_App");
+
+require('dotenv').config();
+
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN
 
 let isAuthor = async function(req, res, next){
     var _token = req.headers.authorization; // lay token
@@ -30,7 +33,7 @@ let verifyToken = async (req, res, next) =>{
         try{
             // khi post ma token trong req.headers ta se gui 1 doan ma token len
             const accesstoken = token1.split(" ")[1]; // bearer matoken... -> split tach bearer & matoken... thanh 2 chuoi 
-            jwt1.verify(accesstoken, _app.ACCESS_TOKEN, (err, user)=>{
+            jwt1.verify(accesstoken, ACCESS_TOKEN, (err, user)=>{
                 if(err){
                     return res.send("token invalid");
                 }

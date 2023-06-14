@@ -1,0 +1,11 @@
+mat-tab-group {
+  margin-bottom: 48px;
+}
+.icons-container img {
+  width:350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius:50%;
+-moz-border-radius:50%;
+-webkit-border-radius:50%;
+}
