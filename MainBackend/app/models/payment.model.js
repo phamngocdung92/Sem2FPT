@@ -5,23 +5,19 @@ const nodemailer = require('nodemailer');
 
 require('dotenv').config();
 
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET
-const REDIRECT_URL = process.env.REDIRECT_URL
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN
+const CLIENT_ID = '62633050265-aubr3kahfuqn9j4n4hrteihlmrvlfvvd.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
+const REDIRECT_URL = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04NNdeSspPjTyCgYIARAAGAQSNwF-L9Ir8sRkxd-bxhyWq1s4ftwN7K4LOFgYNi79qWbjtIqueprX5FdqZ1-aoBhktmY0eKI1-ME'
+
 const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID
 const PAYPAL_CLIENT_SECRET = process.env.PAYPAL_CLIENT_SECRET
 
-
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
+oAuth2Client.setCredentials({refresh_token: REFRESH_TOKEN});
 
-oAuth2Client.setCredentials({
-    refresh_token: REFRESH_TOKEN
-});
-
-const sendMail = async(invoiceEmail)=>{
+const sendMail = async(invoiceEmail) => {
     try{
-
         const accessToken = await oAuth2Client.getAccessToken();
 
         const transport = nodemailer.createTransport({
@@ -36,8 +32,8 @@ const sendMail = async(invoiceEmail)=>{
             }
         })
 
-        // send mail with defined transport object:
-        let info = await transport.sendMail({
+          // send mail with defined transport object
+          let info = await transport.sendMail({
             from: '"Fasion Luxury" <anhdvth2205005@fpt.edu.vn>', 
             to: `${invoiceEmail.email}`,
             subject: "Notification of successfully payment of your bill ✔",
@@ -51,10 +47,15 @@ const sendMail = async(invoiceEmail)=>{
             `,
         });
 
+  console.log(info);
+  
     }catch(error){
+        console.log('loi roi!');
         console.error(error);
     }
 }
+
+
 
 paypal.configure({
     'mode': 'sandbox',
@@ -85,7 +86,9 @@ function getInvoice(id){
 
         db.query(sql, [id], function(err, result){
             if(err){
-                reject(err)
+                console.log('LOI');
+                reject(err);
+                
             }
             resolve(result[0]); // giá trị trả về của 1 câu truy vấn luôn luôn là 1 array 
         })
@@ -118,7 +121,7 @@ Payment.handle_payment = function(userId, response){
     };
 
     let query = 'SELECT * FROM cart WHERE user_id = ?';
-
+    
     db.query(query, [userId], async (error, result)=>{
         if(error){
             console.log('loi 1')
@@ -143,6 +146,8 @@ Payment.handle_payment = function(userId, response){
                     if(error){
                         return response(null);
                     }else{
+
+                      
                         for(let i=0; i < payment.links.length; i++){
                             if(payment.links[i].rel === 'approval_url'){
                                 return response(payment.links[i].href);
@@ -208,9 +213,9 @@ Payment.success = function({payerId, paymentId}, response){
                                             }
                                         })
                                      }
-                                let invoiceEmail = await getInvoice(user.id);
 
-                                     await sendMail(invoiceEmail);
+                                     let invoiceEmail = await getInvoice(user.id);
+                                     sendMail(invoiceEmail);
 
                                      let query = 'DELETE FROM cart WHERE user_id = ?';
                                      db.query(query, [user.id], (error, result)=>{
