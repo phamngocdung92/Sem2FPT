@@ -133,7 +133,7 @@
   <div class="row justify-content-end" style="z-index: 100; width: 100%;background-color: rgba(0,0,0,0);bottom: 0;position: fixed; right: 0; margin-left:0; margin-right: 0;">
 
       <div ngbDropdown class="col-2 d-inline-block align-self-end" style="padding-right: 0;">
-        <button style="justify-content: end; width: 100%; "  type="button" class="btn btn-secondary" id="dropdownForm1" ngbDropdownToggle>
+        <button  *ngIf="showUserButton" style="justify-content: end; width: 100%; "  type="button" class="btn btn-secondary" id="dropdownForm1" ngbDropdownToggle>
           Trò Chuyện
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownForm1">

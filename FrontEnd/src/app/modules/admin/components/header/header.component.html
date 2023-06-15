@@ -1,1 +1,83 @@
-<p>header works!</p>
+<div class="container" style="height: 720px;">
+
+  <div class="row pt-4">
+  <h2 class="text-center">SỬA SẢN PHẨM</h2>
+  <div class="col">
+    <form (ngSubmit)="updateProduct()" enctype="multipart/form-data">
+      <div class="card " style="height: 640px;">
+        <div class="card-body row">
+          <div class="col-6">
+             <div class="form-group">
+            <label for="ID">Tên</label>
+            <input type="text" [(ngModel)]="product.name_product" class="form-control" name="name_product" id="ID" aria-describedby="ID" placeholder="Tên sản phẩm">
+          </div>
+          <div class="form-group">
+            <label for="image">Ảnh</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control" name="image" id="image">
+          </div>
+          <div class="form-group">
+            <label for="name">Mô Tả</label>
+            <input type="text" [(ngModel)]="product.title_product" class="form-control" name="title_product" id="name" aria-describedby="nameHid" placeholder="Mô tả">
+          </div>
+          <div class="form-group">
+            <label for="name">Số Lượng</label>
+            <input type="text" [(ngModel)]="product.quanity_product" class="form-control" name="quanity_product" id="name" aria-describedby="nameHid" placeholder="Số lượng">
+          </div>
+          <div class="form-group">
+            <label for="name">Mô Tả Chi Tiết</label>
+            <input type="text" [(ngModel)]="product.description_product" class="form-control" name="description_product" id="name" aria-describedby="nameHid" placeholder="Mô tả chi tiết">
+          </div>
+          <div class="form-group">
+            <label for="gender">Giới Tính</label>
+            <select class="form-control" id="gender" [(ngModel)]="product.id_gender" name="id_gender">
+              <option *ngFor="let gender of genders" [value]="gender.id_gender">{{ gender.gender }}</option>
+            </select>
+          </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="category">Loại</label>
+              <select class="form-control" id="category" [(ngModel)]="product.id_category" name="id_category">
+                <option *ngFor="let category of categories" [value]="category.id_category">{{ category.name_category }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="season">Mùa</label>
+              <select class="form-control" id="season" [(ngModel)]="product.id_season" name="id_season">
+                <option *ngFor="let season of seasons" [value]="season.id_season">{{ season.name_season }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="season">Danh Mục</label>
+              <select class="form-control" id="menu" [(ngModel)]="product.id_menu" name="id_menu">
+                <option *ngFor="let menu of menus" [value]="menu.id_menu">{{ menu.name_menu }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="season">Xem Thêm/Khám Phá</label>
+              <select class="form-control" id="menu2" [(ngModel)]="product.id_menu2" name="id_menu2">
+                <option *ngFor="let menu2 of menus2" [value]="menu2.id_menu2">{{ menu2.name_menu2 }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Giá</label>
+              <input type="text" [(ngModel)]="product.price" class="form-control" name="price" id="name" aria-describedby="nameHid" placeholder="Giá">
+            </div>
+            <div class="form-group">
+              <label for="name">Link</label>
+              <input type="text" [(ngModel)]="product.routerLink_product_detail" class="form-control" name="routerLink_product_detail" id="name" aria-describedby="nameHid" placeholder="Link">
+            </div>
+          </div>
+         
+          
+         
+        </div>
+        <div class="card-footer text-muted">
+          <button class="btn btn-outline-primary" type="submit">Cập Nhật</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>

@@ -20,10 +20,11 @@ export class FixComponent implements OnInit {
        this.product = data
       })
     } )
+    console.log(this.product)
   }
   editproduct(){
     this.ProductService.editproduct(this.product.id,this.product).subscribe(data => {
-      this.router.navigateByUrl("/admin")
+      this.router.navigateByUrl("/admin/mentor")
     })
   }
 

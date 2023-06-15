@@ -9,6 +9,9 @@ import { AdminMentorComponent } from './components/admin-mentor/admin-mentor.com
 import { AdminComponent } from './admin.component';
 import { FormsModule } from '@angular/forms';
 import { FixComponent } from './components/fix/fix.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { FixComponent } from './components/fix/fix.component';
     AdminDashboardComponent,
     AdminMentorComponent,
     AdminComponent,
-    FixComponent
+    FixComponent,
+    HomeComponent,
+    FooterComponent,
+    HeaderComponent
 
 
   ],

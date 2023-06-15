@@ -9,7 +9,9 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-
+  isAdmin!: string | null;
+  showAdminButton: boolean = false;
+  showUserButton: boolean = false;
   url = 'http://localhost:4200';
   admin = this.fb.group({
     "email": ["", [Validators.email,Validators.pattern("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$"), Validators.required]],
@@ -27,6 +29,19 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const isAdmin: string = localStorage.getItem('acc') ?? '';
+      this.isAdmin = isAdmin;
+
+      if (isAdmin === '1') {
+        this.showAdminButton = true;
+        this.showUserButton = false;
+      } else if (isAdmin === '0') {
+        this.showAdminButton = false;
+        this.showUserButton = true;
+      } else {
+        this.showAdminButton = false;
+        this.showUserButton = true;
+      }
   }
 
   onReset() {

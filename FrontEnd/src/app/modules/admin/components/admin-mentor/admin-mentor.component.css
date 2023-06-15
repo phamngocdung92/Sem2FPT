@@ -20,3 +20,24 @@ h4{
 .nav-tabs {
   margin-left: 12px;
 }
+.bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: translateZ(-10px) scale(1.);
+}
+#background-vide{
+
+  height: 100vh;
+    width: 100%;
+    object-fit: cover;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+
+}

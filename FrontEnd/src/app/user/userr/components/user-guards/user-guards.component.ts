@@ -14,16 +14,32 @@ import { UserGuard } from 'src/app/user/user.guard';
 export class UserGuardsComponent implements OnInit {
   data:any;
 	active = 1;
- 
-  constructor(private router: Router,private auth: AuthService) { }
-  ngOnInit(): void {
-    window.onbeforeunload = () => {
-      // Lưu dữ liệu vào localStorage trước khi rời khỏi trang
-      localStorage.setItem('data', JSON.stringify(this.data));
-    };
-    
+  userData: any;
+  // localStorageData!: any[];
+  // localStorageData: { key: string; value: string }[] = [];
+  username!: string | null;
+  email!: string | null;
+  constructor(private router: Router , private auth : AuthService) {}
+
+  ngOnInit() {
+    // const localStorageKeys = Object.keys(localStorage);
+    // this.localStorageData = localStorageKeys.map(key => localStorage.getItem(key));
+      // this.getDataFromLocalStorage();
+        this.username = localStorage.getItem('username');
+        this.email = localStorage.getItem('email');  
   }
- 
+
+  // getDataFromLocalStorage() {
+  //   for (let i = 0; i < localStorage.length; i++) {
+  //     const key = localStorage.key(i);
+  //     if (key !== null) {
+  //       const value = localStorage.getItem(key);
+  //       if (value !== null) {
+  //         this.localStorageData.push({ key, value });
+  //       }
+  //     }
+  //   }
+  // }  
   logout():void{
     this.auth.logout();
   }

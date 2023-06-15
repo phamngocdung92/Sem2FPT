@@ -55,7 +55,7 @@ export class SearchComponent {
       (
         (data) => {
           // Xử lý dữ liệu tìm kiếm thành công
-          this.searchResults = data ; // Chuyển đổi kiểu dữ liệu thành mảng any[]
+          this.searchResults = data.result ; // Chuyển đổi kiểu dữ liệu thành mảng any[]
           console.log('Dữ liệu tìm kiếm:', this.searchResults);
         },
         (error) => {

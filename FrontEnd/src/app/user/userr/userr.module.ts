@@ -6,6 +6,7 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { UserGuardsComponent } from './components/user-guards/user-guards.component';
 import { UserFixComponent } from './components/user-fix/user-fix.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     UserrRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
   ]
 })
 export class UserrModule { }

@@ -1,1 +1,21 @@
-<p>footer works!</p>
+<div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+  <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
+      <thead >
+      <tr>
+
+          <th>Mã </th>
+          <th>Tên</th>
+          <th>Ảnh</th>
+          <th>Update</th>
+      </tr>
+      </thead>
+      <tbody>
+          <tr style="vertical-align: middle;">
+              <td ><input type="text" name="Name" value="{{menu.id_menu}}" [(ngModel)]="menu.id_menu"></td>
+              <td><input type="text" name="Name" value="{{menu.name_menu}}" [(ngModel)]="menu.name_menu"></td>
+              <td><input type="text" name="Name" value="{{menu.image_b}}" [(ngModel)]="menu.image_b"></td>
+              <td><button (click)="updateMenu()"><i class="bi bi-gear"></i></button></td>
+          </tr>
+      </tbody>
+  </table>
+</div>

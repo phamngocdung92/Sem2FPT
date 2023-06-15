@@ -32,12 +32,13 @@ export class NavbarComponent implements OnInit {
     // email: string = '';
     // password: string = '';
     constructor(public location: Location, private http: HttpClient, private auth : AuthService, private element : ElementRef, private router : Router, private offcanvasService: NgbOffcanvas,private fb: FormBuilder, private account: ProductService) {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('');
 
 
       if(token){
         this.isShow = false;
       }
+      this.isAdmin = localStorage.getItem('acc') ?? null;
     }
     ngOnInit(): void {
       this.formLogin = this.fb.group({
@@ -49,15 +50,28 @@ export class NavbarComponent implements OnInit {
       this.loginForm = new FormGroup({
         email: new FormControl('', Validators.required),
         password: new FormControl('', Validators.required)
-      }); 
-     
+      });
+      
+      const isAdmin: string = localStorage.getItem('acc') ?? '';
+      this.isAdmin = isAdmin;
+    
+      if (isAdmin === '1') {
+        this.showAdminButton = true;
+        this.showUserButton = false;
+      } else if (isAdmin === '0') {
+        this.showAdminButton = false;
+        this.showUserButton = true;
+      } else {
+        this.showAdminButton = false;
+        this.showUserButton = false;
+      }
+
   }
-  clearLocalStorage() {
-    localStorage.clear();
-    this.isAdmin = null;
-    this.showAdminButton = false;
-    this.showUserButton = false;
-  }
+  // clearLocalStorage() {
+  //   localStorage.clear();
+  //   this.showAdminButton = false;
+  //   this.showUserButton = false;
+  // }
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe(
@@ -66,33 +80,36 @@ export class NavbarComponent implements OnInit {
           localStorage.setItem('id_user', result.id);
           localStorage.setItem('email', result.email);
           localStorage.setItem("token", result.accesstoken1);
-          localStorage.setItem('element', result.isAdmin);
-          const isAdmin: string = localStorage.getItem('element') ?? ''; // Sử dụng nullish coalescing operator (??) để gán giá trị mặc định là chuỗi rỗng nếu giá trị là nullish
-          if (isAdmin === '1' ) {
-           
-            this.showAdminButton = true;
-            this.router.navigate(['/admin/mentor']);
-            
+          localStorage.setItem('acc', result.isAdmin);
+          const isAdmin: string = localStorage.getItem('acc') ?? '';
+          this.isAdmin = localStorage.getItem('acc') ?? null;
+          if (isAdmin === '1') {
+            window.onbeforeunload = () => {
+              localStorage.setItem('acc', '1');
+            };
+            this.router.navigate(['/admin/mentor'])
+            window.location.reload();
           } else if (isAdmin === '0') {
-            this.showUserButton = true;
+            window.onbeforeunload = () => {
+              localStorage.setItem('acc', '0');
+            };
             this.router.navigate(['/user/guards']);
+            window.location.reload();
+          } else {
+            this.showUserButton = false;
+            this.showAdminButton = false;
+            alert('sai tài khoản hoặc mật khẩu');
+            this.router.navigate(['/home']);
           }
-           else {
-            // Xử lý khi không xác định được isAdmin
-            // Ví dụ: Chuyển hướng đến một trang khác hoặc hiển thị thông báo lỗi
-
-            this.router.navigate(['/default']);
-          }     
-        } ,
-        
+        },
         (error: any) => {
           alert('Đã xảy ra lỗi khi đăng nhập.');
           console.error('Lỗi:', error);
         }
       );
     }
-
-}
+  }
+  
     openEnd(content: TemplateRef<any>) {
       this.offcanvasService.open(content, { position: 'end' });
     }
@@ -132,7 +149,7 @@ export class NavbarComponent implements OnInit {
  }
  searchData(): void {
    // Gửi yêu cầu tìm kiếm dữ liệu
-   this.http.get(`http://localhost:3000/Product?q=${this.searchQuery}`)
+   this.http.get(`http://localhost:3006/product/search?q=${this.searchQuery}`)
      .subscribe(
        (response: any) => {
          // Xử lý dữ liệu tìm kiếm thành công
@@ -147,4 +164,3 @@ export class NavbarComponent implements OnInit {
  }
 
       }
-    

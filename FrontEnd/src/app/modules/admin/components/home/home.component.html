@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px;">
+  <table class="table table-bordered table-hover container">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>tên</th>
+        <th>email</th>
+        <th>Pass</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" name="username" value="{{Acc.id}}" [(ngModel)]="Acc.id"></td>
+        <td><input type="text" name="username" value="{{Acc.username}}" [(ngModel)]="Acc.username"></td>
+        <td><input type="text" name="email"  value="{{Acc.email}}" [(ngModel)]="Acc.email"></td>
+        <td><input type="text" name="username" value="{{Acc.password}}" [(ngModel)]="Acc.password"></td>
+        <td><button (click)="updateAcc()"><i class="bi bi-gear"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
