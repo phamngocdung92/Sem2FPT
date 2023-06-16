@@ -67,7 +67,7 @@ User.remove = function(id, result){
             return result("user'id: " + id + " had deleted on database"); // result receive 1 object 
         }
     })
-}
+} 
 
 User.Update = async function(data, result){
     try{
