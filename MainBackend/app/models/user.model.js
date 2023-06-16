@@ -7,6 +7,8 @@ const User = function(user){
     this.email = user.email;
     this.password = user.password;
     this.isAdmin = user.isAdmin;
+    this.phone = user.phone;
+    this.address = user.address;
 }
 
 // User khai bao khoi tao cac thuoc tinh: get_all, getById... deu la static 
@@ -77,10 +79,12 @@ User.Update = async function(data, result){
             id: data.id,
             username: data.username,
             email: data.email,
-            password: hashedPassword
+            password: hashedPassword,
+            phone: data.phone,
+            address: data.address
         };
 
-       db.query("UPDATE users SET username=?,email=?,password=? WHERE id=?", [user1.username, user1.email, user1.password, user1.id], (err, user1)=>{
+       db.query("UPDATE users SET username=?,email=?,password=?,phone=?,address=? WHERE id=?", [user1.username, user1.email, user1.password, user1.phone, user1.address, user1.id], (err, user1)=>{
         if(err){
             return result(err, null);
         }else{
@@ -103,7 +107,6 @@ User.check_login = function(data, result) {
         db.query("SELECT * FROM users WHERE email = ?", [data.email], async (err, user)=>{
             if(err || user.length == 0){
                 return result(null);
-                console.log("not found");
             }else{
                 const isMatch = await bcrypt.compare(data.password, user[0].password)
                 if(isMatch){
