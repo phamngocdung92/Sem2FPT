@@ -29,20 +29,13 @@ exports.detail_user = function(req, res){
 exports.add_user = function(req, res){
     var data = req.body; // dua vao thu vien bodyParse ta co the lay req.body
     User.create(data, (response)=>{
-
-        if(response == 1){
-            return res.status(500).json({
-                message: 'error! something wrong! try later * _ *'
-            })
-        }
-
         if(response == null){
             return res.status(403).json({
-                message: 'Sorry! your email or your phone have been exist... please enter again'
+                message: 'error! your account has been exists '
             })
         }
         return res.status(200).json({
-            message: response
+            message: 'create account success'
         })
     })
 }

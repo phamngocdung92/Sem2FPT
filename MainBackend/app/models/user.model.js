@@ -46,15 +46,15 @@ User.create = async function(data, result){
             isAdmin: data.isAdmin,
         };
 
-        db.query("INSERT INTO users(username, email, password, isAdmin) VALUES(?, ?, ?, ?)", [user1.username, user1.email, user1.password, user1.isAdmin], (err, user)=>{
+        db.query("INSERT INTO users SET ?", user1, (err, user)=>{
             if(err){
                return result(null);
             }else{
-               return result('create account successful');
+               return result({id: user.insertId, ...User});
             }
         })
     }catch(err){
-      return result(1);
+      return result(null);
     }
 }
 

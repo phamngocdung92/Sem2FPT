@@ -142,6 +142,23 @@ export class ProductService {
     return this.httpClient.put(`${this.apiUrl}/${id}`,data)
   }
 
+  //aDung
+
+  getProductById(productId: string): Observable<any> {
+    const url = 'http://localhost:3006/product/list/' + productId;
+    return this.httpClient.get(url);
+  }
+
+  getAllProduct(): Observable<any>{
+    const url = 'http://localhost:3006/product/list';
+    return this.httpClient.get(url);
+  }
+
+  getDetail(params: string): Observable<any> {
+    const url = 'http://localhost:3006/product/list/' + params;        
+    return this.httpClient.get(url);
+  }
+
 
   //LOGIN
   login(data: any) : Observable<any>{ // đăng nhập

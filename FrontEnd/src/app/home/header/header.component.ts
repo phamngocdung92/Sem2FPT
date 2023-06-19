@@ -13,7 +13,7 @@ import { Menu2 } from 'src/app/model/menu2';
  
 })
 export class HeaderComponent implements OnInit {
-  menuss:Menu ={};
+ 
   menus: Menu[]=[];
   menus2: Menu2[]=[];
   check_column : string | null | undefined;
@@ -23,10 +23,12 @@ export class HeaderComponent implements OnInit {
     
     this. check_column = localStorage.getItem('check') ?? null;
   }
-  getMenu2Items(menuIndex: number, isLast: boolean): any[] {
-    const startIndex = menuIndex * 2;
-    const endIndex = isLast ? startIndex + 4 : startIndex + 2;
-    return this.menus2.slice(startIndex, endIndex);
+  getMenu2Items(id_menu: string| undefined): Menu2[] {
+    const menuId = id_menu !== undefined ? id_menu : '';
+    return this.menus2.filter(menu2 => menu2.id_menu === menuId );
+  
+    
+    
   }
   ngOnInit(): void {
   //   this.productService.getMenu().subscribe(

@@ -6,14 +6,12 @@ import { WatchMoreService } from './watchmore.service';
 import { Product } from 'src/app/model/products';
 import { ProductService } from 'src/app/detail/detail.service';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-watchmore',
   templateUrl: './watchmore.component.html',
   styleUrls: ['./watchmore.component.css'],
-  standalone: true,
-  imports: [NgbCarouselModule, NgIf,CommonModule],
 
   providers: [NgbOffcanvasConfig, NgbOffcanvas,NgbCarouselConfig],
 })
@@ -21,7 +19,6 @@ import { CommonModule } from '@angular/common';
 export class watchmoreComponent implements OnInit {
   @ViewChild('carousel', { static: true }) carousel?: NgbCarousel;
 
-  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   product: Product | null = null;
   
@@ -30,8 +27,20 @@ export class watchmoreComponent implements OnInit {
   imageList: any [] = [];
   productID: any [] = [];
   productImages: any [] = [];
-  manWomanProducts: any [] = [];
   accessories: any [] = [];
+  menuList: any [] = [];
+  newCollection: any [] = [];
+  manProducts: any [] = [];
+  WomanProducts: any [] = [];
+  menuImages: Map<string, string> = new Map<string, string>();
+  menuName: Map<string, string> = new Map<string, string>();
+
+  visibleNewCollection: any[] = [];
+  visibleManProducts: any[] = [];
+  visibleWomanProducts: any[] = [];
+currentPage: number = 1;
+itemsPerPage: number = 4;
+  // totalItems: number = 0;
 
 
 	constructor(private offcanvasService: NgbOffcanvas, private watchMoreService: WatchMoreService, 
@@ -43,55 +52,7 @@ export class watchmoreComponent implements OnInit {
 	}
 
   ngOnInit() {
-    // this.watchMoreService.get1Product('9004').subscribe(
-    //   response => {
-    //     this.product = response.result;
-    //       this.images = JSON.parse(response.result.image_product)
-    //       this.firstImage = this.images[0];
-    //       console.log("đây là ảnh sp: " ,this.images)
-    //   }
-    // )
-
-    // this.productService.getDetail('9004').subscribe(
-    //   res => {
-    //     this.product = res.result;
-    //     this.productTitle = res.result.title_product;
-    //   }
-    // )
-    // this.productService.getDetail('9004').subscribe(
-    //   res => {
-    //     this.product = res.result;
-    //     this.productName = res.result.name_product;
-    //   }
-    // )
-
-    // this.watchMoreService.getAllProduct().subscribe(
-    //   res => {
-    //     this.productList = res.result;
-    //     console.log("đây là productlist: ", this.productList)
-    //     // console.log("ID sp1: ", this.productList[1].id_product )
-    //     this.productList.forEach( proID => {
-    //       this.productID.push(proID.id_product);
-    //       // console.log("đây là productID: ", this.productID);
-    //     });
-        
-    //     this.productList.forEach(proTitle => {
-    //       this.productTitle.push(proTitle.title_product)
-    //       // console.log("đây là productTitle: ", this.productTitle);
-    //     });
-    //     this.productList.forEach(proImage => {         
-    //       this.productImages.push(proImage.image_product);
-    //       // console.log("đây là productImage: ", this.productImages);
-    //       const extractedImages: string[] = []; //tạo một mảng extractedImages để chứa các đường link hình ảnh trước khi thêm vào this.productImages
-    //       this.productImages.forEach((imageString: string) => {
-    //         const abc: string[] = JSON.parse(imageString);
-    //         extractedImages.push(...abc);             
-    //         console.log("Các đường link hình ảnh sản phẩm:", this.productImages);           
-    //       })
-
-    //     });
-    //   }
-    // )
+   
     this.route.params.subscribe(params => {
       const productId = params['id']; // Lấy giá trị của id từ URL
       this.productService.getProductById(productId).subscribe(
@@ -105,18 +66,39 @@ export class watchmoreComponent implements OnInit {
       );
     });
   
-
+ // for products
     this.watchMoreService.getAllProduct().subscribe((res) => {
       this.productList = res.result;
       this.productList.forEach((product) => {
-        this.productID.push(product.id_product);
-        this.manWomanProducts = this.productList.filter((product) => product.id_menu === 'e2'); 
+        this.updateVisibleProducts();
+        // this.productID.push(product.id_product);
+        this.newCollection = this.productList.filter((nC) => nC.id_menu === 'e1'); //e1
+        this.manProducts = this.productList.filter((mP) => mP.id_gender === 'c1'); //e5
+        this.WomanProducts = this.productList.filter((wP) => wP.id_gender === 'c2'); //e6
+        
+
         //thay thế 'e2' trong product.id_menu === 'e2' bằng các id_menu tương ứng và kiểm tra khớp trong html
         const images = JSON.parse(product.image_product);
         this.productImages.push(images);
         product.images = images; // Gán giá trị vào product.images
+        
       });
+      console.log("proIm:", this.productImages)
+      console.log("newC: ", this.newCollection);
+      console.log("nam: ", this.manProducts);
+      console.log("nữ: ", this.WomanProducts)
     });
+
+// for menus
+    this.watchMoreService.getAllMenu().subscribe((res) => {
+      this.menuList = res.result;
+      console.log("menuList: ", this.menuList)
+      this.menuList.forEach((menu) => {
+        this.menuImages.set(menu.id_menu, menu.image_b);
+        this.menuName.set(menu.id_menu, menu.name_menu)
+      });
+      console.log("menuImages: ", this.menuImages);
+    });    
   }
   firstImage(images: string[]): string {
     if (images && images.length > 0) {
@@ -128,7 +110,8 @@ export class watchmoreComponent implements OnInit {
     this.watchMoreService.getProductById(productId).subscribe(
       (res) => {
         const product: Product = res.result; // Lấy thông tin sản phẩm từ kết quả trả về
-        this.router.navigate(['/detail', product.id_product]);
+        const url = '/detail/' + product.id_product;
+      window.open(url, '_blank');
       },
       (error) => {
         console.error('Failed to load product details', error);
@@ -137,5 +120,80 @@ export class watchmoreComponent implements OnInit {
     );
   }
   
+
+  //các sản phẩm tiếp theo trong trang
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateVisibleProducts();
+    }
+  }
+  
+  nextPage() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.updateVisibleProducts();
+    }
+  }
+  
+  totalPages() {
+    return Math.ceil(this.newCollection.length / this.itemsPerPage);
+    // return Math.ceil(this.manProducts.length / this.itemsPerPage);
+    // return Math.ceil(this.WomanProducts.length / this.itemsPerPage);
+  }
+  
+  updateVisibleProducts() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.visibleNewCollection = this.newCollection.slice(startIndex, endIndex);
+    this.visibleManProducts = this.manProducts.slice(startIndex, endIndex);
+    this.visibleWomanProducts = this.WomanProducts.slice(startIndex, endIndex);
+  }
+    //các sản phẩm tiếp theo trong trang
+    prevPage1() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.updateVisibleProducts();
+      }
+    }
+    
+    nextPage1() {
+      if (this.currentPage < this.totalPages()) {
+        this.currentPage++;
+        this.updateVisibleProducts();
+      }
+    }
+    
+    totalPages1() {
+      // return Math.ceil(this.newCollection.length / this.itemsPerPage);
+      return Math.ceil(this.manProducts.length / this.itemsPerPage);
+      // return Math.ceil(this.WomanProducts.length / this.itemsPerPage);
+    }
+      //các sản phẩm tiếp theo trong trang
+  prevPage2() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.updateVisibleProducts();
+    }
+  }
+  
+  nextPage2() {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.updateVisibleProducts();
+    }
+  }
+  
+  totalPages2() {
+    // return Math.ceil(this.newCollection.length / this.itemsPerPage);
+    // return Math.ceil(this.manProducts.length / this.itemsPerPage);
+    return Math.ceil(this.WomanProducts.length / this.itemsPerPage);
+  }
+
+  //testing
+
+  
+
+
 }
 

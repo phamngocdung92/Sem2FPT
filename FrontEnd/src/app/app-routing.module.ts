@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from "./guards/auth.guard";
+import { HomeModule } from './home/home.modules';
 
 
 
@@ -13,7 +14,7 @@ import { DetailComponent } from './detail/detail.component';
 
 
 
-import { watchmoreComponent } from './home/watchmore/watchmore.component';
+// import { watchmoreComponent } from './home/watchmore/watchmore.component';
 
 import { HomeComponent } from './home/home.component';
 import { SlideComponent } from './home/slide/slide.component';
@@ -27,8 +28,8 @@ import { HeaderComponent } from './home/header/header.component';
 
 import { MentorComponent } from './home/mentor/mentor.component';
 import { ServicesComponent } from './home/services/services.component';
-import { Check1Component } from './home/check1/check1.component';
-import { Check2Component } from './home/check2/check2.component';
+// import { Check1Component } from './home/check1/check1.component';
+// import { Check2Component } from './home/check2/check2.component';
 import { Check3Component } from './home/check3/check3.component';
 import { Check4Component } from './home/check4/check4.component';
 import { Check5Component } from './home/check5/check5.component';
@@ -66,9 +67,7 @@ const routes: Routes = [
   {path: 'slide', component: SlideComponent},
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
-  { path: 'detail', component: DetailComponent},
-  { path: 'check1' , component: Check1Component},
-  { path: 'check2' , component: Check2Component },
+  { path: 'detail/:id', component: DetailComponent},
   { path: 'check3' , component: Check3Component},
   { path: 'a+d+m+i+n' , component: Check4Component},
   { path: 'so+do+web' , component: Check5Component},
@@ -77,7 +76,6 @@ const routes: Routes = [
   { path: 'check8' , component: Check8Component},
   { path: 'search' , component: SearchComponent},
   { path: 'register' , component: RegisterComponent},
-  { path: 'watchmore' , component: watchmoreComponent},
      { path: 'login-admin' , component: LoginAdminComponent},
   
 
@@ -104,7 +102,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    HomeModule
     ],
   exports: [RouterModule]
 })

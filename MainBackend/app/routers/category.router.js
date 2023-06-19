@@ -6,11 +6,11 @@ module.exports = function(app){
 
     app.get("/category/list/:id", categoryController.category_id);
 
-    app.post("/category/add", middleware.verifyTokenIsAdmin, categoryController.add_category);
+    app.post("/category/add", categoryController.add_category);//middleware.verifyTokenIsAdmin, 
 
-    app.delete("/category/delete/:id", middleware.verifyTokenIsAdmin, categoryController.delete_category);
+    app.delete("/category/delete/:id", categoryController.delete_category);//middleware.verifyTokenIsAdmin, 
 
-    app.put("/category/update", middleware.verifyTokenIsAdmin, categoryController.update_category); 
+    app.put("/category/update", categoryController.update_category); //middleware.verifyTokenIsAdmin, 
 
     // lay ra all san pham va menu 
     app.get("/categoryProduct/list", categoryController.categoryProduct);

@@ -6,11 +6,11 @@ module.exports = function(app){
 
     app.get("/gender/list/:id", genderController.gender_id);
 
-    app.post("/gender/add", middleware.verifyTokenIsAdmin, genderController.add_gender);
+    app.post("/gender/add", genderController.add_gender);//middleware.verifyTokenIsAdmin, 
 
-    app.delete("/gender/delete/:id", middleware.verifyTokenIsAdmin, genderController.delete_gender);
+    app.delete("/gender/delete/:id", genderController.delete_gender);//middleware.verifyTokenIsAdmin, 
 
-    app.put("/gender/update", middleware.verifyTokenIsAdmin, genderController.update_gender); 
+    app.put("/gender/update", genderController.update_gender); //middleware.verifyTokenIsAdmin, 
 
     // lay ra all san pham va menu 
     app.get("/genderProduct/list", genderController.genderProduct);

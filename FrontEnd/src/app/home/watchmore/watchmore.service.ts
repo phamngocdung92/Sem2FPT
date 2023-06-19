@@ -18,5 +18,10 @@ import { Observable } from 'rxjs';
         const url = 'http://localhost:3006/product/list';
         return this.httpClient.get(url);
       }
+
+      getAllMenu(): Observable<any>{
+        const url = 'http://localhost:3006/menu/list';
+        return this.httpClient.get(url)
+      }
       
   }

@@ -1,20 +1,22 @@
 
-<div class="container-fuild"  *ngFor="let menu of menus; let i = index; let isLast = last">
+<div class="container-fuild" style="position: relative;" *ngFor="let menu of menus">
+  
   <div  class="banner"  *ngIf="menu.check_column === 1" >
     <div class="bg ">
       <video id="background-vide" autoplay [muted]="'muted'" controls >
         <source src="{{menu.image_b}}" type="video/mp4">
       </video>
     </div>
-    <div class="content text-light ">
+    <div class="ovelay" style="position: absolute;width: 100%;height: 100%;z-index: 1;background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 70%);"></div>
+    <div class="content text-light " style="z-index: 1000;">
       <div class="row text-center">
         <h4 class="h4">{{ menu.name_menu }} </h4>
       </div>
       <div class="row nut  " >
-        <div class="col" *ngFor="let menu2 of getMenu2Items(i, isLast)" [routerLink]="['/check1']" routerLinkActive="active">
-          <button >{{menu2.name_menu2}}</button>
-        </div>
-        
+        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" [routerLink]="['/check1']" routerLinkActive="active">
+          <button >{{menu2.name_menu2}}</button>   
+      </div>
       </div>
 
     </div>
@@ -30,12 +32,14 @@
     ">
       
     </div>
+    <div class="ovelay" style="position: absolute;width: 100%;height: 100%;z-index: 1;background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 70%);"></div>
     <div class="content text-light ">
       <div class="row text-center">
         <h4 class="h4">{{ menu.name_menu }} </h4>
       </div>
       <div class="row nut  " >
-        <div class="col" *ngFor="let menu2 of getMenu2Items(i, isLast)" [routerLink]="['/check1']" routerLinkActive="active">
+        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" [routerLink]="['/check1']" routerLinkActive="active">
           <button >{{menu2.name_menu2}}</button>
         </div>
         

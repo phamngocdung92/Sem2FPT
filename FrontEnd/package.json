@@ -33,6 +33,7 @@
     "mongoose": "^7.1.1",
     "ng-search-filter": "^1.1.0",
     "ng2-nouislider": "^1.8.3",
+    "ngx-bootstrap": "^10.2.0",
     "ngx-toastr": "^16.1.1",
     "nouislider": "^15.7.0",
     "primeflex": "^3.3.0",

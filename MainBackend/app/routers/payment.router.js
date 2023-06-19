@@ -2,7 +2,7 @@ module.exports = function(app){
     var paymentController = require('../controllers/payment.controller');
     var middleware = require("../commons/Author_middleware");
 
-    app.post('/payment', middleware.verifyToken, paymentController.payment); //middleware.verifyToken,
+    app.post('/payment', paymentController.payment); //middleware.verifyToken, 
 
     app.get('/success', paymentController.payment_success);
 
