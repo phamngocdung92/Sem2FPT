@@ -4,10 +4,7 @@ module.exports = function(app){
     var middleware = require("../commons/Author_middleware");
 
     // thêm sản phẩm vào cart 
-    app.post('/add-to-cart', middleware.verifyToken, cart.handle_add_to_cart);
-
-    // lấy all cart theo id của user
-    app.get('/cart/:user_id', middleware.verifyToken, cart.get_all_cart);
+    app.post('/add-to-cart', middleware.verifyToken, cart.handle_add_to_cart); //middleware.verifyToken,
 
     // xóa all sản phẩm ở trong cart của user 
     app.post('/remove/all/product', middleware.verifyToken, cart.remove_all_p);
@@ -17,4 +14,11 @@ module.exports = function(app){
 
     // xóa 1 sản phẩm trong cart!
     app.post('/delete/one/product', middleware.verifyToken, cart.delete_a_product);
+
+
+      // lấy all cart theo id của user
+    app.get('/cart/:id', cart.get_all_cart);//, middleware.verifyTokenIsAdminOrIsUser
+
+    // lay ra all history cho admin:
+    app.get('/getall/history', middleware.verifyTokenIsAdmin,cart.getHistory);
 }

@@ -41,13 +41,13 @@ Cart.handle_cart = function({userId, productId}, result){
 
 Cart.getCart_user = function(userId, result){
     console.log(userId);
-    let query1 = 'SELECT * FROM cart WHERE user_id = ?';
+    let query1 = 'CALL find_cart_product(?, @b)'; 
     db.query(query1, [userId], (err, data)=>{
         if(err){
             console.log('fail');
             return result(null);
         }else{
-            return result(data);
+            return result(data[0]);
         }
     })
 }
@@ -128,6 +128,17 @@ Cart.delete_product = function( {userId, productId}, result ){
         }
     })
 
+}
+
+Cart.data_admin = function(result){
+    let query = 'CALL history_order(@b)';
+    db.query(query, (err, data)=>{
+           if(err){
+            return result(null);
+           }else{
+            return result(data[0]);
+           }
+    })
 }
 
 module.exports = Cart;

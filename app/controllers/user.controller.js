@@ -11,7 +11,7 @@ var refreshTokenArr = []; // dung de luu token -> check xem co dung la user do d
 
 exports.list_user = function(req, res){
     User.get_all((data)=>{
-        res.send({
+       return res.send({
             user: data
         })
     })
@@ -20,7 +20,7 @@ exports.list_user = function(req, res){
 exports.detail_user = function(req, res){
     var id = req.params.id;
     User.getById(id, (data)=>{
-        res.send({
+        return res.send({
             result: data
         })
     })
@@ -29,22 +29,35 @@ exports.detail_user = function(req, res){
 exports.add_user = function(req, res){
     var data = req.body; // dua vao thu vien bodyParse ta co the lay req.body
     User.create(data, (response)=>{
-        res.send({result: response});
+
+        if(response == 1){
+            return res.status(500).json({
+                message: 'error! something wrong! try later * _ *'
+            })
+        }
+
+        if(response == null){
+            return res.status(403).json({
+                message: 'Sorry! your email or your phone have been exist... please enter again'
+            })
+        }
+        return res.status(200).json({
+            message: response
+        })
     })
 }
 
 exports.delete_user = function(req, res){
     var id = req.params.id;
     User.remove(id, ()=>{
-        res.send({result: response})
+        return res.send({result: response})
     })
 }
 
 exports.change_password = function(req, res){
     var data = req.body; // body la gui du lieu len qua Post (trog the form)
     User.Update(data, (response)=>{
-        res.send({result: response});
-        console.log(response);
+        return res.send({result: response});
     })
 }
 
@@ -53,11 +66,17 @@ exports.login = function(req, res){
     var data = req.body;
     User.check_login(data, async function(response){
         if(response){
+            try{
             const {password, ...others} = response[0];
             const User1 = response[0];
             
-            const accesstoken1 = jwt.generateAccessToken(User1);
-            const refreshtoken1 = jwt.generateRefreshToken(User1);
+            let user = {
+                id: User1.id,
+                admin: User1.isAdmin
+            };
+            
+            const accesstoken1 = jwt.generateAccessToken(user);
+            const refreshtoken1 = jwt.generateRefreshToken(user);
 
             // Thuc hien luu refresh token trong Array -> de can thi bo ra check xem do co chinh la user or Admin ko?
             refreshTokenArr.push(refreshtoken1);
@@ -71,11 +90,17 @@ exports.login = function(req, res){
             })
 
             //const token = await jwt.make(response);
-            res.send({...others, accesstoken1});
+            return res.send({...others, accesstoken1});
             // tra ve 2 gia tri  1 la token 2 la response
             //-> response se phai ma hoa bang bcriptjs
+            }catch(error){
+                return res.status(500).json({
+                    message: 'error'
+                })
+            }
+          
         }else{
-            res.send({result: null});
+            return res.status(404).json({result: 'data is empty'});
         }
 
     });
@@ -89,23 +114,24 @@ exports.refreshToken = async function(req, res){
 
     // neu ko co refreshTokenClient thi chua dang nhap bao yeu cau dang nhap:
     if(!refreshTokenClient){
-        return res.send("error! you are not Authenticated!")
+        return res.status(403).json({result: 'error! you are not Authenticated'});
     }
 
     // check xem day co chinh la refresh token cua user do ko? hay la refresh token nao khac ko phai cua no
     if(!refreshTokenArr.includes(refreshTokenClient)){
-        return res.send({result: null});
+        return res.status(404).json({result: 'error'});
     }
 
     jwt2.verify(refreshTokenClient, REFRESH_TOKEN, (err, user)=>{
         if(err){
             console.log(err);
-            return res.send({result: null});
+            return res.status(404).json({result: 'error'});
         }
 
-        refreshTokenArr.filter( (token)=> token != refreshTokenArr ); // lay ra nhung thang nao ma khac voi refreshTokenArr | neu ko co thang nao thi tra ve ko co thang nao!
+        try{
+      refreshTokenArr.filter( (token)=> token != refreshTokenArr ); // lay ra nhung thang nao ma khac voi refreshTokenArr | neu ko co thang nao thi tra ve ko co thang nao!
         // tao 2 cai token moi 
-        const newAccessToken = jwt.generateAccessToken(user);
+        const newAccessToken = jwt.generateRefreshTokenForAccess(user);
         const newRefreshToken = jwt.generateRefreshToken(user);
         // luu vao mang & luu vao cookie 
         refreshTokenArr.push(newRefreshToken);
@@ -115,8 +141,10 @@ exports.refreshToken = async function(req, res){
             path: '/',
             sameSite: "strict", 
         });
-        res.send({acceessToken: newAccessToken}); // lan nay se chi tra ve access token cho client 
-
+        return res.send({acceessToken: newAccessToken}); // lan nay se chi tra ve access token cho client 
+        }catch(error){
+            return res.send({result: null});
+        }
     })
 }
 
@@ -129,5 +157,5 @@ exports.logout = async function(req, res){
     // xoa access token trong redux store ben client
 
     refreshTokenArr = refreshTokenArr.filter((data)=>data != req.cookies.refreshToken);
-    res.send("logged out successfully!")
+    return res.send("logged out successfully!")
 }
