@@ -10,7 +10,7 @@ exports.handle_add_to_cart = function(req, res){
 }
 
 exports.get_all_cart = function(req, res){
-    let userId = req.params.user_id;
+    let userId = req.params.id;
 
     Cart.getCart_user(userId, (data)=>{
        return res.send({
@@ -69,4 +69,18 @@ exports.delete_a_product = function(req, res){
 
     })
     
+}
+
+exports.getHistory = function(req, res){
+    Cart.data_admin((response)=>{
+        if(response == null){
+            return res.status(404).json({
+                message: 'error! something wrong or data not found'
+            })
+        }else{
+            return res.status(200).json({
+                message: response
+            })
+        }
+    })
 }

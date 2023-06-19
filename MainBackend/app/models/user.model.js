@@ -7,6 +7,8 @@ const User = function(user){
     this.email = user.email;
     this.password = user.password;
     this.isAdmin = user.isAdmin;
+    this.phone = user.phone;
+    this.address = user.address;
 }
 
 // User khai bao khoi tao cac thuoc tinh: get_all, getById... deu la static 
@@ -14,9 +16,9 @@ const User = function(user){
 User.get_all = function(result){
     db.query("SELECT id, username, email FROM users", (err, user)=>{
         if(err || user.length == 0){
-            result(null);
+            return result(null);
         }else{
-            result(user);
+            return result(user);
         }
     })
 }
@@ -24,9 +26,9 @@ User.get_all = function(result){
 User.getById = function(id, result){
     db.query("SELECT username, email FROM users WHERE id = ?", id, (err, user)=>{
         if(err || user.length == 0){
-            result(null);
+            return result(null);
         }else{
-            result(user[0]);
+            return result(user[0]);
         }
     })
 }
@@ -44,15 +46,15 @@ User.create = async function(data, result){
             isAdmin: data.isAdmin,
         };
 
-        db.query("INSERT INTO users SET ?", user1, (err, user)=>{
+        db.query("INSERT INTO users(username, email, password, isAdmin) VALUES(?, ?, ?, ?)", [user1.username, user1.email, user1.password, user1.isAdmin], (err, user)=>{
             if(err){
-                result(null);
+               return result(null);
             }else{
-                result({id: user.insertId, ...User});
+               return result('create account successful');
             }
         })
     }catch(err){
-        result(err);
+      return result(1);
     }
 }
 
@@ -60,12 +62,12 @@ User.remove = function(id, result){
     // xu ly du lieu:
     db.query("DELETE FROM users WHERE id = ?", id, (err, user)=>{
         if(err){
-            result(null);
+            return result(null);
         }else{
-            result("user'id: " + id + " had deleted on database"); // result receive 1 object 
+            return result("user'id: " + id + " had deleted on database"); // result receive 1 object 
         }
     })
-}
+} 
 
 User.Update = async function(data, result){
     try{
@@ -77,18 +79,20 @@ User.Update = async function(data, result){
             id: data.id,
             username: data.username,
             email: data.email,
-            password: hashedPassword
+            password: hashedPassword,
+            phone: data.phone,
+            address: data.address
         };
 
-       db.query("UPDATE users SET username=?,email=?,password=? WHERE id=?", [user1.username, user1.email, user1.password, user1.id], (err, user1)=>{
+       db.query("UPDATE users SET username=?,email=?,password=?,phone=?,address=? WHERE id=?", [user1.username, user1.email, user1.password, user1.phone, user1.address, user1.id], (err, user1)=>{
         if(err){
-            result(err, null);
+            return result(err, null);
         }else{
             if(user1.affectedRows == 0){
                 // Không tìm thấy user với id tương ứng
-                result({kind: "not_found"}, null);
+                return result({kind: "not_found"}, null);
             }else{
-              result("change is complete")  
+                return result("change is complete")  
             }
             
         }
@@ -102,21 +106,19 @@ User.check_login = function(data, result) {
     try{
         db.query("SELECT * FROM users WHERE email = ?", [data.email], async (err, user)=>{
             if(err || user.length == 0){
-                result(null);
-                console.log("not found");
+                return result(null);
             }else{
                 const isMatch = await bcrypt.compare(data.password, user[0].password)
                 if(isMatch){
-                    result(user);
+                    return result(user);
                 }else{
-                    result(null);
-                    console.log("password wrong");
+                    return result(null);
                 }
             }
         })
     }catch(e){
         console.log(e);
-        result(e);
+        return result(e);
     }
 };
 
