@@ -17,7 +17,7 @@ module.exports = function(app){
 
 
       // lấy all cart theo id của user
-    app.get('/cart/:id', cart.get_all_cart);//, middleware.verifyTokenIsAdminOrIsUser
+    app.get('/cart/:id', middleware.verifyTokenIsAdminOrIsUser, cart.get_all_cart);//, middleware.verifyTokenIsAdminOrIsUser
 
     // lay ra all history cho admin:
     app.get('/getall/history', middleware.verifyTokenIsAdmin,cart.getHistory);
