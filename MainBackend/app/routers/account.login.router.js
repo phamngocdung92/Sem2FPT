@@ -5,5 +5,5 @@ module.exports = function(app){
     app.post("/account/login", userController.login);
     app.post("/account/create", userController.add_user);
     app.post("/account/refresh", userController.refreshToken);
-    app.post("/account/logout", userController.logout);//middleware.verifyToken, 
+    app.post("/account/logout", middleware.verifyToken, userController.logout);
 }

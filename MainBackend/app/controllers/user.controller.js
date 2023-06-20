@@ -18,7 +18,7 @@ exports.list_user = function(req, res){
 }
 
 exports.detail_user = function(req, res){
-    var id = req.params.id;
+    let id = req.params.id;
     User.getById(id, (data)=>{
         return res.send({
             result: data
@@ -27,28 +27,33 @@ exports.detail_user = function(req, res){
 }
 
 exports.add_user = function(req, res){
-    var data = req.body; // dua vao thu vien bodyParse ta co the lay req.body
+    let data = req.body; // dua vao thu vien bodyParse ta co the lay req.body
     User.create(data, (response)=>{
+        if(response == 1){
+            return res.status(500).json({
+                message: 'error! somethings wrong! please try later '
+            })
+        }
         if(response == null){
             return res.status(403).json({
                 message: 'error! your account has been exists '
             })
         }
         return res.status(200).json({
-            message: 'create account success'
+            message: response
         })
     })
 }
 
 exports.delete_user = function(req, res){
-    var id = req.params.id;
+    let id = req.params.id;
     User.remove(id, ()=>{
         return res.send({result: response})
     })
 }
 
 exports.change_password = function(req, res){
-    var data = req.body; // body la gui du lieu len qua Post (trog the form)
+    let data = req.body; // body la gui du lieu len qua Post (trog the form)
     User.Update(data, (response)=>{
         return res.send({result: response});
     })
@@ -56,7 +61,7 @@ exports.change_password = function(req, res){
 
 
 exports.login = function(req, res){
-    var data = req.body;
+    let data = req.body;
     User.check_login(data, async function(response){
         if(response){
             try{

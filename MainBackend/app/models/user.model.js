@@ -46,15 +46,16 @@ User.create = async function(data, result){
             isAdmin: data.isAdmin,
         };
 
-        db.query("INSERT INTO users SET ?", user1, (err, user)=>{
+        db.query("INSERT INTO users(username, email, password, isAdmin) VALUES (?, ?, ?, ?)", [user1.username, user1.email, user1.password, user1.isAdmin], (err, user)=>{
             if(err){
+                console.log('sai o day')
                return result(null);
             }else{
-               return result({id: user.insertId, ...User});
+               return result('create successfully');
             }
         })
-    }catch(err){
-      return result(null);
+    }catch(error){
+      return result(1);
     }
 }
 
@@ -67,7 +68,7 @@ User.remove = function(id, result){
             return result("user'id: " + id + " had deleted on database"); // result receive 1 object 
         }
     })
-} 
+}
 
 User.Update = async function(data, result){
     try{

@@ -11,9 +11,9 @@ const Season = function(season){
 Season.hdl_list_season = function(result){
     db.query("SELECT * FROM season", (err, season)=>{
         if(err || season.length == 0){
-            result(null);
+           return result(null);
         }else{
-            result(season);
+           return result(season);
         }
     })
 }
@@ -21,9 +21,9 @@ Season.hdl_list_season = function(result){
 Season.hdl_season_id = function(id, result){
     db.query("SELECT * FROM season WHERE id_season = ?", id, (err, season)=>{
         if(err || season.length == 0){
-            result(null);
+            return result(null);
         }else{
-            result(season[0]); // -> lay ve 1 mang 
+            return result(season[0]); // -> lay ve 1 mang
         }
     })
 }
@@ -31,9 +31,9 @@ Season.hdl_season_id = function(id, result){
 Season.hdl_add_season = function(data, result){
     db.query("INSERT INTO season SET ?", data, (err, season)=>{
         if(err){
-            result(null);
+            return result(null);
         }else{
-            result({
+            return result({
                 id: season.insertId,
                 ...data
             })
@@ -44,9 +44,9 @@ Season.hdl_add_season = function(data, result){
 Season.hdl_delete_season = function(id, result){
     db.query("DELETE FROM season WHERE id_season = ?", id, (err, season)=>{ //DELETE FROM product WHERE id_product = ?
         if(err){
-            result(null);
+            return result(null);
         }else{
-            result("delete menu's id: "+ id + " successfully");
+            return result("delete menu's id: "+ id + " successfully");
         }
     })
 }
@@ -54,9 +54,9 @@ Season.hdl_delete_season = function(id, result){
 Season.hdl_update_season = function(data, result){
     db.query("UPDATE season SET name_season=?,image_season=?,title_season=?,router_link_season=? WHERE id_season=?", [data.name_season, data.image_season, data.title_season, data.router_link_season, data.id_season], (err, season)=>{
             if(err){
-                result(null);
+                return result(null);
             }else{
-                result(data);
+                return result(data);
             }
     })
 }
@@ -65,9 +65,9 @@ Season.hdl_update_season = function(data, result){
 Season.hdl_seasonProduct = function(result){
     db.query("SELECT * FROM product INNER JOIN season ON product.id_season = season.id_season", (err, season)=>{
         if(err || season.length == 0){
-            result(null);
+            return result(null);
         }else{
-            result(season);
+            return result(season);
         }
     })
 }
@@ -75,9 +75,9 @@ Season.hdl_seasonProduct = function(result){
 Season.seasonProduct_id = function(id, result){
     db.query("SELECT * FROM product INNER JOIN season ON product.id_season = season.id_season AND product.id_season=?", id, (err, season)=>{
         if(err || season.length == 0){
-            result(null);
+            return result(null);
         }else{
-            result(season[0]); // -> lay ve 1 mang 
+            return result(season[0]); // -> lay ve 1 mang
         }
     })
 }
