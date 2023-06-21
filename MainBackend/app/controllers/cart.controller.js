@@ -84,3 +84,21 @@ exports.getHistory = function(req, res){
         }
     })
 }
+
+exports.toggle_status = function(req, res){
+    let status_id = req.body.status_id;
+    let order_id = req.body.order_id;
+
+    Cart.toggle_status_admin({status_id, order_id}, (response)=>{
+        if(response == null){
+            return res.status(500).json({
+                message: "error something wrong please try again"
+            })
+        }
+        return res.status(201).json({
+            message: response
+        })
+    })
+
+
+}

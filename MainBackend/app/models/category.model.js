@@ -77,7 +77,7 @@ Category.categoryProduct_id = function(id, result){
         if(err || category.length == 0){
             result(null);
         }else{
-            result(category[0]); // -> lay ve 1 mang 
+            result(category); // -> lay ve 1 mang 
         }
     })
 }

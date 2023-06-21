@@ -6,7 +6,7 @@ module.exports = function(app){
 
     app.get("/product/list/:id", productController.product_id);
 
-    app.post("/product/add", middleware.verifyTokenIsAdmin, productController.add_product);
+    app.post("/product/add", middleware.verifyTokenIsAdmin ,productController.add_product);  //middleware.verifyTokenIsAdmin,
 
     app.delete("/product/delete/:id", middleware.verifyTokenIsAdmin, productController.delete_product);
 

@@ -78,7 +78,7 @@ Menu2.menuProduct_id2 = function(id, result){
             console.log(err);
             result(null);
         }else{
-            result(menu2[0]); // -> lay ve 1 mang 
+            result(menu2); // -> lay ve 1 mang 
         }
     })
 }

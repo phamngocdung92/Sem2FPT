@@ -77,7 +77,7 @@ Season.seasonProduct_id = function(id, result){
         if(err || season.length == 0){
             return result(null);
         }else{
-            return result(season[0]); // -> lay ve 1 mang
+            return result(season); // -> lay ve 1 mang
         }
     })
 }

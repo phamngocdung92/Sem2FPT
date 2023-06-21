@@ -141,4 +141,15 @@ Cart.data_admin = function(result){
     })
 }
 
+Cart.toggle_status_admin = function({status_id, order_id}, result){
+    let query = "UPDATE order1 SET status_id = ? WHERE order_id = ?"
+    db.query(query, [status_id, order_id], (err, data)=>{
+        if(err){
+            return result(null);
+        }else{
+            return result("update success!");
+        }
+    })
+}
+
 module.exports = Cart;

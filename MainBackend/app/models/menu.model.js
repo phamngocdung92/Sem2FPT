@@ -77,7 +77,7 @@ Menu.menuProduct_id = function(id, result){
         if(err || menu.length == 0){
             result(null);
         }else{
-            result(menu[0]); // -> lay ve 1 mang 
+            result(menu); // -> lay ve 1 mang 
         }
     })
 }

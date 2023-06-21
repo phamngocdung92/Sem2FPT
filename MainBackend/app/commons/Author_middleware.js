@@ -38,6 +38,7 @@ let verifyToken = async (req, res, next) =>{
                     return res.send("token invalid");
                 }
                 req.user = user; // luu gia tri tra ve cua accesstoken -> chua inform client login -> doi tuong nay se duoc gan cho req.user de su dung trong cac yeu cau tiep theo
+                console.log(user);
                 next();
             })
         }catch(e){
@@ -52,6 +53,7 @@ let verifyToken = async (req, res, next) =>{
 let verifyTokenIsAdmin = async (req, res, next)=>{
     verifyToken(req, res, ()=>{
         //req.user da duoc luu gia tri o tren bay h lay ra de so sanh! 
+        console.log(req.user);
         if(req.user.admin == 1){
             // id cua token ma == voi id cua params gui len 
             next();

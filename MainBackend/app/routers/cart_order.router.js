@@ -21,4 +21,7 @@ module.exports = function(app){
 
     // lay ra all history cho admin:
     app.get('/getall/history', middleware.verifyTokenIsAdmin,cart.getHistory);
+
+    // toggle status 
+    app.post('/toggle/status', cart.toggle_status);
 }

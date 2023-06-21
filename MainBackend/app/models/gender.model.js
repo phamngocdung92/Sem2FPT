@@ -77,7 +77,7 @@ Gender.genderProduct_id = function(id, result){
         if(err || gender.length == 0){
             result(null);
         }else{
-            result(gender[0]); // -> lay ve 1 mang 
+            result(gender); // -> lay ve 1 mang 
         }
     })
 }
