@@ -14,7 +14,7 @@
         <h4 class="h4">{{ menu.name_menu }} </h4>
       </div>
       <div class="row nut  " >
-        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" [routerLink]="['/check1']" routerLinkActive="active">
+        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" (click)="  navigateToWatchmore(menu2?.id_menu2)" routerLinkActive="active">
           <button >{{menu2.name_menu2}}</button>   
       </div>
       </div>
@@ -39,7 +39,7 @@
         <h4 class="h4">{{ menu.name_menu }} </h4>
       </div>
       <div class="row nut  " >
-        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" [routerLink]="['/check1']" routerLinkActive="active">
+        <div class="col" *ngFor="let menu2 of getMenu2Items(menu.id_menu)" (click)="  navigateToWatchmore(menu2?.id_menu2)" routerLinkActive="active">
           <button >{{menu2.name_menu2}}</button>
         </div>
         

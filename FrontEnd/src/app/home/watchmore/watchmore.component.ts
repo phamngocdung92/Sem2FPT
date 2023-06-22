@@ -106,6 +106,7 @@ itemsPerPage: number = 4;
     }
     return ''; // Trả về chuỗi rỗng nếu danh sách ảnh trống
   }
+  
   navigateToDetail(productId: string) {
     this.watchMoreService.getProductById(productId).subscribe(
       (res) => {

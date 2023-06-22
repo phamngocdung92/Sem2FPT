@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {AuthGuard} from "./guards/auth.guard";
-import { HomeModule } from './home/home.modules';
 
 
 
@@ -14,7 +13,7 @@ import { DetailComponent } from './detail/detail.component';
 
 
 
-// import { watchmoreComponent } from './home/watchmore/watchmore.component';
+import { watchmoreComponent } from './home/watchmore/watchmore.component';
 
 import { HomeComponent } from './home/home.component';
 import { SlideComponent } from './home/slide/slide.component';
@@ -28,8 +27,8 @@ import { HeaderComponent } from './home/header/header.component';
 
 import { MentorComponent } from './home/mentor/mentor.component';
 import { ServicesComponent } from './home/services/services.component';
-// import { Check1Component } from './home/check1/check1.component';
-// import { Check2Component } from './home/check2/check2.component';
+import { Check1Component } from './home/check1/check1.component';
+import { Check2Component } from './home/check2/check2.component';
 import { Check3Component } from './home/check3/check3.component';
 import { Check4Component } from './home/check4/check4.component';
 import { Check5Component } from './home/check5/check5.component';
@@ -46,6 +45,8 @@ import { AdminMentorComponent } from './modules/admin/components/admin-mentor/ad
 import { UserGuardsComponent } from './user/userr/components/user-guards/user-guards.component';
 import { AdminGuard } from './modules/admin.guard';
 import { UserGuard } from './user/user.guard';
+import { LoginadminComponent } from './shared/loginadmin/loginadmin.component';
+import { LoginGuard } from './shared/loginadmin/login';
 
 
 
@@ -68,6 +69,8 @@ const routes: Routes = [
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
   { path: 'detail/:id', component: DetailComponent},
+  { path: 'check1' , component: Check1Component},
+  { path: 'check2' , component: Check2Component },
   { path: 'check3' , component: Check3Component},
   { path: 'a+d+m+i+n' , component: Check4Component},
   { path: 'so+do+web' , component: Check5Component},
@@ -76,12 +79,14 @@ const routes: Routes = [
   { path: 'check8' , component: Check8Component},
   { path: 'search' , component: SearchComponent},
   { path: 'register' , component: RegisterComponent},
-     { path: 'login-admin' , component: LoginAdminComponent},
-  
+  { path: 'menuProduct2/list/:id' , component: watchmoreComponent},
+  { path: 'login-admin' , component: LoginadminComponent},
+
+
 
   {path:'meo', component: MeoComponent},
   {path:'admin',
-  canActivate:[AdminGuard,AuthGuard],
+  canActivate:[AdminGuard,AuthGuard,LoginGuard],
   loadChildren: ()=>
   import('./modules/admin/admin.module').then((m)=>m.AdminModule)},
   {path:'user',
@@ -89,7 +94,7 @@ const routes: Routes = [
   loadChildren: ()=>
   import('./user/userr/userr.module').then((m)=>m.UserrModule)},
 
-  
+
   {path:'**', component:PageNotFoundComponent}
 
 ];
@@ -102,8 +107,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule,
     BrowserModule,
-    HttpClientModule,
-    HomeModule
+    HttpClientModule
     ],
   exports: [RouterModule]
 })

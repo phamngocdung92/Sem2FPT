@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NouisliderModule } from 'ng2-nouislider';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { RouterModule } from '@angular/router';
-// import { AppRoutingModule } from '../app-routing.module';
+import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -31,8 +31,11 @@ import { HomeRoutingModule } from './home-routing';
 import { QuestionComponent } from './question/question.component';
 import { BAndFComponent } from './b-and-f/b-and-f.component';
 import { Check1Component } from './check1/check1.component';
-import { Check2Component } from './check2/check2.component';
+import { FilterByMenuIdPipe } from '../model/filterByMenuId.pipe';
 import { watchmoreComponent } from './watchmore/watchmore.component';
+
+
+
 
 
 @NgModule({
@@ -44,7 +47,8 @@ import { watchmoreComponent } from './watchmore/watchmore.component';
       RouterModule,
       JwBootstrapSwitchNg2Module,
       BrowserModule,
-      // AppRoutingModule,
+      AppRoutingModule,
+      HomeRoutingModule,
       HomeRoutingModule,
       NgbCarouselModule
 
@@ -70,8 +74,7 @@ import { watchmoreComponent } from './watchmore/watchmore.component';
      CollectionShoeComponent,
      CollectionWomanComponent,
      BAndFComponent,
-     Check1Component,
-     Check2Component,
+     FilterByMenuIdPipe,
      watchmoreComponent
      
      

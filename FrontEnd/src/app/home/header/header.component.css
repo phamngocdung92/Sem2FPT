@@ -111,7 +111,7 @@
 }
 
 .content{
-  z-index: 100;
+  z-index: 1000;
   transform: translateZ(10px);
   padding-top: 300px;
   width: 20%;

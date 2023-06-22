@@ -6,11 +6,11 @@ module.exports = function(app){
 
     app.get("/menu/list/:id", menuController.menu_id);
 
-    app.post("/menu/add", middleware.verifyTokenIsAdmin, menuController.add_menu);
+    app.post("/menu/add" , menuController.add_menu);
 
-    app.delete("/menu/delete/:id", middleware.verifyTokenIsAdmin, menuController.delete_menu);
+    app.delete("/menu/delete/:id", menuController.delete_menu);
 
-    app.put("/menu/update", middleware.verifyTokenIsAdmin, menuController.update_menu); 
+    app.put("/menu/update", menuController.update_menu); 
 
     // lay ra all san pham va menu 
     app.get("/menuProduct/list", menuController.menuProduct);

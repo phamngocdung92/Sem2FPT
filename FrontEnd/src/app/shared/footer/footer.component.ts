@@ -2,6 +2,7 @@ import { Component,OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/app/sevice/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -22,7 +23,7 @@ export class FooterComponent implements OnInit {
   // @ts-ignore
   focus1: boolean;
 
-  constructor( private fb: FormBuilder, private router:Router) { }
+  constructor( private fb: FormBuilder, private router:Router , private auth : AuthService) { }
 
   get form1() {
     return this.admin.controls
@@ -48,5 +49,8 @@ export class FooterComponent implements OnInit {
 
 
 }
+ logout():void{
+    this.auth.logout();
+  }
 public isCollapsed = false;
 }

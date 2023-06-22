@@ -22,6 +22,10 @@ export class ProductService {
   private genderURL = 'http://localhost:3006/gender/list';
   private categoryURL = 'http://localhost:3006/category/list';
   private seasonURL = 'http://localhost:3006/season/list';
+  private menu2productURL = 'http://localhost:3006/menuProduct2/list';
+  private cartUrl = 'http://localhost:3006/cart'
+  private billUrl = 'http://localhost:3006/getall/history'
+ 
  
   product: any;
   constructor(private httpClient: HttpClient) { }
@@ -44,6 +48,15 @@ export class ProductService {
   }
   getIdSeason(id: string): Observable<any> {
     return this.httpClient.get(`${this.seasonURL}/${id}`);
+  }
+  getWatchmore(id: string): Observable<any> {
+    return this.httpClient.get(`${this. menu2productURL}/${id}`);
+  }
+  getCartUser(id:number): Observable<any> {
+    return this.httpClient.get(`${this.cartUrl}/${id}`);
+  }
+  getBill(): Observable<any> {
+    return this.httpClient.get<any[]>(this.billUrl);
   }
 
 
@@ -68,6 +81,7 @@ export class ProductService {
   getDetailAcc(id: number): Observable<any> {
     return this.httpClient.get(`${this.detailUrl}/${id}`);
   }
+  
   getDetailProduct(id: number): Observable<any> {
     return this.httpClient.get(`${this.ProductURL}/${id}`);
   }
@@ -142,28 +156,15 @@ export class ProductService {
     return this.httpClient.put(`${this.apiUrl}/${id}`,data)
   }
 
-  //aDung
-
-  getProductById(productId: string): Observable<any> {
-    const url = 'http://localhost:3006/product/list/' + productId;
-    return this.httpClient.get(url);
-  }
-
-  getAllProduct(): Observable<any>{
-    const url = 'http://localhost:3006/product/list';
-    return this.httpClient.get(url);
-  }
-
-  getDetail(params: string): Observable<any> {
-    const url = 'http://localhost:3006/product/list/' + params;        
-    return this.httpClient.get(url);
-  }
-
 
   //LOGIN
   login(data: any) : Observable<any>{ // đăng nhập
     const url = "http://localhost:3006/";
     return this.httpClient.post(url + 'account/create', data); // vi login ve kia ta tao la "app.post()"
+  }
+  addMenu2(data: any) : Observable<any>{ // đăng nhập
+    const url = "http://localhost:3006/";
+    return this.httpClient.post(url + 'menu2/add', data); 
   }
 
 

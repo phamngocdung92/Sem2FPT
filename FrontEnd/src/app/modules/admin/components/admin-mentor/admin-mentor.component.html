@@ -1,17 +1,18 @@
-<div class="check6" style="background-color: #ffffff;height: 670px;">
+<div class="check6" style="background-color: #ffffff;height: 750px;">
   <div class="container" style="padding-top: 50px;" >
     <div class="row">
        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="position: relative;">
         <li class="nav-item" style="justify-content: start; position: absolute; left: 0;align-items: center; bottom: 10%;color: rgb(0, 0, 0);font-weight: bold;" >
-          ADMIN
+         ADMIN : {{username}}
         </li>
         <li [ngbNavItem]="1">
           <button ngbNavLink >Danh sách Sản Phẩm Trên Sàn </button>
           <ng-template ngbNavContent>
+
             <div class="scroll" style="z-index: 999;overflow-y: auto; height: 550px; " >
               <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
-                  <thead >
-                  <tr>
+                  <thead>
+                  <tr >
 
                       <th>Mã</th>
                       <th>Tên Sản Phẩm</th>
@@ -44,7 +45,7 @@
                           <td >{{product.menu}}</td>
                           <td>{{product.menu2}}</td>
                           <td>{{product.price}}</td>
-                        
+
                           <td><a class="btn btn-sm btn-success bi bi-gear"routerLink="/admin/fixProduct/{{product.id_product}}"></a></td>
                           <td>  <button (click)="onDeleteProduct(product?.id_product || 0)" class="btn btn-sm btn-danger">
                             <i class="bi bi-trash-fill"></i>
@@ -53,98 +54,94 @@
                   </tbody>
               </table>
           </div>
-
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="2">
-          <button ngbNavLink>Thêm Sản Phẩm </button>
-          <ng-template ngbNavContent>
-            <div class="row">
-              <div class="col">
-                <form action="" (ngSubmit)="save1()" >
-                  <div class="card" style="overflow-y: scroll;height: 500px;">
-                      <div class="card-body" >
-                    
-                      <div class="form-group">
-                        <label for="ID">Tên</label>
-                        <input type="text" [(ngModel)]="product.name_product" class="form-control" name="Tên sản phẩm" id="ID" aria-describedby="ID" placeholder="Tên sản phẩm">
-                    </div>
-                    <div class="form-group">
-                      <label for="ID">Ảnh</label>
-                      <input type="file" (change)="onFileSelected($event)" class="form-control" name="image" id="image">
-                  </div>
-                      <div class="form-group">
-                          <label for="name">Mô Tả</label>
-                          <input type="text" [(ngModel)]="product.title_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group">
-                          <label for="name">Số Lượng</label>
-                          <input type="text" [(ngModel)]="product.quanity_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group">
-                          <label for="name">Mô Tả Chi Tiết</label>
-                          <input type="text" [(ngModel)]="product.description_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group">
-                        <label for="gender">Giới Tính</label>
-                        <select class="form-control" id="gender" [(ngModel)]="product.id_gender" name="gender">
-                          <option *ngFor="let gender of genders" [value]="gender.id_gender">{{ gender.gender }}</option>
-                        </select>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="category">Loại</label>
-                        <select class="form-control" id="category" [(ngModel)]="product.id_category" name="category">
-                          <option *ngFor="let category of categories" [value]="category.id_category">{{ category.name_category }}</option>
-                        </select>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label for="season">Mùa</label>
-                        <select class="form-control" id="season" [(ngModel)]="product.id_season" name="season">
-                          <option *ngFor="let season of seasons" [value]="season.id_season">{{ season.name_season }}</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="season">Danh Mục</label>
-                        <select class="form-control" id="menu" [(ngModel)]="product.id_menu" name="menu">
-                          <option *ngFor="let menu of menus" [value]="menu.id_menu">{{ menu.name_menu }}</option>
-                        </select>
-                      </div>
-                      <div class="form-group">
-                        <label for="season">Danh Mục 2</label>
-                        <select class="form-control" id="menu2" [(ngModel)]="product.id_menu2" name="menu2">
-                          <option *ngFor="let menu2 of menus2" [value]="menu2.id_menu2">{{ menu2.name_menu2 }}</option>
-                        </select>
-                      </div>
-                     
-                     
-                        <div class="form-group">
-                          <label for="name">Giá</label>
-                          <input type="text" [(ngModel)]="product.price" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group">
-                          <label for="name">Link</label>
-                          <input type="text" [(ngModel)]="product.routerLink_product_detail" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      </div>
-                      <div class="card-footer text-muted">
-                        <button  class="btn btn-outline-primary" type="submit">Save</button>
-                     </div>
-                  </div>
-              </form>
-              </div>
+          <div class="vidu">
+            <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)">
+             Thêm sản phẩm
+            </button>
           </div>
           </ng-template>
         </li>
+
         <li [ngbNavItem]="3">
           <button ngbNavLink >Menu</button>
           <ng-template ngbNavContent>
+            <div class="vidu">
+              <ng-template #content let-modal>
+                <div class="modal-header">
+                  <h4 class="modal-title">Thêm menu</h4>
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                </div>
+                  <div class="row">
+                    <div class="col">
+                      <form action="" (ngSubmit)="save2()">
+                        <div class="row">
+                          
+                        </div>
+                        <div class="card" style="overflow-y: scroll;height: 500px;">
+                            <div class="card-body" >
+                            <div class="form-group">
+                                <label for="ID">Mã</label>
+                                <input [(ngModel)]="menuu.id_menu" [(ngModel)]="menn2.id_menu" type="text" class="form-control" name="ID" id="ID" aria-describedby="ID" placeholder="ID">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Tên Menu </label>
+                                <input [(ngModel)]="menuu.name_menu"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                            </div>
+
+                            <div class="form-group" enctype="multipart/form-data">
+                                <label for="name">Ảnh/Video</label>
+                                <input [(ngModel)]="menuu.image_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="Link Ảnh hoặc Đường Dẫn Video trong máy ">
+
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Mô Tả</label>
+                                <input [(ngModel)]="menuu.title_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                            </div>
+
+                            <div class="form-group">
+                              <label for="name">Link</label>
+                              <input [(ngModel)]="menuu.router_link_menu" type="text" name="videoFile"class="form-control" id="name" aria-describedby="nameHid" placeholder="name">
+                          </div>
+                          <div class="form-group">
+                            <label for="category">Loại</label>
+                            <select class="form-control" id="category" [(ngModel)]="menuu.check_column" name="check">
+                              <option  [value]="0">0</option>
+                              <option  [value]="1">1</option>
+                            </select>
+                          </div>
+                          <div class="danhmuc" >
+                            <div class="form-group">
+                            <label for="ID">ID Danh mục</label>
+                            <input [(ngModel)]="menn2.id_menu2" type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                        </div>
+                        <div class="form-group">
+                          <label for="name">Tên Danh Mục</label>
+                          <input [(ngModel)]="menn2.name_menu2"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                      </div>
+                      <div class="form-group">
+                        <label for="name">Giới Thiệu </label>
+                        <input [(ngModel)]="menn2.title_b2"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                    </div>
+                        </div>
+                        
+                          
+                            
+                            </div>
+                            <div class="card-footer text-muted">
+                              <button  class="btn btn-outline-primary" type="submit">Save</button>
+                           </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+              </ng-template>
+            </div>
             <div class="scroll" style="z-index: 999;overflow-y: auto; height: 550px; " >
               <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
                   <thead >
@@ -179,58 +176,14 @@
                   </tbody>
               </table>
           </div>
-
-          </ng-template>
-        </li>
-        <li [ngbNavItem]="4">
-          <button ngbNavLink >Thêm Menu </button>
-          <ng-template ngbNavContent>
-            <div class="row">
-              <div class="col">
-                <form action="" (ngSubmit)="save2()">
-                  <div class="card" style="overflow-y: scroll;height: 500px;">
-                      <div class="card-body" >
-                      <div class="form-group">
-                          <label for="ID">Mã</label>
-                          <input [(ngModel)]="menuu.id_menu" type="text" class="form-control" name="ID" id="ID" aria-describedby="ID" placeholder="ID">
-                      </div>
-                      <div class="form-group">
-                          <label for="name">Tên Menu </label>
-                          <input [(ngModel)]="menuu.name_menu"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group" enctype="multipart/form-data">
-                          <label for="name">Ảnh/Video</label>
-                          <input [(ngModel)]="menuu.image_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="Link Ảnh hoặc Đường Dẫn Video trong máy ">
-
-                      </div>
-                      <div class="form-group">
-                          <label for="name">Mô Tả</label>
-                          <input [(ngModel)]="menuu.title_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-
-                      <div class="form-group">
-                        <label for="name">Link</label>
-                        <input [(ngModel)]="menuu.router_link_menu" type="text" name="videoFile"class="form-control" id="name" aria-describedby="nameHid" placeholder="name">
-                    </div>
-                    <div class="form-group">
-                      <label for="category">Loại</label>
-                      <select class="form-control" id="category" [(ngModel)]="menuu.check_column" name="check">
-                        <option  [value]="0">0</option>
-                        <option  [value]="1">1</option>
-                      </select>
-                    </div>
-                      </div>
-                      <div class="card-footer text-muted">
-                        <button  class="btn btn-outline-primary" type="submit">Save</button>
-                     </div>
-                  </div>
-              </form>
-              </div>
+          <div class="vidu">
+            <button class="btn btn-outline-primary mb-2 me-2" (click)="openVerticallyCentered(content)">
+              Thêm menu
+             </button>
           </div>
           </ng-template>
         </li>
+
         <li [ngbNavItem]="5">
           <button ngbNavLink >Quản Lý Đơn Hàng </button>
           <ng-template ngbNavContent>
@@ -241,15 +194,24 @@
 
                       <th>Số Thứ Tự</th>
                       <th>Thông Tin Khách</th>
-                      <th>Thành Tiền</th>
+                      <th>Tổng Tiền</th>
+                      <th>Thời Gian</th>
+                      <th>Trang Thái</th>
                       <th>Hủy Đơn</th>
                   </tr>
                   </thead>
                   <tbody>
-                      <tr style="vertical-align: middle;">
-                          <td ></td>
-                          <td></td>
-                          <td></td>
+                      <tr style="vertical-align: middle;"*ngFor="let bill of bill">
+                          <td >{{bill.order_id}}</td>
+                          <td>
+                            <li>{{bill.username}}</li>
+                            <li>{{bill.email}}</li>
+                            <li>{{bill.phone}}</li>
+                            <li>{{bill.address}}</li>
+                          </td>
+                          <td>{{bill.total_amount}}</td>
+                          <td>{{bill.order_date}}</td>
+                          <td>{{bill.status_name}}</td>
                           <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
                       </tr>
                   </tbody>
@@ -339,11 +301,107 @@
           </ng-template>
         </li>
       </ul>
-      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      <div [ngbNavOutlet]="nav" class="mt-2">
+
+      </div>
+
     </div>
 
   </div>
   </div>
-  <div style="text-align: center; padding-bottom: 50px;">
-    <button style="width: 200px;border: none;background-color: black;color: aliceblue;width: 40%;height: 45px;" (click)="logout()">Đăng Xuất</button>
-  </div>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title  btn-outline-dark">Thêm sản phẩm</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+
+      <div class="row">
+        <div class="col">
+          <form action="" (ngSubmit)="save1()" >
+            <div class="card" style="overflow-y: scroll;height: 500px;">
+                <div class="card-body" >
+
+                <div class="form-group">
+                  <label for="ID">Tên</label>
+                  <input type="text" [(ngModel)]="product.name_product" class="form-control" name="Tên sản phẩm" id="ID" aria-describedby="ID" placeholder="Tên sản phẩm">
+              </div>
+              <div class="form-group">
+                <label for="ID">Ảnh</label>
+                <input type="file" (change)="onFileSelected($event)" class="form-control" name="image" id="image">
+            </div>
+                <div class="form-group">
+                    <label for="name">Mô Tả</label>
+                    <input type="text" [(ngModel)]="product.title_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                </div>
+                <div class="form-group">
+                    <label for="name">Số Lượng</label>
+                    <input type="text" [(ngModel)]="product.quanity_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                </div>
+                <div class="form-group">
+                    <label for="name">Mô Tả Chi Tiết</label>
+                    <input type="text" [(ngModel)]="product.description_product" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                </div>
+                <div class="form-group">
+                  <label for="gender">Giới Tính</label>
+                  <select class="form-control" id="gender" [(ngModel)]="product.id_gender" name="gender">
+                    <option *ngFor="let gender of genders" [value]="gender.id_gender">{{ gender.gender }}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="category">Loại</label>
+                  <select class="form-control" id="category" [(ngModel)]="product.id_category" name="category">
+                    <option *ngFor="let category of categories" [value]="category.id_category">{{ category.name_category }}</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="season">Mùa</label>
+                  <select class="form-control" id="season" [(ngModel)]="product.id_season" name="season">
+                    <option *ngFor="let season of seasons" [value]="season.id_season">{{ season.name_season }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="season">Danh Mục</label>
+                  <select class="form-control" id="menu" [(ngModel)]="product.id_menu" name="menu">
+                    <option *ngFor="let menu of menus" [value]="menu.id_menu">{{ menu.name_menu }}</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="season">Danh Mục 2</label>
+                  <select class="form-control" id="menu2" [(ngModel)]="product.id_menu2" name="menu2">
+                    <option *ngFor="let menu2 of menus2" [value]="menu2.id_menu2">{{ menu2.name_menu2 }}</option>
+                  </select>
+                </div>
+
+
+                  <div class="form-group">
+                    <label for="name">Giá</label>
+                    <input type="text" [(ngModel)]="product.price" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                </div>
+                <div class="form-group">
+                    <label for="name">Link</label>
+                    <input type="text" [(ngModel)]="product.routerLink_product_detail" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
+
+                </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <div class=" d-grid gap-2 col-6 mx-auto">
+                 <button type="submit" class="btn btn-outline-primary" >Save</button>
+              </div>
+
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+  </ng-template>

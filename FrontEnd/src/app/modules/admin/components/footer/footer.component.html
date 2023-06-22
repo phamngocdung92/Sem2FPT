@@ -6,6 +6,8 @@
           <th>Mã </th>
           <th>Tên</th>
           <th>Ảnh</th>
+          <th>Loại</th>
+          <th>Tùy chọn</th>
           <th>Update</th>
       </tr>
       </thead>
@@ -13,6 +15,8 @@
           <tr style="vertical-align: middle;">
               <td ><input type="text" name="Name" value="{{menu.id_menu}}" [(ngModel)]="menu.id_menu"></td>
               <td><input type="text" name="Name" value="{{menu.name_menu}}" [(ngModel)]="menu.name_menu"></td>
+              <td><input type="text" name="Name" value="{{menu.image_b}}" [(ngModel)]="menu.image_b"></td>
+              <td><input type="text" name="Name" value="{{menu.image_b}}" [(ngModel)]="menu.image_b"></td>
               <td><input type="text" name="Name" value="{{menu.image_b}}" [(ngModel)]="menu.image_b"></td>
               <td><button (click)="updateMenu()"><i class="bi bi-gear"></i></button></td>
           </tr>
