@@ -41,7 +41,11 @@ exports.update_product = function(req, res){
     var data = req.body;
 
     Product.update(data, (resp)=>{
-        res.send({result: resp})
+        if(resp == null){
+            res.status(500).json({message: 'fail to update! sorry try later'})
+        }
+
+        res.status(202).json({message: resp})
     })
 }
 

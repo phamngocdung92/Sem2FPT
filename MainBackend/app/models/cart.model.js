@@ -152,4 +152,16 @@ Cart.toggle_status_admin = function({status_id, order_id}, result){
     })
 }
 
+
+Cart.get_history_user = function({userId}, result){
+   let query = 'CALL historyUser(?, @b);'
+   db.query(query, [userId], (err, data)=>{
+      if(err){
+        return result(null);
+      }else{
+        return result(data[0]);
+      }
+   })
+}
+
 module.exports = Cart;

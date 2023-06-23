@@ -15,7 +15,6 @@ module.exports = function(app){
     // xóa 1 sản phẩm trong cart!
     app.post('/delete/one/product', middleware.verifyToken, cart.delete_a_product);
 
-
     // lấy all cart theo id của user
     app.get('/cart/:id', middleware.verifyTokenIsAdminOrIsUser, cart.get_all_cart);//, middleware.verifyTokenIsAdminOrIsUser
 
@@ -24,4 +23,7 @@ module.exports = function(app){
 
     // toggle status 
     app.post('/toggle/status', cart.toggle_status);
+
+    // lịch sử mua bán của user:
+    app.get('/history/user/:id', cart.getHistory_user);
 }

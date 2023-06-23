@@ -100,5 +100,21 @@ exports.toggle_status = function(req, res){
         })
     })
 
+}
+
+
+exports.getHistory_user = function(req, res){
+    let userId = req.params.id;
+    Cart.get_history_user({userId}, (response)=>{
+        if(res == null){
+            return res.status(500).json({
+                message: 'error'
+            })
+        }else{
+            return res.status(200).json({
+                message: response
+            })
+        }
+    })
 
 }

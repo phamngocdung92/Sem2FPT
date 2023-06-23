@@ -10,6 +10,6 @@ module.exports = function(app){
 
     app.delete("/product/delete/:id", middleware.verifyTokenIsAdmin, productController.delete_product);
 
-    app.put("/product/update", middleware.verifyTokenIsAdmin, productController.update_product); 
+    app.put("/product/update", middleware.verifyTokenIsAdmin, productController.update_product); //middleware.verifyTokenIsAdmin,
     
 }
