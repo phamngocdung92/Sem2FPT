@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation  } from '@angular/core';
 import {AuthService} from "../../../../sevice/auth.service";
 import { Product , } from 'src/app/model/products';
 import { user } from 'src/app/model/user';
@@ -12,6 +12,10 @@ import { Gender } from 'src/app/model/gender';
 import { Category } from 'src/app/model/category';
 import { Season } from 'src/app/model/season';
 import { Menu2 } from 'src/app/model/menu2';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormControl, FormGroup,Validators  } from '@angular/forms';
+import { Bill } from 'src/app/model/bill';
+import { flatMap } from 'rxjs';
 @Component({
   selector: 'app-admin-mentor',
   templateUrl: './admin-mentor.component.html',
@@ -21,8 +25,10 @@ export class AdminMentorComponent implements OnInit {
   public isCollapsed = false;
   url='http://localhost:3006/product/add';
   menuUrl = 'http://localhost:3006/menu/add';
+  menu2Url = 'http://localhost:3006/menu2/add';
   product:Product ={};
   menuu:Menu = {};
+  menn2: Menu2={};
 	active = 1;
   id: any;
   isAdmin: string | null;
@@ -33,16 +39,36 @@ export class AdminMentorComponent implements OnInit {
  users: user[] = [];
  menus: Menu[]=[];
  menus2: Menu2[]=[];
+ menus3: Menu2[]=[]
+
  genders: Gender[]=[];
  categories: Category[]=[];
  seasons: Season[]=[];
  productsWithDetails: ProductWithDetails[] = [];
+ username!: string | null;
+
+ menuArray1: Menu2[] = [];
+menuArray2: Menu2[] = [];
+counts: number[] = [];
+bill: Bill[]=[];
+formGroup1: FormGroup
 
 
   uploadImage: any;
-  constructor(private productService: ProductService, private auth: AuthService,private httpClient: HttpClient,private router: Router) {
+  constructor(private formBuilder: FormBuilder,private productService: ProductService, private auth: AuthService,private httpClient: HttpClient,private router: Router,private modalService: NgbModal) {
+    
+    this.formGroup1 = this.formBuilder.group({
+      id_menu2: ['', Validators.required],
+      name_menu2: ['', Validators.required],
+      image_b2: 'NULL',
+      title_b2: ['', Validators.required],
+      id_menu:['', Validators.required],
+      router_link_menu2:'NULL'
+      
+    });
     this.product = new Product();
     this.menuu = new Menu();
+    this.menn2= new Menu2();
     const token = localStorage.getItem('');
 
 
@@ -52,8 +78,31 @@ export class AdminMentorComponent implements OnInit {
     this.isAdmin = localStorage.getItem('isadmin') ?? null;
   }
 
+  openVerticallyCentered(content: any) {
+		this.modalService.open(content, { centered: true, size: 'xl'  });
+	}
+  getMenu2Items(id_menu: string| undefined): Menu2[] {
+    const menuId = id_menu !== undefined ? id_menu : '';
+    return this.menus2.filter(menu2 => menu2.id_menu === menuId );
+
+
+
+  }
+
   ngOnInit(): void {
-   
+    
+    this.productService.getBill().subscribe(
+      (data: any) => {
+        this.bill = data.message;
+        console.log(this.bill)
+      },
+      (error) => {
+        console.error('Lỗi:', error);
+      }
+
+    );
+
+
     this.productService.getgender().subscribe(
       (data: any) => {
         this.genders = data.result;
@@ -64,6 +113,9 @@ export class AdminMentorComponent implements OnInit {
       }
 
     );
+
+    this.username = localStorage.getItem('username');
+
     this.productService.getSeason().subscribe(
       (data: any) => {
         this.seasons = data.result;
@@ -130,7 +182,7 @@ export class AdminMentorComponent implements OnInit {
       (data: any) => {
         this.products = data.result;
         console.log(this.products);
-    
+
         this.productsWithDetails = this.products.map((product: Product) => {
           const productWithDetails: ProductWithDetails = { ...product };
           const gender = this.genders.find((gender: Gender) => gender.id_gender === product.id_gender);
@@ -143,10 +195,10 @@ export class AdminMentorComponent implements OnInit {
           productWithDetails.season = season?.name_season;
           productWithDetails.menu = menu?.name_menu;
           productWithDetails.menu2 = menu2?.name_menu2;
-          
+
           return productWithDetails;
         });
-    
+
         console.log(this.productsWithDetails);
       },
       (error) => {
@@ -216,13 +268,41 @@ export class AdminMentorComponent implements OnInit {
     }
   }
 
-  save2() {
-    this.httpClient.post(this.menuUrl, this.menuu).subscribe(data => {
+  save(){
+    this.httpClient.post(this.menu2Url, this.menn2).subscribe(data => {
       console.log(data);
        window.location.reload();
       // Thực hiện các xử lý khác sau khi lưu thành công
+    })
+  }
+  save2() {
+   
+  
+    this.httpClient.post(this.menuUrl, this.menuu).subscribe(data => {
+      console.log(data);
+
+      // Thực hiện các xử lý khác sau khi lưu thành công
+      this.httpClient.post(this.menu2Url, this.menn2).subscribe(
+        (data) => {
+          console.log(data);
+          // Thực hiện các xử lý sau khi lưu formData1 thành công
+        },
+        (error1) => {
+          console.error('Lỗi khi đẩy dữ liệu lên server (formData1)', error1);
+          // Xử lý lỗi của formData1 tại đây
+        }
+      );
+    
+     
+      window.location.reload();
     });
   }
+  
+    
+     
+     
+   
+  
   save1() {
     this.httpClient.post(this.url, this.product).subscribe(data => {
       console.log(data);

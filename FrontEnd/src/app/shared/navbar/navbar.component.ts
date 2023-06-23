@@ -124,9 +124,9 @@ export class NavbarComponent implements OnInit {
     // Bay h doan nay se la xu ly:
     //1. goi API -> lay token -> luu vao localstorage (viet service lay API)
     this.account.login(this.formLogin.value).subscribe(res=>{
-      if(res.result != null){
+      if(res!=null){
         // luu ma token vao localstorage:
-         localStorage.setItem("token", res.result);
+        
          alert("tao tai khoan thanh cong");
 
         //localStorage.setItem("account", res.name);  day la object ve account's person

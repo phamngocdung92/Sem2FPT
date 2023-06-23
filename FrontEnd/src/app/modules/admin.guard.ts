@@ -6,7 +6,7 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class AdminGuard implements CanActivate {
   constructor(private router: Router) {}
- 
+
   canActivate(): boolean {
 
     const isAdmin = localStorage.getItem('acc') === '1';
@@ -15,5 +15,5 @@ export class AdminGuard implements CanActivate {
     }
     return isAdmin;
   }
- 
+
 }

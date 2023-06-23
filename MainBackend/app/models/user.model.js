@@ -14,8 +14,8 @@ const User = function(user){
 // User khai bao khoi tao cac thuoc tinh: get_all, getById... deu la static 
 
 User.get_all = function(result){
-    db.query("SELECT id, username, email FROM users", (err, user)=>{
-        if(err || user.length == 0){
+    db.query("SELECT * FROM users", (err, user)=>{
+        if(err || user.length == 0){ 
             return result(null);
         }else{
             return result(user);
@@ -24,7 +24,7 @@ User.get_all = function(result){
 }
 
 User.getById = function(id, result){
-    db.query("SELECT username, email FROM users WHERE id = ?", id, (err, user)=>{
+    db.query("SELECT id, username, email, phone,address FROM users WHERE id = ?", id, (err, user)=>{
         if(err || user.length == 0){
             return result(null);
         }else{
