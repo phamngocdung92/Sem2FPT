@@ -8,4 +8,5 @@ module.exports = function(app){
 
     app.get('/cancel', paymentController.payment_cancel);
 
+    app.post('/payment_cash', paymentController.pay_cash)
 }

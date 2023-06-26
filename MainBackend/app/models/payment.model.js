@@ -75,6 +75,7 @@ function getProductById(id){ // khi 1 func sử dung instance promise thì khi g
                 reject(err);
             }
             resolve(result[0]);
+           
         });
     })
 }
@@ -238,6 +239,70 @@ Payment.success = function({payerId, paymentId}, response){
         }
 
     })
+}
+
+
+Payment.paymentCash = function({userId}, response){
+    let query = 'SELECT * FROM cart WHERE user_id = ?';
+console.log('chạy vào đây 0');
+    db.query(query, [userId], async (err, data)=>{
+        if(err){
+            console.log('lỗi');
+            return response(null);
+        }else{
+            try{
+                   let totalAmount = 0;
+                for(let item of data){
+                       let product = await getProductById(item.id_product);
+                       totalAmount += product.price * item.quantity;
+                       console.log(totalAmount);
+                }
+
+                let query1 = 'INSERT INTO order1 (user_id, payment_id, total_amount, status_id) VALUES (?, ?, ?, ?)';
+                let random = Math.floor(Math.random()*9000)+1000;
+                db.query(query1, [userId, `PAYMENT${userId}${random}`, totalAmount, 3], async (err, data2)=>{
+                    if(err){
+                        return response(null);
+                    }else{
+                        console.log('chay vao day 2');
+                        let orderId = data2.insertId;
+                        for(let item1 of data){
+                            let query = 'INSERT INTO invoice (order_id, id_product, quantity, price) VALUES (?, ?, ?, ?)';
+
+                          let product = await getProductById(item1.id_product);
+                          let numberQuantity = item1.quantity * product.price;
+                          console.log('chay vao day 2.2');
+                            db.query(query, [orderId, item1.id_product, item1.quantity, numberQuantity], (err, result2)=>{
+                                if(err){
+                                    return response(null);
+                                }else{
+                                    console.log('create invoice success')
+                                }
+                            })
+                        }
+
+                        let invoiceEmail = await getInvoice(userId);
+                        sendMail(invoiceEmail);
+
+                        let query = 'DELETE FROM cart WHERE user_id = ?';
+                        db.query(query, [userId], (error, result)=>{
+                        if(error){
+                                return response(null);
+                        }else{
+                                console.log("delete cart successful");
+                                return response('Order success');
+                        }
+                         })
+
+                    }
+                })
+
+            }catch(error){
+
+            }
+        }
+    })
+
 }
 
     

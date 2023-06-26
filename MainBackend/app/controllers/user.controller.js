@@ -47,7 +47,7 @@ exports.add_user = function(req, res){
 
 exports.delete_user = function(req, res){
     let id = req.params.id;
-    User.remove(id, ()=>{
+    User.remove(id, (response)=>{
         return res.send({result: response})
     })
 }

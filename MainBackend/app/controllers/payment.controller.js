@@ -41,3 +41,20 @@ exports.payment_cancel = function(req, res){
             message: 'error! you have canceled the payment'
         })
 }
+
+exports.pay_cash = function(req, res){
+    let userId = req.body.userId;
+
+    Payment.paymentCash({userId}, (data)=>{
+        if(data == null){
+              res.status(500).json({
+                message: 'error something wrong please try again!'
+              })
+        }
+        res.status(200).json({
+            message: data
+        })
+
+
+    })
+}
