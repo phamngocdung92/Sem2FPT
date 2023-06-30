@@ -1,4 +1,5 @@
 export class Product{
+ 
   id_product? : number;
   name_product? : string;
   image_product? : string;
@@ -12,4 +13,5 @@ export class Product{
   id_menu2? : string;
   price?:number;
   routerLink_product_detail?:string;
+  
 }

@@ -1,1 +1,69 @@
-<p>compare works!</p>
+<!-- <div class="container-fuild" >
+    <div  class="banner">
+      <div class="bg">
+        <video id="background-vide" autoplay [muted]="'muted'" controls >
+          <source src="assets/img/fashion4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="content text-light ">
+        <div class="row text-center">
+          <h4 class="h4">Gợi Ý Ngày Lễ </h4>
+        </div>
+        <div class="row nut  ">
+            <div>
+                <div></div>
+                <div >
+                    <div>ảnh </div>
+                    <div>ảnh </div>
+                    a
+                </div>
+            </div>
+        </div>
+  
+      </div>
+    </div>
+    </div>
+   -->
+
+   <body>
+    <div class="header">
+        <div class="background">
+            <video id="background-vide" autoplay [muted]="'muted'" controls >
+              <source src="assets/img/fashion4.mp4" type="video/mp4">
+            </video>
+          </div>
+      <div class="content">
+        <div>
+            <div class=" text-start text-light" style="height: 6000px">
+                <div class="row align-items-center" style="top:10px;width: 100%; height: 700px; ">
+                  <div class="col-3 " style="z-index: 100;">
+                    <p class="ps-4">
+                         Trong chiến dịch quảng bá lấy cảm hứng từ họa tiết trên những viên gạch men Azulejos, bộ sưu tập LV By The Pool mời gọi bạn tạm gác những bận rộn thường nhật để tận hưởng phút giây thư giãn bên làn nước xanh mát.
+                    </p>
+                   
+                  </div>
+                  <div class="col-9">
+                    
+                  </div>
+                  
+                </div>
+                <div class="row list align-items-center"  style="top:10px; justify-content: space-between; ">
+                    <div *ngFor="let image of images ;let i=index" class="col-6 " style="z-index: 100;padding: unset;">
+                        <img *ngIf="i<4" width="100%" src="{{firstImage(image.images)}}" alt="">
+                    </div>
+                    <!-- <div class="col-6" style="z-index: 100; padding: unset;">
+                        <img width="100%" src="../../assets/img/10.jpg" alt="">
+                    </div>
+                    <div class="col-6 " style="z-index: 100;padding: unset;">
+                        <img width="100%" src="../../assets/img/header.jpg" alt="">
+                    </div>
+                    <div class="col-6" style="z-index: 100; padding: unset;">
+                        <img width="100%" src="../../assets/img/10.jpg" alt="">
+                    </div> -->
+                    
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </body>

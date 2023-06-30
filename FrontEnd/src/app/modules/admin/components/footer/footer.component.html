@@ -1,4 +1,4 @@
-<div class="scroll" style="z-index: 999;overflow-y: auto; height: 500px; " >
+<div class="scroll" style="z-index: 999;overflow-y: auto; " >
   <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
       <thead >
       <tr>
@@ -23,3 +23,79 @@
       </tbody>
   </table>
 </div>
+
+
+<div class="container ps-3 pe-3 pb-5" >
+    <form  >
+      <h6>
+        ID menu
+        <input  value="{{menu.id_menu}}"  type="text" formControlName="id_menu" class="form-control">
+    </h6>
+    <h6>
+        Tên menu
+        <input value="{{menu.name_menu}}" type="text" formControlName="name_menu" class="form-control">
+    </h6>
+   
+    <h6>
+        Ảnh
+        <input value="{{menu.image_b}}"  type="text" formControlName="image_b" class="form-control">
+    </h6>
+    <h6>
+        Mô tả
+        <input value="{{menu.title_b}}" type="text" formControlName="title_b" class="form-control">
+    </h6>
+    <h6>
+        Router_link_menu
+        <input value="{{menu.router_link_menu}}"  type="text" formControlName="router_link_menu" class="form-control">
+    </h6>
+    <h6>
+        Phân loại
+       
+        <select value="{{menu.check_column}}" class="form-control" id="category" formControlName="check_column" name="check">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+       
+      
+    </h6>
+    <table class="table table-bordered" formArrayName="quantities">
+        <tr>
+          <th colspan="2">Sửa danh mục</th>
+          
+             <td>
+              ID danh mục
+              <input value="{{menu.id_menu2}}"  type="text" formControlName="id_menu2" class="form-control">
+          </td>
+          <td>
+              Tên danh mục
+              <input value="{{menu.name_menu2}}" type="text" formControlName="name_menu2" class="form-control">
+          </td>
+          
+         
+          <td>
+              Ảnh danh mục
+              <input value="{{menu.image_b2}}" type="text" formControlName="image_b2" class="form-control">
+          </td>
+          <td>
+              Môt tả
+              <input value="{{menu.title_b2}}" type="text" formControlName="title_b2" class="form-control">
+          </td>
+          <td>
+              Link
+              <input  value="{{menu.router_link_menu2}}" type="text" formControlName="router_link_menu2" class="form-control">
+          </td>
+         
+         
+        </tr>
+      </table>
+    
+      
+      <td><button (click)="updateMenu()"><i class="bi bi-gear"></i></button></td>
+      
+    </form>
+  </div>
+    
+    
+
+
+   

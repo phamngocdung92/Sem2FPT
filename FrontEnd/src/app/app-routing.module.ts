@@ -55,7 +55,7 @@ import { LoginGuard } from './shared/loginadmin/login';
 const routes: Routes = [
   { path: '', redirectTo: 'home',pathMatch: 'full'},
   { path: 'home' , component: HomeComponent },
-  { path: 'compare' , component: CompareComponent},
+  { path: 'menuProduct/list/:id' , component: CompareComponent},
   { path: 'bandf', component: BAndFComponent},
   { path: 'categogy', component: CategoryComponent},
   { path: 'discount', component: DiscountComponent},
@@ -68,9 +68,9 @@ const routes: Routes = [
   {path: 'slide', component: SlideComponent},
   { path: 'My+Acc', component: TopsaleComponent},
   { path: 'cart', component: CartComponent},
-  { path: 'detail/:id', component: DetailComponent},
+  // { path: 'detail/:id', component: DetailComponent},
   { path: 'check1' , component: Check1Component},
-  { path: 'check2' , component: Check2Component },
+  { path: 'detail/:id' , component: Check2Component },
   { path: 'check3' , component: Check3Component},
   { path: 'a+d+m+i+n' , component: Check4Component},
   { path: 'so+do+web' , component: Check5Component},
@@ -84,7 +84,7 @@ const routes: Routes = [
 
 
 
-  {path:'meo', component: MeoComponent},
+
   {path:'admin',
   canActivate:[AdminGuard,AuthGuard,LoginGuard],
   loadChildren: ()=>

@@ -27,39 +27,49 @@ export class HeaderComponent implements OnInit {
   }
   getMenu2Items(id_menu: string| undefined): Menu2[] {
     const menuId = id_menu !== undefined ? id_menu : '';
-    return this.menus2.filter(menu2 => menu2.id_menu === menuId ) ;
-  
-    
-    
+    return this.menus2.filter(menu2 => menu2.id_menu === menuId );
   }
-  getidmenu2(){
+  // getidmenu2(){
    
       
-    this.productService.getMenu2().subscribe(
-      (data: any) => {
-        if (data && Array.isArray(data.result)) {
-          this.menn2 = data.result;
+  //   this.productService.getMenu2().subscribe(
+  //     (data: any) => {
+  //       if (data && Array.isArray(data.result)) {
+  //         this.menn2 = data.result;
   
-        } else {
-          console.error('Dữ liệu không hợp lệ');
-          // Xử lý lỗi tại đây, ví dụ: gán một giá trị mặc định cho this.menus
-        }
-      },
-      (error) => {
-        console.error('Lỗi:', error);
-      }
-    );
-  }
+  //       } else {
+  //         console.error('Dữ liệu không hợp lệ');
+  //         // Xử lý lỗi tại đây, ví dụ: gán một giá trị mặc định cho this.menus
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Lỗi:', error);
+  //     }
+  //   );
+  // }
   goToListProducts(id_menu2: string): void {
     this.router.navigate(['menuProduct2/list', id_menu2]);
   }
  
   navigateToWatchmore(menu2Id: string | undefined) {
     if (menu2Id !== undefined) {
-      this.productService.getWatchmore(menu2Id).subscribe(
+      this.productService.getMenuu2(menu2Id).subscribe(
         (res) => {
-          const url = '/menuProduct2/list/' + menu2Id;
-          window.open(url, '_blank');
+          this.menn2 = res.result;
+          console.log(this.menn2);
+          const checkname = this.menn2.chek;
+          
+          console.log(checkname);
+
+          
+          if (checkname==1) {
+            const url = '/menuProduct/list/' + menu2Id;
+            this.router.navigateByUrl(url);
+          }
+          else{
+            const url = '/menuProduct2/list/' + menu2Id;
+            this.router.navigateByUrl(url);
+          }
         },
         (error) => {
           console.error('Failed to load product details', error);
@@ -68,6 +78,7 @@ export class HeaderComponent implements OnInit {
       );
     }
   }
+  
   
   
   ngOnInit(): void {

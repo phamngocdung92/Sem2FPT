@@ -63,7 +63,7 @@
               <li [ngbNavItem]="2">
                 <ng-template ngbNavContent>
                   <h4>Đến Với Lizard Để Có Những Khoảnh Khắc Mua Sắm Tuyệt Vời Nhất</h4>
-                  <form class="register-form" form action="" method="post" [formGroup]="formLogin" (ngSubmit)="onLogin()">
+                  <form class="register-form" form action="" method="post" [formGroup]="formLogin" (ngSubmit)="onLogin()" >
                     <div>
                       <label>Email*</label>
                       <div class="input-group form-group-no-border" [ngClass]="{'input-group-focus':focus1===true}">
@@ -121,7 +121,14 @@
           <h3 class="logo" ><img src="https://i.pinimg.com/564x/1b/0a/f0/1b0af08699c7c139655af122d2438693.jpg" width="30px " height="19px" style="padding-bottom: 3px;" alt=""><span>LIZARD</span></h3>
       </div>
       <div class="ccontainer"style="justify-content: end;  ">
-        <p ><a style="color: aliceblue;" href="cart"><i class="bi bi-bag-heart"></i></a></p>
+        <p >
+          <a style="color: aliceblue;" *ngIf="!showAdminButton"  href="cart"> 
+            <div style="position: relative;">
+            <i style="font-size: 20px;" class="fa fa-shopping-cart"></i>
+            <span class="counter" ><p>{{ productCount }}</p></span>
+          </div></a>
+           <a style="color: aliceblue;" *ngIf="showAdminButton" (click)="logout()"><i class="bi bi-box-arrow-right"></i></a>
+        </p>
     </div>
       <div class="ccontainer"style="justify-content: end;flex: 0.13;">
         <p >

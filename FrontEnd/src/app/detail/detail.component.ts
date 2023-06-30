@@ -7,7 +7,9 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../model/products';
-import { ProductService } from './detail.service';
+import { ProductServices } from './detail.service';
+import { HttpClient } from '@angular/common/http';
+import { Cart } from '../model/cart';
 
 @Component({
   selector: 'app-detail',
@@ -15,6 +17,7 @@ import { ProductService } from './detail.service';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
+  cartItemCount: number = 0;
   activeImage: string | null = null;
   listDetail: Product[] = [];
 
@@ -23,10 +26,16 @@ export class DetailComponent implements OnInit {
   productName : string | null = null;
   productDescription: string | null = null;
   productPrice: number | null = null;
+  product_id: number| null =null;
+  CARTS: Cart[] = [];
+  
   constructor(
     private renderer: Renderer2,
-    private productService: ProductService,
-    private route: ActivatedRoute
+    private productService: ProductServices,
+    private route: ActivatedRoute,
+    private http :HttpClient,
+    
+
   ) {}
 
   ngOnInit() {
@@ -67,8 +76,28 @@ export class DetailComponent implements OnInit {
       });
     });
     //.................................//
+    this.route.params.subscribe(params => {
+      this.product_id = +params['id'];
+    });
   }
+  addToCart() {
+    const iduser = localStorage.getItem('id_user');
+    const id = this.product_id;
+    const data = {
+      userId: iduser,
+      productId: id
+    };
+  
+    this.http.post<any>('http://localhost:3006/add-to-cart', data).subscribe(
+      // Xử lý kết quả sau khi thêm vào giỏ hàng (nếu cần)
+    );
+    window.location.reload();
+    console.log('Thành công');
+    
+    
 
+  }
+  
    //change images
   onImageInputChange(productImage: string) {
     this.activeImage = productImage;

@@ -66,7 +66,7 @@ Product.update = function(data, result){
         if(err){
             result(null);
         }else{
-            result('Update success :))');
+            result(p);
         }
     })
 }

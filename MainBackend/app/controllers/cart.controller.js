@@ -38,8 +38,8 @@ exports.remove_all_p = function(req, res){
 }
 
 exports.decrease_product = function(req, res){
-    let userId = req.body.user_id;
-    let productId = req.body.product_id;
+    let userId = req.body.userId;
+    let productId = req.body.productId;
 
     Cart.decrease_amount({userId, productId}, (result)=>{
         if(result == null){
@@ -53,8 +53,8 @@ exports.decrease_product = function(req, res){
 }
 
 exports.delete_a_product = function(req, res){
-    let userId = req.body.user_id;
-    let productId = req.body.product_id;
+    let userId = req.body.userId;
+    let productId = req.body.productId;
 
     Cart.delete_product({userId, productId}, (response)=>{
         if(response == null){
@@ -100,21 +100,22 @@ exports.toggle_status = function(req, res){
         })
     })
 
+
 }
 
 
 exports.getHistory_user = function(req, res){
-    let userId = req.params.id;
-    Cart.get_history_user({userId}, (response)=>{
-        if(res == null){
-            return res.status(500).json({
-                message: 'error'
-            })
-        }else{
-            return res.status(200).json({
-                message: response
-            })
-        }
-    })
+  let userId = req.params.id;
+  Cart.get_history_user({userId}, (response)=>{
+      if(res == null){
+          return res.status(500).json({
+              message: 'error'
+          })
+      }else{
+          return res.status(200).json({
+              message: response
+          })
+      }
+  })
 
 }

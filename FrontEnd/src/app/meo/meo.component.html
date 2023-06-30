@@ -1,1 +1,80 @@
-<p>meo works!</p>
+
+  <div class="container ps-3 pe-3 pb-5" >
+    <form [formGroup]="productForm" (ngSubmit)=" save2()">
+      <h6>
+        ID menu
+        <input   type="text" formControlName="id_menu" class="form-control">
+    </h6>
+    <h6>
+        Tên menu
+        <input  type="text" formControlName="name_menu" class="form-control">
+    </h6>
+   
+    <h6>
+        Ảnh
+        <input  type="text" formControlName="image_b" class="form-control">
+    </h6>
+    <h6>
+        Mô tả
+        <input  type="text" formControlName="title_b" class="form-control">
+    </h6>
+    <h6>
+        Router_link_menu
+        <input   type="text" formControlName="router_link_menu" class="form-control">
+    </h6>
+    <h6>
+        Phân loại
+       
+        <select class="form-control" id="category" formControlName="check_column" name="check">
+          <option [value]="0">0</option>
+          <option [value]="1">1</option>
+        </select>
+       
+      
+    </h6>
+     
+    
+      <table class="table table-bordered" formArrayName="quantities">
+        <tr>
+          <th colspan="2">Thêm danh mục</th>
+          <td width="150px"><button type="button" (click)="addQuantity()" class="btn btn-primary">Add More</button></td>
+        </tr>
+        <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+             <td>
+              ID danh mục
+              <input   type="text" formControlName="id_menu2" class="form-control">
+          </td>
+          <td>
+              Tên danh mục
+              <input  type="text" formControlName="name_menu2" class="form-control">
+          </td>
+          
+         
+          <td>
+              Ảnh danh mục
+              <input  type="text" formControlName="image_b2" class="form-control">
+          </td>
+          <td>
+              Môt tả
+              <input  type="text" formControlName="title_b2" class="form-control">
+          </td>
+          <td>
+              Link
+              <input   type="text" formControlName="router_link_menu2" class="form-control">
+          </td>
+         
+          <td>
+              <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+          </td>
+        </tr>
+      </table>
+     
+      <button type="submit" class="btn btn-success">Submit</button>
+      
+    </form>
+  </div>
+    
+    
+
+
+   

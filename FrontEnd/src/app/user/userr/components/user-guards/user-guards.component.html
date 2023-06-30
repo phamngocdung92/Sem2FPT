@@ -1,156 +1,94 @@
 <div class="check6" style="background-color: #ffffff;padding-bottom: 50px;">
-    <!-- <--*ngFor="let item of localStorageData"-->
-      <div class="container" style="padding-top: 50px;" >
-        <div class="row">
-           <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="position: relative;">
-            <li class="nav-item" style="justify-content: start; position: absolute; left: 0;align-items: center; bottom: 10%;color: rgb(0, 0, 0);font-weight: bold;" >
-             MyAcc
-            </li>
-            <li [ngbNavItem]="1">
-              <p ngbNavLink style="width: 200px; text-align: center;">Tổng Quan</p>
-              <ng-template ngbNavContent>
-                <div class="container-fluid userr pb-5" style="background:url(https://i.pinimg.com/564x/f3/63/cb/f363cb3844227c2d9a8c228604672a4a.jpg) ,no-repeat 100% ; position: relative; height: 310px;">
-                  <section class="ss1">
-                      <div class="rounded-circle text-center align-self-center" style="width: 100px;height: 100px;margin: auto;background-color: black;color: aliceblue;">
-                          <div class="row" style="justify-content: center;align-items: center; vertical-align: middle; height: 100%;">
-                              <div class="col">
-                                   <p style="font-size: 38;" >N.H</p>
+  <!-- <--*ngFor="let item of localStorageData"-->
+    <div class="container" style="padding-top: 50px;" >
+      <div class="row">
+         <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs" style="position: relative;">
+          <li class="nav-item" style="justify-content: start; position: absolute; left: 0;align-items: center; bottom: 10%;color: rgb(0, 0, 0);font-weight: bold;" >
+           MyAcc
+          </li>
+          <li [ngbNavItem]="1">
+            <p ngbNavLink style="width: 200px; text-align: center;">Tổng Quan</p>
+            <ng-template ngbNavContent>
+              <div class="container-fluid userr pb-5" style="background:url(https://i.pinimg.com/564x/f3/63/cb/f363cb3844227c2d9a8c228604672a4a.jpg) ,no-repeat 100% ; position: relative; height: 310px;">
+                <section class="ss1">
+                    <div class="rounded-circle text-center align-self-center" style="width: 100px;height: 100px;margin: auto;background-color: black;color: aliceblue;">
+                        <div class="row" style="justify-content: center;align-items: center; vertical-align: middle; height: 100%;">
+                            <div class="col">
+                                 <p style="font-size: 38;" >N.H</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="row justify-content-center text-center"  >
+                        <div class="col">
+                            <p style="font-weight: 600;">
+                              {{ username }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+            </div>
+            <section class=" mt-5" style="padding-top: 80px;">
+                <div class="container">
+                    <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="row pb-5">
+                                <p style="font-size: 38px; font-weight: 650;text-transform: uppercase;">Tài khoản của tôi</p>
+                                <p>  Email: {{ email }}</p>
+                                <p>  Số Điện Thoại: {{user.phone}} </p>
+                                <p>  Địa Chỉ: {{user.address}}</p>
+                            </div>
+
+                            <div class="row" style="font-size: 28px; font-weight: 650;text-transform: uppercase;">
+                                <p>Hồ Sơ</p>
+
+                            </div>
+
+                            <div style="" >
+
+                              <div style="padding: 8px 0 ; display: flex;">
+                                <label style="min-width:120px;" for="">Email:<i class="bi bi-envelope"></i></label>
+                                <input style="flex:1;"  type="text" name="username" value="{{user.email}}" [(ngModel)]="user.email">
                               </div>
-  
-                          </div>
-  
-                      </div>
-                      <div class="row justify-content-center text-center"  >
-                          <div class="col">
-                              <p style="font-weight: 600;">
-                                {{ username }}
-                              </p>
-  
-                          </div>
-  
-                      </div>
-  
-                  </section>
-              </div>
-              <section class=" mt-5" style="padding-top: 80px;">
-                  <div class="container">
-                      <div class="row">
-                      <div class="col">
-                          <div class="row">
-                              <div class="row pb-5">
-                                  <p style="font-size: 38px; font-weight: 650;text-transform: uppercase;">Tài khoản của tôi</p>
-                                  <p>  Email: {{ email }}</p>
-                                  <p>  Số Điện Thoại: {{user.phone}} </p>
-                                  <p>  Địa Chỉ: {{user.address}}</p>
+                              <div style="padding: 8px 0 ; display: flex;">
+                                <label style="min-width:120px;" for="">Tên:<i class="bi bi-person-badge-fill"></i></label>
+                                <input style="flex:1;"   type="text" name="username" value="{{user.username}}" [(ngModel)]="user.username">
                               </div>
-  
-                              <div class="row" style="font-size: 28px; font-weight: 650;text-transform: uppercase;">
-                                  <p>Hồ Sơ</p>
-  
+                              <div style="padding: 8px 0 ; display: flex;">
+                                <label style="min-width:120px;" for="">Địa chỉ:<i class="bi bi-house-door-fill"></i></label>
+                                <input style="flex:1;"  type="text" name="username" value="{{user.address}}" [(ngModel)]="user.address">
                               </div>
-  
-                              <div style="" >
-                                
-                               
-                                <div style="padding: 8px 0 ; display: flex;">
-                                  <label style="min-width:120px;" for="">Email:<i class="bi bi-envelope"></i></label>
-                                  <input style="flex:1;"  type="text" name="username" value="{{user.email}}" [(ngModel)]="user.email">
-                                </div>
-                                <div style="padding: 8px 0 ; display: flex;">
-                                  <label style="min-width:120px;" for="">Tên:<i class="bi bi-person-badge-fill"></i></label>
-                                  <input style="flex:1;"   type="text" name="username" value="{{user.username}}" [(ngModel)]="user.username">
-                                </div>
-                                <div style="padding: 8px 0 ; display: flex;">
-                                  <label style="min-width:120px;" for="">Địa chỉ:<i class="bi bi-house-door-fill"></i></label>
-                                  <input style="flex:1;"  type="text" name="username" value="{{user.address}}" [(ngModel)]="user.address">
-                                </div>
-                                <div style="padding: 8px 0 ; display: flex;">
-                                  <label style="min-width:120px;" for="">Số Điện Thoại:<i class="bi bi-phone-fill"></i></label>
-                                  <input style="flex:1;"  type="text" name="username" value="{{user.phone}}" [(ngModel)]="user.phone">
-                                </div>
-                                <div style="padding: 8px 0 ; display: flex;">
-                                  <label style="min-width:120px;" for="">Mật Khẩu:<i class="bi bi-eye-slash"></i></label>
-                                  <input style="flex:1;"  type="text" name="username" value="{{user.password}}" [(ngModel)]="user.password">
-                                </div>
+                              <div style="padding: 8px 0 ; display: flex;">
+                                <label style="min-width:120px;" for="">Số Điện Thoại:<i class="bi bi-phone-fill"></i></label>
+                                <input style="flex:1;"  type="text" name="username" value="{{user.phone}}" [(ngModel)]="user.phone">
                               </div>
-                              <div class="row text-center pb-5 pt-4">
-                                  <button style="width: 100%;" (click)="updateUser()">Chỉnh sửa hồ sơ của tôi </button>
+                              <div style="padding: 8px 0 ; display: flex;">
+                                <label style="min-width:120px;" for="">Mật Khẩu:<i class="bi bi-eye-slash"></i></label>
+                                <input style="flex:1;"  type="text" name="username" value="{{user.password}}" [(ngModel)]="user.password">
                               </div>
-                                  <div class="row" >
-                                      <p style="font-size: 38px; font-weight: 650;text-transform: uppercase;">
-                                        Giỏ Hàng
-                                      </p>
-  
-                                  </div>
-  
-                                  <div class="scroll" style="z-index: 999;overflow-y: auto; padding: unset; " >
-                                    <table class="table table-bordered table-hover container" style="z-index: 999;padding-top: 5rem;  background-color: rgba(255, 255, 255, 0.886); text-align: center; ">
-                                        <thead >
-                                        <tr>
-  
-                                            <th>ô tích </th>
-                                            <th>Ảnh</th>
-                                            <th>Tên</th>
-                                            <th>Số Lượng</th>
-                                            <th>Giá</th>
-                                            <th>Tổng</th>
-                                            <th>Xóa</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr style="vertical-align: middle;">
-                                                <td ></td>
-                                                <td ><img src="" width="80px" height="80px" alt=""></td>
-                                                <td ></td>
-                                                <td>
-                                                  <!-- <button (click)="giamSL(i, cart.quantity)">-</button>
-                                                  <input (change)="updateQuantity(i, $event)" type="number" [value]="cart.quantity " style="width: 50px; text-align: center;">
-                                                  <button (click)="tangSL(i, cart.quantity)">+</button> -->
-                                              </td>
-                                                <td ></td>
-                                                <td ></td>
-                                                <td> <button class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                  <div class="col" style="padding: unset;">
-                                      <button style="width: 100%;">{{id}}</button>
-                                  </div>
-                          </div>
-                      </div>
-                      <div class="col">
-                         <div class="row" style="font-size: 38px; font-weight: 650;text-transform: uppercase;">
-                          <p>
-                               đơn đặt hàng của tôi
-                          </p>
-  
-                         </div>
-                         <div class="row text-center">
-                          <p style="font-size: 18px; font-weight: 500; text-transform: uppercase;">
-                               hiện chưa có đơn nào
-                          </p>
-  
-                         </div>
-                         <div class="row text-center" >
-                          <div class="col">
-                               <button style="width: 100%;">bắt đầu mua hàng</button>
-                          </div>
-  
-                      </div>
-                      </div>
-                  </div>
-                  </div>
-  
-              </section>
-              </ng-template>
-            </li>
-          </ul>
-          <div [ngbNavOutlet]="nav" class="mt-2"></div>
-          <div class="d-grid gap-2 col-6 mx-auto" style="padding-top:  50px;text-align: center;">
-            <button  (click)="logout()">Đăng Xuất</button>
-          </div>
+                            </div>
+                            <div class="row text-center pb-5 pt-4">
+                                <button style="width: 100%;" (click)="updateUser()">Chỉnh sửa hồ sơ của tôi </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </section>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        <div class="d-grid gap-2 col-6 mx-auto" style="padding-top:  50px;text-align: center;">
+          <button  (click)="logout()">Đăng Xuất</button>
         </div>
       </div>
-  
-      </div>
+    </div>
+
+    </div>

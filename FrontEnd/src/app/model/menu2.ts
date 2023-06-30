@@ -5,5 +5,9 @@ export class Menu2{
   title_b2?:string;
   id_menu?:string;
   router_link_menu2?:string;
+  ViOrIma?:string;
+      Name?:string;
+      ten?:string;
+      chek?:number;
   
  }

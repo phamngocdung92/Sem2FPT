@@ -96,18 +96,11 @@ export class HeaderComponent implements OnInit {
   }
 
   updateProduct(): void {
-    if (this.selectedImage) {
-      // Create FormData object and append the selected image
-      const formData = new FormData();
-      formData.append('image', this.selectedImage, this.selectedImage.name);
+  
 
-      // Append other product data
-      formData.append('name_product', this.product.name_product);
-      // Append other form fields
-
-      this.productService.updateProduct(this.product.id_product, formData).subscribe(data => {
+      this.productService.updateProduct(this.product.id,this.product).subscribe(data => {
         this.router.navigateByUrl('/admin/mentor');
       });
     }
-  }
+  
 }

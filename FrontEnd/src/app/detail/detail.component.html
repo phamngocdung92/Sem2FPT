@@ -3,7 +3,6 @@
   
 
     <div class="left-column" [class.active]="image === activeImage" *ngFor="let image of images" >
-
       <img [src]="image" [class.active]="image === activeImage" alt=" "style="width: 100%; height: 100%; object-fit: contain;"/>
       <!-- <img src={{image}} /> -->
 
@@ -12,8 +11,8 @@
   <div class="right-column">
     <!--Product description-->
     <div class="product-description">
-      <span>{{productName}}</span>
-      <h1>$ {{productPrice}}</h1>
+      <h4>{{productName}}</h4>
+      <h2>$ {{productPrice}}</h2>
       <p>
         {{productDescription}}
       </p>
@@ -50,8 +49,9 @@
       </div>
     </div>
     <!-- Add to cart -->
-    <div class="addToCart">
-      <a href="#" class="cart-btn">Add to cart</a>
+    <div class="addToCart" >
+      <button (click)="addToCart()">Add to Cart</button>
+
     </div>
   </div>
 </main>

@@ -33,11 +33,15 @@ import { ToastrModule } from 'ngx-toastr';
 import {  BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ChatComponent } from './shared/chat/chat.component';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { MeoComponent } from './meo/meo.component';
+
 import { RegisterComponent } from './register/register.component';
 import { LoginAdminComponent } from './home/login-admin/login-admin.component';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginadminComponent } from './shared/loginadmin/loginadmin.component';
+import { StickyInforDirective } from './compare/sticky-infor.directive';
+import { NextDirective } from './next.directive';
+import { PrevDirective } from './prev.directive';
+
 
 
 
@@ -68,10 +72,13 @@ import { LoginadminComponent } from './shared/loginadmin/loginadmin.component';
     Check8Component,
     ChatComponent,
     PageNotFoundComponent,
-    MeoComponent,
+    
     RegisterComponent,
     LoginAdminComponent,
-    LoginadminComponent
+    LoginadminComponent,
+    StickyInforDirective,
+    NextDirective,
+    PrevDirective
     
     
 

@@ -15,6 +15,7 @@ export class ProductService {
   private Url = 'http://localhost:3006/users/list';
   private detailUrl = 'http://localhost:3006/users/detail';
   private menuUrl = 'http://localhost:3006/menu/list';
+  private menuProductUrl = 'http://localhost:3006/menuProduct/list';
   private menu2Url = 'http://localhost:3006/menu2/list';
   private editMENUURl = 'http://localhost:3006/menu/update';
   private ProductURL = 'http://localhost:3006/product/list';
@@ -25,7 +26,8 @@ export class ProductService {
   private menu2productURL = 'http://localhost:3006/menuProduct2/list';
   private cartUrl = 'http://localhost:3006/cart'
   private billUrl = 'http://localhost:3006/getall/history'
- 
+  private paylUrl = 'http://localhost:3006/payment';
+  private billUserUrl = 'http://localhost:3006/history/user';
  
   product: any;
   constructor(private httpClient: HttpClient) { }
@@ -50,13 +52,17 @@ export class ProductService {
     return this.httpClient.get(`${this.seasonURL}/${id}`);
   }
   getWatchmore(id: string): Observable<any> {
-    return this.httpClient.get(`${this. menu2productURL}/${id}`);
+    return this.httpClient.get(`${this.menu2productURL}/${id}`);
   }
   getCartUser(id:number): Observable<any> {
     return this.httpClient.get(`${this.cartUrl}/${id}`);
   }
   getBill(): Observable<any> {
     return this.httpClient.get<any[]>(this.billUrl);
+  }
+  DeleteUserProduct(id: number): Observable<any> {
+    const url = `http://localhost:3006/delete/one/product/${id}`;
+    return this.httpClient.delete<any>(url,);
   }
 
 
@@ -75,8 +81,14 @@ export class ProductService {
   getMenu2(): Observable<any> {
     return this.httpClient.get<any[]>(this.menu2Url);
   }
+  getMenuuProductID(id: string): Observable<any> {
+    return this.httpClient.get(`${this.menuProductUrl}/${id}`);
+  }
   getMenuu(id: string): Observable<any> {
     return this.httpClient.get(`${this. menuUrl}/${id}`);
+  }
+  getMenuu2(id: string): Observable<any> {
+    return this.httpClient.get(`${this. menu2Url}/${id}`);
   }
   getDetailAcc(id: number): Observable<any> {
     return this.httpClient.get(`${this.detailUrl}/${id}`);
@@ -138,7 +150,10 @@ export class ProductService {
       }
     });
   }
-
+  getBillUser(id: number): Observable<any> {
+    return this.httpClient.get(`${this.billUserUrl}/${id}`);
+  }
+  
 
   //PRODUCT
   getProducts(): Observable<any[]> {//list sản phẩm
@@ -166,7 +181,9 @@ export class ProductService {
     const url = "http://localhost:3006/";
     return this.httpClient.post(url + 'menu2/add', data); 
   }
-
+  Pay(useId: number) : Observable<any>{ // đăng nhập
+    return this.httpClient.post(this.paylUrl, useId); // vi login ve kia ta tao la "app.post()"
+  }
 
   // CART
   getCarts ( ) {

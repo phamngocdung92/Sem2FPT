@@ -29,7 +29,7 @@ Menu2.hdl_menu_id2 = function(id, result){
 }
 
 Menu2.hdl_add_menu2 = function(data, result) {
-    const query = "INSERT INTO menu2 (id_menu2, name_menu2, title_b2 ,id_menu) VALUES (?, ?, ?,?)";
+    const query = "INSERT INTO menu2 (id_menu2, name_menu2, title_b2 ,id_menu ,router_link_menu2) VALUES (?, ?, ?,?,?)";
     db.query(query, [data.id_menu2, data.name_menu2, data.title_b2,data.id_menu], (err, menu2) => {
       if (err) {
         result(null);

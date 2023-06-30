@@ -7,6 +7,7 @@ export class Cart{
     price?: number;
     name_product?: string;
     image_product?: string;
-    title_product?:string;
+    title_product?: string;
+    total_price?:number
    }
   

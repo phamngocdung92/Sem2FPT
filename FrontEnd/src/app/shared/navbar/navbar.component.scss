@@ -3,12 +3,30 @@
   margin: 0;
   box-sizing: border-box;
 }
+.counter{
+  position: absolute;
+  left: 14px;
+  top: -6px;
+  
+  padding: 1px 5px;
+
+  background-color:rgb(250, 89, 89) ;
+  border-radius: 50%;
+}
+.counter p{
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 10px;
+}
 
 body{
   font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
-
+.navbar-hidden {
+  display: none;
+}
 ul{
   list-style: none;
 }

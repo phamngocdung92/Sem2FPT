@@ -1,8 +1,8 @@
 <div class="body">
-  <div class="row container-fuild text-center" style="background-color: #ffffff; justify-content: space-between;width: 100%; height: 90px;">
+  <div class="row container-fuild text-center" style="background-color: #ffffff; justify-content: space-between;width: 100%; height: 100px;" id="navbar">
     <div class=" row  " style="background-color:#ffffff; backdrop-filter: blur(5px); ">
       <div class="container headercheck"  style=" color: rgb(0, 0, 0); margin: auto;padding-right: calc(var(--bs-gutter-x) * 3);
-      padding-left: calc(var(--bs-gutter-x) * 3);"  >
+      padding-left: calc(var(--bs-gutter-x) * 3); padding-bottom: 10px;"  >
         <p style="margin-top: revert;">Tất Cả Sản Phẩm</p>
         <div class="buttomm" style="justify-content: center;align-items: center; margin: auto; margin-right: 0;">
             <ng-template #content let-offcanvas>
@@ -25,36 +25,36 @@
       </div>
     </div>
   </div>
+  
 
-
-  <div class="container-fuild">
-    <div class="banner" >
-      <div class="bg">
+  <div class="container-fuild" style="position: relative;" >
+  
+    <div  class="banner"  *ngIf="menu22.ViOrIma === 1" >
+      <div class="bg ">
         <video id="background-vide" autoplay [muted]="'muted'" controls >
-          <source src="assets/img/fashion2.mp4" type="video/mp4">
+          <source src="{{menu22.router_link_menu2}}" type="video/mp4">
         </video>
       </div>
-    </div>
+      <div class="ovelay" style="position: absolute;width: 100%;height: 100%;z-index: 1;background: rgb(0,0,0);
+      background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(255,255,255,0) 70%);"></div>
+      <div class="content text-light " style="z-index: 1000;">
+        <div class="row ">
+         
+        </div>
+        <div class="row nut" >
+          <p style="text-align: left;font-size: 8px;">{{menu22.Name}}</p>
+        </div>
+  
+      </div>
+  
   </div>
-
-    <!--BST mới nhất-->
-  <div class="container-fuild">
-    <div class="banner">
-        <div class="bgg">
-          <img [src]="menuImages.get('e1')" style="background-size: cover; background-position: center; width: 100%;">
-        </div>
-        <div class="content text-light ">
-          <div class="row text-center">
-            <h4 class="h4">{{menuName.get('e1')}}</h4>
-          </div>
-        </div>
-    </div>
-  </div> 
+  </div>
+  
 
   <div class="check">
     <div class="row" >
-      <div class="col" *ngFor="let product of visibleNewCollection">
-        <div [ngClass]="{ 'hide-product': product.id_menu !== 'e1' }"> 
+      <div class="col-3" *ngFor="let product of productList">
+
           <div class="containe a img-rounded img-responsive" [style.background-image]="'url(' + firstImage(product.images) + ')' " style="background-repeat: no-repeat; background-position: center; background-size: cover;">
               <div class="overlay">
                 <ngb-carousel *ngIf="product.images">
@@ -70,105 +70,45 @@
                 </ngb-carousel>
               </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div> 
-  <div class="abc">
-    <div class="controls">
-      <button class="btn1" (click)="prevPage()" [disabled]="currentPage === 1"><a>Previous</a></button>
-      <button class="btn1" (click)="nextPage()" [disabled]="currentPage === totalPages()"><a>Next</a></button>
-    </div>
-  </div>
-  
-  <!--BST Nam-->
-      
-  <div class="container-fuild">
-    <div class="banner">
-        <div class="bgg">
-          <img [src]="menuImages.get('e5')" style="background-size: cover; background-position: center; width: 100%;">
-        </div>
-        <div class="content text-light ">
-          <div class="row text-center">
-            <h4 class="h4">{{menuName.get('e5')}}</h4>
-          </div>
-        </div>
-    </div>
-  </div>
 
-  <div class="check">
-    <div class="row" style="width: 100%;" >
-      <div class="col" *ngFor="let product of visibleManProducts">
-        <div [ngClass]="{ 'hide-product': product.id_gender !== 'c1' }"> <!--Thay thế e2 bằng các id_menu tương ứng-->
-          <div class="containe a img-rounded img-responsive" [style.background-image]="'url(' + firstImage(product.images) + ')' " style="background-repeat: no-repeat; background-position: center; background-size: cover">
-              <div class="overlay">
-                <ngb-carousel *ngIf="product.images">
-                  <ng-template ngbSlide *ngFor="let image of product.images">
-                    <div class="picsum-img-wrapper">
-                      <a (click)="navigateToDetail(product.id_product)"><img [src]="image" /></a>
-                    </div>
-                    <div class="carousel-caption">
-                      <h3 style="background-color: rgba(212, 55, 0, 0.5);  color:white;">{{ product.name_product }}</h3>
-                      <p style="background-color: rgba(212, 55, 0, 0.5); color:white;">{{ product.title_product}}</p>
-                    </div>
-                  </ng-template>
-                </ngb-carousel>
-              </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
-  <div class="abc">
-    <div class="controls">
-      <button class="btn1" (click)="prevPage1()" [disabled]="currentPage === 1"><a>Previous</a></button>
-      <button class="btn1" (click)="nextPage1()" [disabled]="currentPage === totalPages1()"><a>Next</a></button>
-    </div>
-</div> 
-      
-  <!--BST nữ-->
-  <div class="container-fuild">
-    <div class="banner">
-        <div class="bgg">
-          <img [src]="menuImages.get('e6')" style="background-size: cover; background-position: center; width: 100%;">
-        </div>
-        <div class="content text-light ">
-          <div class="row text-center">
-            <h4 class="h4">{{menuName.get('e6')}}</h4>
-          </div>
-        </div>
-    </div>
-  </div> 
-
-  <div class="check">
-    <div class="row" style="width: 100%;" >
-      <div class="col" *ngFor="let product of visibleWomanProducts">
-        <div [ngClass]="{ 'hide-product': product.id_gender !== 'c2' }"> <!--Thay thế e2 bằng các id_menu tương ứng-->
-          <div class="containe a img-rounded img-responsive" [style.background-image]="'url(' + firstImage(product.images) + ')' " style="background-repeat: no-repeat; background-position: center; background-size: cover">
-              <div class="overlay">
-                <ngb-carousel *ngIf="product.images">
-                  <ng-template ngbSlide *ngFor="let image of product.images">
-                    <div class="picsum-img-wrapper">
-                      <a (click)="navigateToDetail(product.id_product)"><img [src]="image" /></a>
-                    </div>
-                    <div class="carousel-caption">
-                      <h3 style="background-color: rgba(212, 55, 0, 0.5);  color:white;">{{ product.name_product }}</h3>
-                      <p style="background-color: rgba(212, 55, 0, 0.5); color:white;">{{ product.title_product}}</p>
-                    </div>
-                  </ng-template>
-                </ngb-carousel>
-              </div>
-          </div>
-        </div>
-      </div>
+<div class="row container-fuild text-center" style="background-color: #ffffff; justify-content: space-between;width: 100%; height: 200px;border: 1px solid gray;padding-top: 30px;" >
+  <div class=" row  " style="background-color:#ffffff; backdrop-filter: blur(5px); ">
+    <div>
+     <p >bạn đã xem 144 sản phẩm trong tổng số 267</p>
+     <div> <button type="button" class="btn" style="width: 400px; height: 50px; border-radius: 50px;border: 1px solid black;">Xem Thêm</button></div>
+     <div> <button (click)="scrollToTop()"><i class="bi bi-chevron-up"></i></button></div>
+    
     </div>
   </div>
-  <div class="abc">
-    <div class="controls">
-      <button class="btn1" (click)="prevPage2()" [disabled]="currentPage === 1"><a>Previous</a></button>
-      <button class="btn1" (click)="nextPage2()" [disabled]="currentPage === totalPages2()"><a>Next</a></button>
-    </div>
 </div>
+<div class="row container-fuild text-center" style="background-color: #ffffff; justify-content: space-between;width: 100%; height: 90px;border: 1px solid gray;" >
+  <div class=" row  " style="background-color:#ffffff; backdrop-filter: blur(5px); ">
+    <div class="container headercheck"  style=" color: rgb(0, 0, 0); margin: auto;padding-right: calc(var(--bs-gutter-x) * 3);
+    padding-left: calc(var(--bs-gutter-x) * 3); position: fixed;"  >
+  
+     <p style="margin-top: 35px;"><a href="#" style="color: black;text-decoration: none; ">Lizard</a> - {{menu22.ten}}</p>
+
+
+    </div>
+  </div>
+</div>
+
+
+  <!--BST Nam-->
+
+
+
+
+
+
+  <!--BST nữ-->
+
+
+
+
 
 
 </div> <!--End div body-->

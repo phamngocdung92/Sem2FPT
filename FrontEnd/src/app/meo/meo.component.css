@@ -1,0 +1,16 @@
+
+    .template-based {
+      display: flex;
+      justify-content: space-evenly;
+      padding-top: 10px;
+    }
+    .add-button {
+      color: green;
+    }
+    .remove-button {
+      color: red;
+    }
+  
+    .table>:not(caption)>*>*{
+      background-color: none;
+    }

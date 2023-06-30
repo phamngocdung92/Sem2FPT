@@ -12,6 +12,7 @@ import { FixComponent } from './components/fix/fix.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MeoComponent } from 'src/app/meo/meo.component';
 
 
 
@@ -24,6 +25,7 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     FooterComponent,
     HeaderComponent,
+    MeoComponent
 
 
 

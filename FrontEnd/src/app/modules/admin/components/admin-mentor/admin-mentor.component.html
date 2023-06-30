@@ -26,16 +26,16 @@
                       <th>Danh Mục</th>
                       <th>Danh Mục 2</th>
                       <th>Giá</th>
-                      <th>Link</th>
+                     
                       <th>Sửa</th>
                       <th>Xóa</th>
                   </tr>
                   </thead>
-                  <tbody *ngFor="let product of productsWithDetails">
-                      <tr style="vertical-align: middle;">
+                  <tbody *ngFor="let product of productsWithDetails "  >
+                      <tr  *ngFor="let product1 of products2 " style="vertical-align: middle;">
                           <td >{{product.id_product}}</td>
                           <td >{{product.name_product}}</td>
-                          <td style="background-image: url({{product.image_product}}); background-size: cover;height: 150px;width: 150px;"></td>
+                          <td  [style.background-image]="'url(' + firstImage(product1.images) + ')' " style=" background-size: cover;height: 150px;width: 150px;" ></td>
                           <td >{{product.title_product}}</td>
                           <td >{{product.quanity_product}}</td>
                           <td >{{product.description_product}}</td>
@@ -47,7 +47,7 @@
                           <td>{{product.price}}</td>
 
                           <td><a class="btn btn-sm btn-success bi bi-gear"routerLink="/admin/fixProduct/{{product.id_product}}"></a></td>
-                          <td>  <button (click)="onDeleteProduct(product?.id_product || 0)" class="btn btn-sm btn-danger">
+                          <td> <button (click)="onDeleteProduct(product?.id_product || 0)" class="btn btn-sm btn-danger">
                             <i class="bi bi-trash-fill"></i>
                           </button></td>
                       </tr>
@@ -73,71 +73,7 @@
                 </div>
                   <div class="row">
                     <div class="col">
-                      <form action="" (ngSubmit)="save2()">
-                        <div class="row">
-                          
-                        </div>
-                        <div class="card" style="overflow-y: scroll;height: 500px;">
-                            <div class="card-body" >
-                            <div class="form-group">
-                                <label for="ID">Mã</label>
-                                <input [(ngModel)]="menuu.id_menu" [(ngModel)]="menn2.id_menu" type="text" class="form-control" name="ID" id="ID" aria-describedby="ID" placeholder="ID">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="name">Tên Menu </label>
-                                <input [(ngModel)]="menuu.name_menu"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                            </div>
-
-                            <div class="form-group" enctype="multipart/form-data">
-                                <label for="name">Ảnh/Video</label>
-                                <input [(ngModel)]="menuu.image_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="Link Ảnh hoặc Đường Dẫn Video trong máy ">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Mô Tả</label>
-                                <input [(ngModel)]="menuu.title_b" type="text"  class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                            </div>
-
-                            <div class="form-group">
-                              <label for="name">Link</label>
-                              <input [(ngModel)]="menuu.router_link_menu" type="text" name="videoFile"class="form-control" id="name" aria-describedby="nameHid" placeholder="name">
-                          </div>
-                          <div class="form-group">
-                            <label for="category">Loại</label>
-                            <select class="form-control" id="category" [(ngModel)]="menuu.check_column" name="check">
-                              <option  [value]="0">0</option>
-                              <option  [value]="1">1</option>
-                            </select>
-                          </div>
-                          <div class="danhmuc" >
-                            <div class="form-group">
-                            <label for="ID">ID Danh mục</label>
-                            <input [(ngModel)]="menn2.id_menu2" type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                        </div>
-                        <div class="form-group">
-                          <label for="name">Tên Danh Mục</label>
-                          <input [(ngModel)]="menn2.name_menu2"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                      </div>
-                      <div class="form-group">
-                        <label for="name">Giới Thiệu </label>
-                        <input [(ngModel)]="menn2.title_b2"type="text" class="form-control" name="name" id="name" aria-describedby="nameHid" placeholder="name">
-
-                    </div>
-                        </div>
-                        
-                          
-                            
-                            </div>
-                            <div class="card-footer text-muted">
-                              <button  class="btn btn-outline-primary" type="submit">Save</button>
-                           </div>
-                        </div>
-                    </form>
+                      <app-meo></app-meo>
                     </div>
                 </div>
               </ng-template>
@@ -239,7 +175,8 @@
                           <td >{{user.id}}</td>
                           <td>{{user.username}}</td>
                           <td>{{user.email}}</td>
-                          <button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button>
+                          <td><button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
+                          
                       </tr>
                   </tbody>
               </table>
@@ -267,7 +204,7 @@
                           <td>{{user.username}}</td>
                           <td>{{user.email}}</td>
                           <td><a class="btn btn-sm btn-success bi bi-gear"routerLink="/admin/fixAcc/{{user.id}}"></a></td>
-                          <button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button>
+                          <td><button *ngIf="user.id" (click)="onDeleteAcc(user.id)" class="btn btn-sm btn-danger" ><i class="bi bi-trash-fill"></i></button></td>
                       </tr>
                   </tbody>
               </table>

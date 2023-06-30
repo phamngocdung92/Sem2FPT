@@ -13,7 +13,7 @@ import { Category } from 'src/app/model/category';
 import { Season } from 'src/app/model/season';
 import { Menu2 } from 'src/app/model/menu2';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormControl, FormGroup,Validators  } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup,Validators  } from '@angular/forms';
 import { Bill } from 'src/app/model/bill';
 import { flatMap } from 'rxjs';
 @Component({
@@ -35,6 +35,7 @@ export class AdminMentorComponent implements OnInit {
   isShow: boolean = true;
   showAdmin: boolean = false;
   products: any[] = []; // Mảng chứa danh sách sản phẩm
+  products2: any[] = []; // Mảng chứa danh sách sản phẩm
  // Users: any{};
  users: user[] = [];
  menus: Menu[]=[];
@@ -46,9 +47,8 @@ export class AdminMentorComponent implements OnInit {
  seasons: Season[]=[];
  productsWithDetails: ProductWithDetails[] = [];
  username!: string | null;
+ productImages: any [] = [];
 
- menuArray1: Menu2[] = [];
-menuArray2: Menu2[] = [];
 counts: number[] = [];
 bill: Bill[]=[];
 formGroup1: FormGroup
@@ -58,12 +58,8 @@ formGroup1: FormGroup
   constructor(private formBuilder: FormBuilder,private productService: ProductService, private auth: AuthService,private httpClient: HttpClient,private router: Router,private modalService: NgbModal) {
     
     this.formGroup1 = this.formBuilder.group({
-      id_menu2: ['', Validators.required],
-      name_menu2: ['', Validators.required],
-      image_b2: 'NULL',
-      title_b2: ['', Validators.required],
-      id_menu:['', Validators.required],
-      router_link_menu2:'NULL'
+      name: '',
+      quantities: this.formBuilder.array([]) ,
       
     });
     this.product = new Product();
@@ -76,6 +72,31 @@ formGroup1: FormGroup
       this.isShow = false;
     }
     this.isAdmin = localStorage.getItem('isadmin') ?? null;
+  }
+  firstImage(images: string[]): string {
+    if (images && images.length > 0) {
+      return images[0]; // Trả về ảnh đầu tiên trong danh sách
+    }
+    return ''; // Trả về chuỗi rỗng nếu danh sách ảnh trống
+  }
+  quantities() : FormArray {
+    return this.formGroup1.get("quantities") as FormArray
+  }
+  newQuantity(): FormGroup {
+    return this.formBuilder.group({
+      id_menu2: '',
+      image_b2: '',
+      name_menu2: '',
+      router_link_menu2: '',
+      title_b2: ''
+      
+    })
+  }
+  addQuantity() {
+    this.quantities().push(this.newQuantity());
+  }
+  removeQuantity(i:number) {
+    this.quantities().removeAt(i);
   }
 
   openVerticallyCentered(content: any) {
@@ -180,8 +201,48 @@ formGroup1: FormGroup
     );
     this.productService.getProducts().subscribe(
       (data: any) => {
+        this.products2 = data.result;
+        console.log(this.products);
+        this.products2.forEach((productss) => {
+          
+          // this.productID.push(product.id_product);
+        
+  
+  
+          //thay thế 'e2' trong product.id_menu === 'e2' bằng các id_menu tương ứng và kiểm tra khớp trong html
+          const images = JSON.parse(productss.image_product);
+          this.productImages.push(images);
+          productss.images = images; // Gán giá trị vào product.images
+  
+        });
+       
+
+      
+       
+
+        
+      },
+      (error) => {
+        console.error('Lỗi:', error);
+      }
+    );
+    this.productService.getProducts().subscribe(
+      (data: any) => {
         this.products = data.result;
         console.log(this.products);
+        this.products.forEach((productss) => {
+          
+          // this.productID.push(product.id_product);
+        
+  
+  
+          //thay thế 'e2' trong product.id_menu === 'e2' bằng các id_menu tương ứng và kiểm tra khớp trong html
+          const images = JSON.parse(productss.image_product);
+          this.productImages.push(images);
+          productss.images = images; // Gán giá trị vào product.images
+  
+        });
+       
 
         this.productsWithDetails = this.products.map((product: Product) => {
           const productWithDetails: ProductWithDetails = { ...product };
@@ -198,6 +259,7 @@ formGroup1: FormGroup
 
           return productWithDetails;
         });
+       
 
         console.log(this.productsWithDetails);
       },
@@ -282,19 +344,26 @@ formGroup1: FormGroup
       console.log(data);
 
       // Thực hiện các xử lý khác sau khi lưu thành công
-      this.httpClient.post(this.menu2Url, this.menn2).subscribe(
-        (data) => {
-          console.log(data);
-          // Thực hiện các xử lý sau khi lưu formData1 thành công
-        },
-        (error1) => {
-          console.error('Lỗi khi đẩy dữ liệu lên server (formData1)', error1);
-          // Xử lý lỗi của formData1 tại đây
-        }
-      );
-    
+      const quantities = this.formGroup1.value.quantities;
+      for (let i = 0; i < quantities.length; i++) {
+        this.menn2.id_menu2=this.formGroup1.value.quantities[i].id_menu2;
+        this.menn2.name_menu2=this.formGroup1.value.quantities[i].id_menu2;
+        this.menn2.title_b2=this.formGroup1.value.quantities[i].id_menu2;
+        console.log(this.menn2),
+        this.httpClient.post(this.menu2Url, this.menn2).subscribe(
+          (data) => {
+            console.log(data);
+            // Thực hiện các xử lý sau khi lưu formData1 thành công
+          },
+          (error1) => {
+            console.error('Lỗi khi đẩy dữ liệu lên server (formData1)', error1);
+            // Xử lý lỗi của formData1 tại đây
+          }
+        );
+      }
      
-      window.location.reload();
+     
+      // window.location.reload();
     });
   }
   

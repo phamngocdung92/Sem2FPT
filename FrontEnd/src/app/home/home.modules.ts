@@ -75,7 +75,7 @@ import { watchmoreComponent } from './watchmore/watchmore.component';
      CollectionWomanComponent,
      BAndFComponent,
      FilterByMenuIdPipe,
-     watchmoreComponent
+     watchmoreComponent,
      
      
    ],

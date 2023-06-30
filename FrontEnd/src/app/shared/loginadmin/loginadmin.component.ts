@@ -44,8 +44,10 @@ export class LoginadminComponent implements OnInit {
       this.showAdminButton = false;
       this.showUserButton = false;
     }
+    
 
   }
+  
 
   onSubmit(): void {
     if (this.loginForm.valid) {
